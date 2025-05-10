@@ -38,7 +38,7 @@ class TaskController extends Controller
 
         $task = new Task($data);
         $task->save();
-        return redirect()->route('task.index')->with('success', 'Task created successfully');
+        return redirect()->route('tasks.index')->with('success', 'Task created successfully');
     }
 
     /**
@@ -66,7 +66,7 @@ class TaskController extends Controller
         
         $task-> fill($data);
         $task->save();
-        return redirect()->route('task.index')->with('success', 'Task updated successfully');
+        return redirect()->route('tasks.index')->with('success', 'Task updated successfully');
     }
 
     /**
@@ -75,6 +75,6 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         $task->delete();
-        return redirect()->route('task.index')->with('success', 'Task removed successfully');
+        return redirect()->route('tasks.index')->with('success', 'Task removed successfully');
     }
 }

@@ -10,5 +10,5 @@ Route::get('/', function () {
 });
 
 Route::resources([
-    'task' => TaskController::class,
+    'tasks' => TaskController::class,
 ]);

@@ -32,8 +32,8 @@
                         <td>{{$task->executor}}</td>
                         <td>{{$task->created_at}}</td>
                         <td>
-                            <a class="text-decoration-none" href="{{route('tasks.edit', $task->id)}}">__('task.edit')</a>
-                            <a class="text-decoration-none link-danger" href="{{route('tasks.destroy', $task->id)}}" data-confirm="Are you sure?" data-method="delete" rel="nofollow">__('task.destroy')</a>
+                            <a class="text-decoration-none" href="{{route('tasks.edit', $task->id)}}">{{ __('task.edit') }}</a>
+                            <a class="text-decoration-none link-danger" href="{{route('tasks.destroy', $task->id)}}" data-confirm="Are you sure?" data-method="delete" rel="nofollow">{{ __('task.destroy') }}</a>
                         </td>
                     </tr>
                 @endforeach
