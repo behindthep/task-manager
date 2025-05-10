@@ -6,7 +6,12 @@
         <title>Task manager</title>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="csrf-param" content="_token" />
-        @vite(['resources/js/app.js'])
+        <title>Task Manager</title>
+
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
