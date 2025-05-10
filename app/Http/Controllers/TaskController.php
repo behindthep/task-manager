@@ -64,7 +64,7 @@ class TaskController extends Controller
     {
         $data = $request->validated();
         
-        $task-> fill($data);
+        $task->fill($data);
         $task->save();
         return redirect()->route('tasks.index')->with('success', 'Task updated successfully');
     }
