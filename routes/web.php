@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
-    TaskController,
+    TaskController, TaskStatusController, LabelController
 };
 
 Route::get('/', function () {
@@ -11,4 +11,6 @@ Route::get('/', function () {
 
 Route::resources([
     'tasks' => TaskController::class,
+    'tasks_statuses' => TaskStatusController::class,
+    'labels' => LabelController::class,
 ]);
