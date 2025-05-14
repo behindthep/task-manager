@@ -5,7 +5,7 @@
         <div class="grid col-span-full">
             <div>
                 <h1 class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-4xl">
-                    {{ __('Statuses') }}       
+                    {{ __('task_status.index') }}       
                 </h1> 
                 @auth
                     {{ html()->a(route('task_statuses.create'), __('task_status.create'))->class('bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow') }}

@@ -13,6 +13,8 @@ class TaskStatusSeeder extends Seeder
      */
     public function run(): void
     {
+        TaskStatus::truncate();
+
         TaskStatus::factory()->createMany([
             ['name' => 'новый'],
             ['name' => 'в работе'],

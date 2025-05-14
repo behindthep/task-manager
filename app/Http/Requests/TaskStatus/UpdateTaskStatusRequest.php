@@ -4,7 +4,7 @@ namespace App\Http\Requests\TaskStatus;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ValidateRequest extends BaseRequest
+class UpdateTaskStatusRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,14 @@ class ValidateRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|unique:task_statuses,name',
+            'name' => 'required|unique:task_statuses,name'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.unique' => __('task_status.validation.name.unique'),
         ];
     }
 }

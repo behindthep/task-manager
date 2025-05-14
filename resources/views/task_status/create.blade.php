@@ -4,7 +4,7 @@
     <div class="mr-auto place-self-center lg:col-span-7">
         <div>
             <h1 class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-4xl">
-                {{ __('Create status') }}       
+                {{ __('task_status.create') }}       
             </h1>
         </div>
         {{ html()->modelForm($status, 'POST', route('task_statuses.store'))->open() }}

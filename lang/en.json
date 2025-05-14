@@ -1,7 +1,6 @@
 {
     "Already registered?": "Already registered?",
     "Are you sure?": "Are you sure?",
-    "Click me": "Click me",
     "Change of status": "Change of status",
     "Confirm": "Confirm Password",
     "Confirm Password": "Confirm Password",
@@ -11,8 +10,9 @@
     "Email Password Reset Link": "Email Password Reset Link",
     "Forgot your password?": "Forgot your password?",    
     "Update": "Update",
-    "Hello from Hexlet!": "Hello from Hexlet!",
+    "Hello!": "Hello!",
     "It is simple task manager!": "It is simple task manager!",
+    "Labels": "Labels",
     "Log in": "Log in",
     "Log out": "Log out",
     "Name": "Name",
@@ -22,5 +22,6 @@
     "Registration": "Registration",
     "Remember me": "Remember me",
     "Statuses": "Statuses",
-    "Task manager": "Task manager" 
+    "Task manager": "Task manager",
+    "Tasks": "Tasks"
 }

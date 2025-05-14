@@ -12,26 +12,26 @@ class TaskStatusControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testGuestCannotAccessCreatePage()
+    public function testGuestCannotAccessCreatePage(): void
     {
         $response = $this->get(route('task_statuses.create'));
         $response->assertRedirect(route('login'));
     }
 
-    public function testAuthenticatedUserCanAccessCreatePage()
+    public function testAuthenticatedUserCanAccessCreatePage(): void
     {
         $user = User::factory()->create();
         $response = $this->actingAs($user)->get(route('task_statuses.create'));
         $response->assertStatus(200);
     }
 
-    public function testGuestCannotStoreTaskStatus()
+    public function testGuestCannotStoreTaskStatus(): void
     {
         $response = $this->post(route('task_statuses.store'), ['name' => 'New Status']);
         $response->assertRedirect(route('login'));
     }
 
-    public function testAuthenticatedUserCanStoreTaskStatus()
+    public function testAuthenticatedUserCanStoreTaskStatus(): void
     {
         $user = User::factory()->create();
         $data = ['name' => 'In Progress'];
@@ -42,7 +42,7 @@ class TaskStatusControllerTest extends TestCase
         $response->assertRedirect(route('task_statuses.index'));
     }
 
-    public function testAuthenticatedUserCanUpdateTaskStatus()
+    public function testAuthenticatedUserCanUpdateTaskStatus(): void
     {
         $user = User::factory()->create();
         $taskStatus = TaskStatus::factory()->create(['name' => 'Old Name']);
@@ -54,7 +54,7 @@ class TaskStatusControllerTest extends TestCase
         $response->assertRedirect(route('task_statuses.index'));
     }
 
-    public function testAuthenticatedUserCanDeleteTaskStatus()
+    public function testAuthenticatedUserCanDeleteTaskStatus(): void
     {
         $user = User::factory()->create();
         $taskStatus = TaskStatus::factory()->create();
