@@ -5,7 +5,7 @@
         <div>
             <h1 class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-4xl">
                 {{ __('Create status') }}       
-            </h1> 
+            </h1>
         </div>
         {{ html()->modelForm($status, 'POST', route('task_statuses.store'))->open() }}
             <div class="flex flex-col items-start">

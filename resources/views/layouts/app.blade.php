@@ -19,9 +19,9 @@
         <div class="min-h-screen bg-gray-100">
 
             <!-- Page Heading -->
-                <header class="bg-white shadow">
-                    @include('layouts.navigation')
-                </header>
+            <header class="bg-white shadow">
+                @include('layouts.navigation')
+            </header>
 
             <!-- Page Content -->
             <main class="max-w-screen-xl px-4 pt-20 pb-8 mx-auto">

@@ -24,26 +24,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($statuses as $status)
-                    <tr class="border-b border-dashed border-black text-left">
-                        <td class="py-2">{{ $status->id }}</td>
-                        <td class="py-2">{{ $status->name }}</td>
-                        <td class="py-2">{{ $status->created_at->format('d.m.Y') }}</td>
-                        @auth
-
-                            <td class="py-2">
-                                {{ html()->a(route('task_statuses.destroy', $status), __('task_status.destroy'))
-                                    ->class('btn btn-sm btn-danger text-red-600 hover:text-red-900')
-                                    ->attributes([
-                                        'data-method' => 'delete',
-                                        'data-confirm' => __('Are you sure?'),
-                                        'rel' => 'nofollow'
-                                    ]) }}
-                                {{ html()->a(route('task_statuses.edit', $status), __('task_status.edit'))->class('btn btn-sm btn-outline-primary text-blue-600 hover:text-blue-900') }}
-                            </td>
-                        @endauth
-                    </tr>
-                @endforeach
+                    @foreach($statuses as $status)
+                        <tr class="border-b border-dashed border-black text-left">
+                            <td class="py-2">{{ $status->id }}</td>
+                            <td class="py-2">{{ $status->name }}</td>
+                            <td class="py-2">{{ $status->created_at->format('d.m.Y') }}</td>
+                            @auth
+                                <td class="py-2">
+                                    {{ html()->a(route('task_statuses.destroy', $status), __('task_status.destroy'))
+                                        ->class('btn btn-sm btn-danger text-red-600 hover:text-red-900')
+                                        ->attributes([
+                                            'data-method' => 'delete',
+                                            'data-confirm' => __('Are you sure?'),
+                                            'rel' => 'nofollow'
+                                        ]) }}
+                                    {{ html()->a(route('task_statuses.edit', $status), __('task_status.edit'))->class('btn btn-sm btn-outline-primary text-blue-600 hover:text-blue-900') }}
+                                </td>
+                            @endauth
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
             {{ $statuses->links() }}
