@@ -23,7 +23,7 @@ test-coverage:
 	XDEBUG_MODE=coverage php artisan test --coverage-clover build/logs/clover.xml
 
 lint:
-	composer exec -- phpcs --standard=PSR12 app
+	composer exec -- phpcs --standard=PSR12 app tests
 
 lint-fix:
-	composer exec -- phpcbf --standard=PSR12 app
+	composer exec -- phpcbf --standard=PSR12 app tests
