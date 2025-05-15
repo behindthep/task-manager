@@ -13,14 +13,14 @@
 
             <!-- Navigation Links -->
             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                <x-nav-link :href="route('task_statuses.index')" :active="request()->routeIs('task_statuses.*')">
-                    {{ __('Tasks') }}
+                <x-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks.*')">
+                    {{ __('task.index') }}
                 </x-nav-link>
                 <x-nav-link :href="route('task_statuses.index')" :active="request()->routeIs('task_statuses.*')">
-                    {{ __('Statuses') }}
+                    {{ __('task_status.index') }}
                 </x-nav-link>
                 <x-nav-link :href="route('labels.index')" :active="request()->routeIs('labels.*')">
-                    {{ __('Labels') }}
+                    {{ __('label.index') }}
                 </x-nav-link>
             </div>
             <div class="flex">
@@ -30,26 +30,26 @@
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
 
-                                <button :href="route('logout')"
+                                <x-dropdown-link :href="route('logout')"
                                         onclick="event.preventDefault();
                                                     this.closest('form').submit();"
                                                                 class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-4 border border-gray-400 rounded shadow">
                                     {{ __('Log out') }}
-                                </button>
+                                </x-dropdown-link>
                             </form>
                         @else
-                            <a
+                            <x-dropdown-link
                                 href="{{ route('login') }}"
                                 class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-4 border border-gray-400 rounded shadow">
-                            {{ __('Log in') }}
-                            </a>
+                            {{ __('Login') }}
+                            </x-dropdown-link>
 
                             @if (Route::has('register'))
-                                <a
+                                <x-dropdown-link
                                     href="{{ route('register') }}"
                                     class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-4 border border-gray-400 rounded shadow">
                                     {{ __('Registration') }}
-                                </a>
+                                </x-dropdown-link>
                             @endif
                         @endauth
                     </nav>
