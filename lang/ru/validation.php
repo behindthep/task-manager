@@ -13,6 +13,7 @@ return [
     |
     */
 
+    'something_went_wrong' => 'Упс! Что-то пошло не так:',
     'accepted'             => 'Вы должны принять :attribute.',
     'accepted_if'          => 'Вы должны принять :attribute, когда :other соответствует :value.',
     'active_url'           => 'Значение поля :attribute должно быть действительным URL адресом.',
