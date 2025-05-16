@@ -13,6 +13,9 @@ setup:
 migrate:
 	php artisan migrate
 
+seed:
+	php artisan db:seed
+
 console:
 	php artisan tinker
 
