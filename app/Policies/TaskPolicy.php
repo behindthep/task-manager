@@ -25,7 +25,8 @@ class TaskPolicy
 
     public function update(User $user, Task $task): bool
     {
-        return Auth::check();
+        $creator = $task->createdBy();
+        return $creator->is($user);
     }
 
     public function delete(User $user, Task $task): bool
