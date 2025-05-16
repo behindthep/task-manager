@@ -12,7 +12,7 @@ class LabelController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('index');
+        $this->authorizeResource(Label::class);
     }
 
     public function index(): View
@@ -48,6 +48,13 @@ class LabelController extends Controller
 
     public function destroy(Label $label): RedirectResponse
     {
+        if ($label->tasks()->exists()) {
+            flash()->error(__('label.has_tasks'));
+            return back()->withErrors([
+                'message' => __('label.has_tasks'),
+            ]);
+        }
+
         $label->delete();
         flash()->success(__('label.deleted'));
         return redirect(route('labels.index'));
