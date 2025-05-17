@@ -25,7 +25,7 @@
                 </thead>
                 <tbody>
                     @foreach($statuses as $status)
-                        <tr class="border-b border-dashed border-black text-left">
+                        <tr class="border-b border-black text-left">
                             <td class="py-2">{{ $status->id }}</td>
                             <td class="py-2">{{ $status->name }}</td>
                             <td class="py-2">{{ $status->created_at->format('d.m.Y') }}</td>
@@ -47,7 +47,9 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $statuses->links() }}
+            <div class="mt-2">
+                {{ $statuses->links() }}
+            </div>
         </div>
     </div>
 </x-app-layout>

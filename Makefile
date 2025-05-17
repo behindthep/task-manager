@@ -9,6 +9,9 @@ setup:
 	cp -n .env.example .env
 	npm ci
 	npm run build
+	touch database/database.sqlite
+	make migrate
+	make seed
 
 migrate:
 	php artisan migrate

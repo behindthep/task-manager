@@ -12,9 +12,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\View\View;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
-use App\Http\Requests\StoreTaskRequest;
-use App\Http\Requests\UpdateTaskRequest;
-// use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Task\StoreTaskRequest;
+use App\Http\Requests\Task\UpdateTaskRequest;
 
 class TaskController extends Controller
 {
@@ -22,7 +21,7 @@ class TaskController extends Controller
     {
         $this->authorizeResource(Task::class);
     }
-    
+
     public function index(Request $request): View
     {
         $tasks = QueryBuilder::for(Task::class)
@@ -57,7 +56,6 @@ class TaskController extends Controller
             $task = Task::create([
                 ...$request->except('labels'),
                 'created_by_id' => auth()->id(),
-                // 'created_by_id' => Auth::id(),
             ]);
             $task->labels()->sync($request->get('labels'));
         });
@@ -89,7 +87,7 @@ class TaskController extends Controller
         });
 
         flash()->success(__('task.updated'));
-        return redirect(route('tasks.index'));
+        return redirect(route('tasks.show', ['task' => $task]));
     }
 
     public function destroy(Task $task): RedirectResponse

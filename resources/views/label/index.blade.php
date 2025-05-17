@@ -26,7 +26,7 @@
                 </thead>
                 <tbody>
                     @foreach($labels as $label)
-                        <tr class="border-b border-dashed border-black text-left">
+                        <tr class="border-b border-black text-left">
                             <td class="py-2">{{ $label->id }}</td>
                             <td class="py-2">{{ $label->name }}</td>
                             <td class="py-2">{{ $label->description }}</td>
@@ -49,7 +49,9 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $labels->links() }}
+            <div class="mt-2">
+                {{ $labels->links() }}
+            </div>
         </div>
     </div>
 </x-app-layout>

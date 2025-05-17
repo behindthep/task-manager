@@ -15,7 +15,7 @@
                         </p>
                         <div class="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
                             <a href="/tasks" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow" target="_self">
-                                {{ __('Tasks') }}
+                                {{ __('To tasks') }}
                             </a>
                         </div>
                     </div>

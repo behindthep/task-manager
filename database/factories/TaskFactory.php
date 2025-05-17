@@ -21,7 +21,7 @@ class TaskFactory extends Factory
         return [
             'name' => $this->faker->name,
             'description' => $this->faker->text,
-            'status_id' => fn() => TaskStatus::factory()->create()->id,
+            'status_id' => fn() => TaskStatus::inRandomOrder()->first()->id,
             'assigned_to_id' => fn() => User::factory()->create()->id,
             'created_by_id' => fn() => User::factory()->create()->id,
         ];
