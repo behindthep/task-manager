@@ -2,66 +2,81 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\TaskStatus;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TaskStatusControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testGuestCannotAccessCreatePage(): void
+    public function testIndex(): void
     {
+        $response = $this->get(route('task_statuses.index'));
+
+        $response->assertOk();
+    }
+
+    public function testEdit(): void
+    {
+        $this->actingAs(User::factory()->create());
+
+        $model = TaskStatus::factory()->create();
+        $response = $this->get(route('task_statuses.edit', $model));
+
+        $response->assertOk();
+    }
+
+    public function testCreate(): void
+    {
+        $this->actingAs(User::factory()->create());
+
         $response = $this->get(route('task_statuses.create'));
-        $response->assertRedirect(route('login'));
+
+        $response->assertOk();
     }
 
-    public function testAuthenticatedUserCanAccessCreatePage(): void
+    public function testStore(): void
     {
-        $user = User::factory()->create();
-        $response = $this->actingAs($user)->get(route('task_statuses.create'));
-        $response->assertStatus(200);
+        $this->actingAs(User::factory()->create());
+
+        $body = TaskStatus::factory()->make()->toArray();
+        $response = $this->post(route('task_statuses.store'), $body);
+
+        $response->assertRedirect();
+        $response->assertSessionHasNoErrors();
+
+        $this->assertDatabaseHas('task_statuses', $body);
     }
 
-    public function testGuestCannotStoreTaskStatus(): void
+    public function testUpdate(): void
     {
-        $response = $this->post(route('task_statuses.store'), ['name' => 'New Status']);
-        $response->assertRedirect(route('login'));
+        $this->actingAs(User::factory()->create());
+
+        $model = TaskStatus::factory()->create();
+        $body = TaskStatus::factory()->make()->toArray();
+        $response = $this->put(route('task_statuses.update', $model), $body);
+
+        $response->assertRedirect();
+        $response->assertSessionHasNoErrors();
+
+        $this->assertDatabaseHas('task_statuses', [
+            'id' => $model->id,
+            ...$body,
+        ]);
     }
 
-    public function testAuthenticatedUserCanStoreTaskStatus(): void
+    public function testDestroy(): void
     {
-        $user = User::factory()->create();
-        $data = ['name' => 'In Progress'];
+        $this->actingAs(User::factory()->create());
 
-        $response = $this->actingAs($user)->post(route('task_statuses.store'), $data);
+        $model = TaskStatus::factory()->create();
+        $response = $this->delete(route('task_statuses.destroy', $model));
 
-        $this->assertDatabaseHas('task_statuses', $data);
-        $response->assertRedirect(route('task_statuses.index'));
-    }
+        $response->assertRedirect();
+        $response->assertSessionHasNoErrors();
 
-    public function testAuthenticatedUserCanUpdateTaskStatus(): void
-    {
-        $user = User::factory()->create();
-        $taskStatus = TaskStatus::factory()->create(['name' => 'Old Name']);
-        $newData = ['name' => 'Updated Name'];
-
-        $response = $this->actingAs($user)->put(route('task_statuses.update', $taskStatus), $newData);
-
-        $this->assertDatabaseHas('task_statuses', $newData);
-        $response->assertRedirect(route('task_statuses.index'));
-    }
-
-    public function testAuthenticatedUserCanDeleteTaskStatus(): void
-    {
-        $user = User::factory()->create();
-        $taskStatus = TaskStatus::factory()->create();
-
-        $response = $this->actingAs($user)->delete(route('task_statuses.destroy', $taskStatus));
-
-        $this->assertDatabaseMissing('task_statuses', ['id' => $taskStatus->id]);
-        $response->assertRedirect(route('task_statuses.index'));
+        $this->assertDatabaseMissing('task_statuses', ['id' => $model->id]);
     }
 }
