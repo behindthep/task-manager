@@ -33,21 +33,21 @@
                                 <x-dropdown-link :href="route('logout')"
                                         onclick="event.preventDefault();
                                                     this.closest('form').submit();"
-                                                                class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-4 border border-gray-400 rounded shadow">
+                                                                class="bg-blue-500 text-white font-semibold py-1 px-4 border border-gray-400 rounded shadow">
                                     {{ __('Log out') }}
                                 </x-dropdown-link>
                             </form>
                         @else
                             <x-dropdown-link
                                 href="{{ route('login') }}"
-                                class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-4 border border-gray-400 rounded shadow">
+                                class="bg-blue-500 text-white font-semibold py-1 px-4 border border-gray-400 rounded shadow">
                             {{ __('Login') }}
                             </x-dropdown-link>
 
                             @if (Route::has('register'))
                                 <x-dropdown-link
                                     href="{{ route('register') }}"
-                                    class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-4 border border-gray-400 rounded shadow">
+                                    class="bg-blue-500 text-white font-semibold py-1 px-4 border border-gray-400 rounded shadow">
                                     {{ __('Registration') }}
                                 </x-dropdown-link>
                             @endif
