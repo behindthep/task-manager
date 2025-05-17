@@ -1,9 +1,13 @@
 <x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
     <h2 class="text-center text-2xl font-semibold">
         <a href="/">{{ __('Task manager') }}</a>
     </h2> 
+
+    <!-- Session Status -->
+    <x-auth-session-status class="mb-4" :status="session('status')" />
+    
+    <!--Validation Errors-->
+    <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
@@ -12,7 +16,6 @@
         <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Password -->
@@ -23,8 +26,6 @@
                             type="password"
                             name="password"
                             required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
         <!-- Remember Me -->
@@ -42,7 +43,7 @@
                 </a>
             @endif
 
-            <x-primary-button class="ms-3">
+            <x-primary-button class="ms-3 capitalize">
                 {{ __('Log in') }}
             </x-primary-button>
         </div>
