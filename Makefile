@@ -7,6 +7,8 @@ start-frontend:
 setup:
 	composer install
 	cp -n .env.example .env
+	php artisan key:generate
+	php artisan config:cache
 	npm ci
 	npm run build
 	touch database/database.sqlite
