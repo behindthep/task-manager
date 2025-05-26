@@ -32,6 +32,20 @@ class LoginRequest extends FormRequest
         ];
     }
 
+    public function bodyParameters(): array
+    {
+        return [
+            'email' => [
+                'description' => 'The email of the user',
+                'required' => true,
+            ],
+            'password' => [
+                'description' => 'The password of the User',
+                'required' => true,
+            ],
+        ];
+    }
+
     /**
      * Attempt to authenticate the request's credentials.
      *

@@ -126,9 +126,7 @@
             </div>
 
     <ul class="toc-footer" id="toc-footer">
-                    <li style="padding-bottom: 5px;"><a href="{{ route("scribe.postman") }}">View Postman collection</a></li>
-                            <li style="padding-bottom: 5px;"><a href="{{ route("scribe.openapi") }}">View OpenAPI spec</a></li>
-                <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
+                        <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
     </ul>
 
     <ul class="toc-footer" id="last-updated">
@@ -223,7 +221,7 @@ print_r(json_decode((string) $body));</code></pre></div>
             </summary>
             <pre><code class="language-http">content-type: text/html; charset=UTF-8
 cache-control: no-cache, private
-set-cookie: XSRF-TOKEN=eyJpdiI6IlpzcUd4WHhic3R1WmtJWUp3UkVqMnc9PSIsInZhbHVlIjoiQTFiZW4yV1RWcno2VmlUN0ZuWXNsdmltL0xrZ05BVm5Bd2R3OGs2cmptS0d5S3kxRGxBNDF3Y0NxWFVXQ210M3lMRHNEQkE0aU9yaXdEOG5CRlo2b2g0SkNLQWxmWnJWbVQ0MkdodGxSWHQ1SzYwb2FjR0ZRaEJKcXFHSzl4UmkiLCJtYWMiOiJjMWQwNWJlMTc4Y2QzYTE0ZjMwZTk4YTlhNWI5OTkwOTg4ZGRjNDZhOWUzMjk3Njg4MzY2N2M5MDkwNzYyYWYxIiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 21:48:31 GMT; Max-Age=7200; path=/; samesite=lax; taskmanager_session=eyJpdiI6IkZYV2dvZkplVk9wN3dnVmJZQzNsSGc9PSIsInZhbHVlIjoiWCtzdVB3T3VkYjZYQmFhMFVMcjlMdHR6SUdEUlhKdTB6Q005a1ZtcGc5VTNsSWRoR3B2bHY2UjkvMDNSSnJuY2p2U25KNVRHTGdiZ3pIOStQOGpNTEVjL1pzUjlzSHZoaDlybE1uTG9uMXd5QTJoU1VyUEU0NFZ5SFdwMXpBNkUiLCJtYWMiOiJiNWNlZGJlY2ZjMzQwYjIyNWVmMjViNjUzYzNhNjI0ZTc1MTZhYmQwMTQ5MDUzNTQyOGUzYzZkY2RiYzA4M2FmIiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 21:48:31 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+set-cookie: XSRF-TOKEN=eyJpdiI6ImFRTzJ2d0dINzV0WS84KzdSVWp1UUE9PSIsInZhbHVlIjoiNTlSSHMyeXkxT0VMWXE5Wk5mdjQ2Y3FLbXZudStjMkRkQVNkMlZubDUvc1lOQnRJOE5uZFZwKzFORVVsLzhQRXZZUGJZOXVGK0dqSzZTcmQ5cnNQMVBObGptdURneXJBK1lyUTBXZWQ3aVhoYzdmSE1yRi9nKy9TY2N1bXdvTFEiLCJtYWMiOiI4OTcxNDU3ZjQ0YjlkMDcyYWRkMGZjMTJmYTExMzQ0N2U4MDk2OWRmMTFmMjgyYTk4MTNlYjkwMDIwYzI2MzY2IiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 23:48:31 GMT; Max-Age=7200; path=/; samesite=lax; taskmanager_session=eyJpdiI6IjZ1UUJORml0aGtGVG02bkV3c1E2dEE9PSIsInZhbHVlIjoiNmM0UnR6eDRodERVaUVWZ3BQNzd0UDk3MmkvbFdHQ0lQZlhTU3hmTFRIN2tESWM3SDFMZXN5U2tySlpVdlpKMUZ0eHlMZ3JsVExnT3U5UFhPS2hWNnY5NUM4OGNQV2JUS2tWN01aUmxyUzdOVk1oZUNEdjZ2R0NkU0JjdFZPa3IiLCJtYWMiOiI5OWFiYjhlMDAwYWM0OTJmYzRiMjcxN2Y5MDQ2MmJmYjlhYzJhZjhkMTYxMTVhNzBjNjlhMmM0ZWUzZTgwNWUxIiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 23:48:31 GMT; Max-Age=7200; path=/; httponly; samesite=lax
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">&lt;!DOCTYPE html&gt;
@@ -231,7 +229,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IlpzcUd4WHhic3R1WmtJWUp3UkVqMnc9PSIsInZhbHVlIjoiQ
     &lt;head&gt;
         &lt;meta charset=&quot;utf-8&quot;&gt;
         &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
-        &lt;meta name=&quot;csrf-token&quot; content=&quot;rIJOYmswzGPfXrIXYG6w3A6kAcfwlqGiVVLe9U9q&quot;&gt;
+        &lt;meta name=&quot;csrf-token&quot; content=&quot;Pw8yfYLP86s4FJkDalO1uYjo9Z64uXVl54KkwleB&quot;&gt;
         &lt;meta name=&quot;csrf-param&quot; content=&quot;_token&quot; /&gt;
 
         &lt;title&gt;Менеджер задач&lt;/title&gt;
@@ -241,7 +239,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IlpzcUd4WHhic3R1WmtJWUp3UkVqMnc9PSIsInZhbHVlIjoiQ
         &lt;link href=&quot;https://fonts.bunny.net/css?family=figtree:400,500,600&amp;display=swap&quot; rel=&quot;stylesheet&quot; /&gt;
 
         &lt;!-- Scripts --&gt;
-        &lt;link rel=&quot;preload&quot; as=&quot;style&quot; href=&quot;http://localhost/build/assets/app-CeCQbSnN.css&quot; /&gt;&lt;link rel=&quot;modulepreload&quot; href=&quot;http://localhost/build/assets/app-DedrspOS.js&quot; /&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;http://localhost/build/assets/app-CeCQbSnN.css&quot; /&gt;&lt;script type=&quot;module&quot; src=&quot;http://localhost/build/assets/app-DedrspOS.js&quot;&gt;&lt;/script&gt;    &lt;/head&gt;
+        &lt;link rel=&quot;preload&quot; as=&quot;style&quot; href=&quot;http://localhost/build/assets/app-DIz-wv3R.css&quot; /&gt;&lt;link rel=&quot;modulepreload&quot; href=&quot;http://localhost/build/assets/app-DedrspOS.js&quot; /&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;http://localhost/build/assets/app-DIz-wv3R.css&quot; /&gt;&lt;script type=&quot;module&quot; src=&quot;http://localhost/build/assets/app-DedrspOS.js&quot;&gt;&lt;/script&gt;    &lt;/head&gt;
     &lt;body class=&quot;font-sans antialiased&quot;&gt;
         &lt;div class=&quot;min-h-screen bg-gray-100&quot;&gt;
 
@@ -995,7 +993,7 @@ print_r(json_decode((string) $body));</code></pre></div>
             </summary>
             <pre><code class="language-http">content-type: text/html; charset=UTF-8
 cache-control: no-cache, private
-set-cookie: XSRF-TOKEN=eyJpdiI6IkptZ2pBNlBiMkNoMHJvbkhoV2JPMmc9PSIsInZhbHVlIjoibWxVUDZZM2lUYUk1akpKcGhDbk9XK1BQRVNnakFHVnE3WW9VNU13RVlDV2wyajBsNDZrZ28vM054QmpyaXZwNSt0Nlc2L1I0dnEvTE1pZWRhaDNEcVJNUHV2OFpRdUtnVlBaVGErOTJTNFRBS2UyM0ZOaGo0T0pBSTRZbWwySGciLCJtYWMiOiI3OTVkYWIwYTRkYWMzZTAyMTlhYmFkZGIwYTNmMDJlNGNkODgzNjMyYTE1YTcyMzFkMGE3ZTdhNWE0ZDQ2MWU4IiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 21:48:31 GMT; Max-Age=7200; path=/; samesite=lax; taskmanager_session=eyJpdiI6InJ0YUZGT3Z5K3BrN21Jd1R4TGNZclE9PSIsInZhbHVlIjoiTkpKcVJNeWNLbjZua1hZdGtCaUthZmJKbldGUEhBSTJ0dUlMZ0xzRDRlMkpmUzNuemVXakV5TUQzZUdsU2gyU2R4NHFuZzh4Rm9YY3JjY0QvNVRvM0Q2djY0TkpXN0YxbWNmQm9WcFc2cytyb0dQYzVVWlJzNjRUcWNxYk9OQ2UiLCJtYWMiOiJlNWJiNzJlMDdhNTg5MmZiN2E3NGM1ZGM1NGY2MGI4YTAzYjQ5ODYzZWJjOWUxNTFiYmYxODc5MDA4NDVmZjBiIiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 21:48:31 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+set-cookie: XSRF-TOKEN=eyJpdiI6IlpLQk4wcnJ1OWlRUDF0bmgwMWZHb3c9PSIsInZhbHVlIjoicHFMalNSRzhidGErTElKMGNVbGxUeGs3Q1ZBMUtOMUxMbFhyb083UThtRkRwVFlQZzd0d3g1aTQzbTZ6V3J4OHJGQlU1N2JZY2NBclBLTjU5ZTFrS3Z6cjVJZDRDYi9TZDNVbFRnemF4T0JUR3lWM1pXTG1GL2IwUFFlbWY5S2MiLCJtYWMiOiIzYWY1N2ZiZmMxYzgxOWZiYzMxYjFhZTNjMTRjYmEwODA3OGFjMzdjYzJmNzdiMzI0MDFkMWM0ZWQ1NzY0YjExIiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 23:48:31 GMT; Max-Age=7200; path=/; samesite=lax; taskmanager_session=eyJpdiI6Ik4rSkxsdFl1V0Z2OWJHQ0wyWkFDK1E9PSIsInZhbHVlIjoiUUJ0RjJGM2V5cXVSMUZmdC94OTJocHdlaTFoYzZOK1JrSGFKdTdmL3lsbi9MZFBEYWl3dTZ6V3FjWGN5U2hpR0xjRDJjU1I2RTBYd1JMMUZvdGZnSmY0REVvakdIUkpsSGhGSFpvYTN0b3NJSUgwdFZnUzIxdGFmVkRQZEEwN2UiLCJtYWMiOiJmOWU5OWNmYzUyY2VhMTFhNjRjNzBhZTZhZWVhZDljZTQ2Njk5NTM1NjNkMzk3ZTEzOWM1N2VmYzBhODZhYjFhIiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 23:48:31 GMT; Max-Age=7200; path=/; httponly; samesite=lax
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">&lt;!DOCTYPE html&gt;
@@ -1003,7 +1001,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IkptZ2pBNlBiMkNoMHJvbkhoV2JPMmc9PSIsInZhbHVlIjoib
     &lt;head&gt;
         &lt;meta charset=&quot;utf-8&quot;&gt;
         &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
-        &lt;meta name=&quot;csrf-token&quot; content=&quot;rIJOYmswzGPfXrIXYG6w3A6kAcfwlqGiVVLe9U9q&quot;&gt;
+        &lt;meta name=&quot;csrf-token&quot; content=&quot;Pw8yfYLP86s4FJkDalO1uYjo9Z64uXVl54KkwleB&quot;&gt;
         &lt;meta name=&quot;csrf-param&quot; content=&quot;_token&quot; /&gt;
 
         &lt;title&gt;Менеджер задач&lt;/title&gt;
@@ -1013,7 +1011,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IkptZ2pBNlBiMkNoMHJvbkhoV2JPMmc9PSIsInZhbHVlIjoib
         &lt;link href=&quot;https://fonts.bunny.net/css?family=figtree:400,500,600&amp;display=swap&quot; rel=&quot;stylesheet&quot; /&gt;
 
         &lt;!-- Scripts --&gt;
-        &lt;link rel=&quot;preload&quot; as=&quot;style&quot; href=&quot;http://localhost/build/assets/app-CeCQbSnN.css&quot; /&gt;&lt;link rel=&quot;modulepreload&quot; href=&quot;http://localhost/build/assets/app-DedrspOS.js&quot; /&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;http://localhost/build/assets/app-CeCQbSnN.css&quot; /&gt;&lt;script type=&quot;module&quot; src=&quot;http://localhost/build/assets/app-DedrspOS.js&quot;&gt;&lt;/script&gt;    &lt;/head&gt;
+        &lt;link rel=&quot;preload&quot; as=&quot;style&quot; href=&quot;http://localhost/build/assets/app-DIz-wv3R.css&quot; /&gt;&lt;link rel=&quot;modulepreload&quot; href=&quot;http://localhost/build/assets/app-DedrspOS.js&quot; /&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;http://localhost/build/assets/app-DIz-wv3R.css&quot; /&gt;&lt;script type=&quot;module&quot; src=&quot;http://localhost/build/assets/app-DedrspOS.js&quot;&gt;&lt;/script&gt;    &lt;/head&gt;
     &lt;body class=&quot;font-sans antialiased&quot;&gt;
         &lt;div class=&quot;min-h-screen bg-gray-100&quot;&gt;
 
@@ -1800,7 +1798,7 @@ print_r(json_decode((string) $body));</code></pre></div>
             </summary>
             <pre><code class="language-http">content-type: text/html; charset=UTF-8
 cache-control: no-cache, private
-set-cookie: XSRF-TOKEN=eyJpdiI6IlBKNWR0b2pWcG9qbGhpKzJDUFhGVGc9PSIsInZhbHVlIjoiWXhLbGRtSSt2MVZGemFDUktjekMyUmZwcEx4RFBxbkxNTXhNOHhaSktGYXIwWXBScnZKUGZOdm9MZy9vdVBMOU1KMXdYVlhpY016S2J4WXZhODlWaGE3bkJrSDN6bEJkM29TVVIyTTAzYitBajY0eXpiYXlzR3ZidmNWcjJEVTYiLCJtYWMiOiIyNjBhNGQ5NDM2MTk3NmJiMDZmNTZiN2VmMTIyNTRkMGNjZjg5MTViMWVlOGY2ZTBiMGU4YWI3NzlmZjI5MTFiIiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 21:48:31 GMT; Max-Age=7200; path=/; samesite=lax; taskmanager_session=eyJpdiI6Imlmbk9pQzN2U25qOUQ2b1g1U0ZieGc9PSIsInZhbHVlIjoicFRUcWpQYm1nS0tnaVJEdTBWdjA1NDRyRkJlQVppaFhsQXhJYzZheEIwSi9LbVJlMmNaOThyTk9MbmtmMDZQZVgvbVcvaU5zUW1QZUc2S0pYdzJkSFNiMUtaQjA4SU9teTVHWGlXOFlMaUpacDhDa2tHVklFbFdBdFY5QzhWOEwiLCJtYWMiOiI0Zjc3ZjI0MmIxOTBmNzM1MjBmNmI1ZmE4YTdhZDcwYzcxMzBlN2I0YWUwOGY3NWY0ZWY4MTZmYmU4MzY0NWMwIiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 21:48:31 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+set-cookie: XSRF-TOKEN=eyJpdiI6IjhrdXBwaXZXTm8rWlVPOWhuZ1lxSVE9PSIsInZhbHVlIjoiMGxMdFp0dG8xaXc2YTVpR0kyaWRnZjlmY1lMZW1VTWxkelUxMWdNdmFrOUljdVgrcVpvSFNnTXJXM25oN2lLK2xjQys2Rm0zRzFveWFEaWsvUFYrM2NjVnBxWm0rb3h0YUhFM3NCM0FsZDl5czlJTHdzelFXZFE0aVRvRS9HVmQiLCJtYWMiOiIzN2RmODUzMjI1MjJmYTI2OGEzM2MwYjYwOWM1YTZmMzFkZTFmYzllMjQzNDdhMWMyMDM5MmYwNWY2M2Q1OTNjIiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 23:48:31 GMT; Max-Age=7200; path=/; samesite=lax; taskmanager_session=eyJpdiI6IjFITmRkRnY3blNXVDk3bXRvOVVUckE9PSIsInZhbHVlIjoiaFVydGg0dGx5dlhVV0M4ZW1WdlVEeGJodVpXU2lIOWZlS1FpUE1XR0ZwVU9XL092VGlGLzJZMXJ6cjc0bXQ1SW9oMHhEbzhPR1VTOSsxREdUN2Fqb1kvMTFpSzY0aEpQK1BwMmMvdUNja24xb3JMMHdmYVpob0l3T2MzVEFXK3AiLCJtYWMiOiJkNmM4YmM4Yjk0ODNhZjZhMjA0MzJkNWZiYWI5ZTJlMzQ2MzYxNDBhYzBjZjQxMDRkZDlhNzBmMDRmZGFlZjBmIiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 23:48:31 GMT; Max-Age=7200; path=/; httponly; samesite=lax
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">&lt;!DOCTYPE html&gt;
@@ -1808,7 +1806,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IlBKNWR0b2pWcG9qbGhpKzJDUFhGVGc9PSIsInZhbHVlIjoiW
     &lt;head&gt;
         &lt;meta charset=&quot;utf-8&quot;&gt;
         &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
-        &lt;meta name=&quot;csrf-token&quot; content=&quot;rIJOYmswzGPfXrIXYG6w3A6kAcfwlqGiVVLe9U9q&quot;&gt;
+        &lt;meta name=&quot;csrf-token&quot; content=&quot;Pw8yfYLP86s4FJkDalO1uYjo9Z64uXVl54KkwleB&quot;&gt;
         &lt;meta name=&quot;csrf-param&quot; content=&quot;_token&quot; /&gt;
 
         &lt;title&gt;Менеджер задач&lt;/title&gt;
@@ -1818,7 +1816,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IlBKNWR0b2pWcG9qbGhpKzJDUFhGVGc9PSIsInZhbHVlIjoiW
         &lt;link href=&quot;https://fonts.bunny.net/css?family=figtree:400,500,600&amp;display=swap&quot; rel=&quot;stylesheet&quot; /&gt;
 
         &lt;!-- Scripts --&gt;
-        &lt;link rel=&quot;preload&quot; as=&quot;style&quot; href=&quot;http://localhost/build/assets/app-CeCQbSnN.css&quot; /&gt;&lt;link rel=&quot;modulepreload&quot; href=&quot;http://localhost/build/assets/app-DedrspOS.js&quot; /&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;http://localhost/build/assets/app-CeCQbSnN.css&quot; /&gt;&lt;script type=&quot;module&quot; src=&quot;http://localhost/build/assets/app-DedrspOS.js&quot;&gt;&lt;/script&gt;    &lt;/head&gt;
+        &lt;link rel=&quot;preload&quot; as=&quot;style&quot; href=&quot;http://localhost/build/assets/app-DIz-wv3R.css&quot; /&gt;&lt;link rel=&quot;modulepreload&quot; href=&quot;http://localhost/build/assets/app-DedrspOS.js&quot; /&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;http://localhost/build/assets/app-DIz-wv3R.css&quot; /&gt;&lt;script type=&quot;module&quot; src=&quot;http://localhost/build/assets/app-DedrspOS.js&quot;&gt;&lt;/script&gt;    &lt;/head&gt;
     &lt;body class=&quot;font-sans antialiased&quot;&gt;
         &lt;div class=&quot;min-h-screen bg-gray-100&quot;&gt;
 
@@ -2542,7 +2540,7 @@ print_r(json_decode((string) $body));</code></pre></div>
             </summary>
             <pre><code class="language-http">content-type: text/html; charset=UTF-8
 cache-control: no-cache, private
-set-cookie: XSRF-TOKEN=eyJpdiI6IlhQM2hZb3dJSU5MVmxYdzE3SW1qUHc9PSIsInZhbHVlIjoiZjRCV1lDUW1POUNnbGhMbWMrdC9tV2FBV3Q3YUhuOWV4THd0TmRXQXdYM0pEL1NFNUVWZHZYRFNwYVJpMG9Wb3creTc5TEQxbkFRL1ROU08yRkV1eVA2STNCMTNBQ2dOQXpUWTA2ZkxiRGpLZVlpTzhRUm1JNXhhcEJaV2srUUgiLCJtYWMiOiI4NjAxOTU3NjhhZDhmMjdlYTRlMjJmYWU5MjY0ZDQxODBkNTFjM2U1YmM5MTE0NTU2OWVlYzBiZWMxMmY5YmExIiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 21:48:31 GMT; Max-Age=7200; path=/; samesite=lax; taskmanager_session=eyJpdiI6Imxvd1d3emlWMXY1aDdQWHlBRThlRVE9PSIsInZhbHVlIjoiWTFWTjVFUldUWE9tam90cmpVZCtobXJKQ0ZMdGx2MjBvNms1Q3J3ZmpOSUM3THlqTlJrUnNBUmMzaER6ajZRb3oraTQvcFJWbHo0R2lyakhMS0NjMlpWYnVSdTNMSmdXNFFjYVVFYlRLTjB5QjFnTFpZMWsyRjQ3dElKc0p5SGYiLCJtYWMiOiI1NWQ0OGViYTVhMTFmMmFhMjQzMjY2ODE0ZjUxYWQ4YjdiNTVkMGI1MmZlZTI2MDE1NmJkZjg2YjYyNTNiMjRhIiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 21:48:31 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+set-cookie: XSRF-TOKEN=eyJpdiI6IkhwU1BnL3Z1MnNxSXhhK1kzOGs3Y1E9PSIsInZhbHVlIjoiVW8xM2h2TDEzalprYUpRSzdvY3AvbFJUYzcrTkhuY0pzK2htOGs5QTZoVHZHNG5KajFtdFR6c0dCTTdRbElYNEhCeVdhSG9aWjhNN3hEK3o5KzZqdXdmRVVlV2xwYzhNNmM1YlU4bkZraXlhR1JBd2xBWUFpTTRXd20xWFlKbVYiLCJtYWMiOiI5M2I5ZWU5NTEwZTVkYjg3YjU4MTE5NWU4MGQ0M2Y5NTA2YmJiZDM2NmMwZmExYzVlOWVhYzI4M2ZkOWM2MGMwIiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 23:48:31 GMT; Max-Age=7200; path=/; samesite=lax; taskmanager_session=eyJpdiI6Im5wTGYxRVU5N29zcnB6OUFBVVI4Z1E9PSIsInZhbHVlIjoiWlhhellsM3BuZk9zOEw1NmQ5UnFKUHdkVytZK1M5cnpEdjlMOUN1bE9IM2I0Ris1K3B0RVAxSVNKajBZS094a2dKMHRPalU1ejVBOU8yRjF1YkVTQ2ZqTG5EV3ZyWDNlYkYrNDU1Rmp1NWUzUTNtbHd0NFlQTERrTk01dU9xLzgiLCJtYWMiOiJiYjQzMTgxYzFkNmNiZDhkOWZlMGM3ZGRmMjk3YWQ5M2Y1Y2EwNjlhOGJkYzkyM2IyNTQ3ZDQ4OWE5NDU5ZjE1IiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 23:48:31 GMT; Max-Age=7200; path=/; httponly; samesite=lax
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">&lt;!DOCTYPE html&gt;
@@ -2550,7 +2548,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IlhQM2hZb3dJSU5MVmxYdzE3SW1qUHc9PSIsInZhbHVlIjoiZ
     &lt;head&gt;
         &lt;meta charset=&quot;utf-8&quot;&gt;
         &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
-        &lt;meta name=&quot;csrf-token&quot; content=&quot;rIJOYmswzGPfXrIXYG6w3A6kAcfwlqGiVVLe9U9q&quot;&gt;
+        &lt;meta name=&quot;csrf-token&quot; content=&quot;Pw8yfYLP86s4FJkDalO1uYjo9Z64uXVl54KkwleB&quot;&gt;
         &lt;meta name=&quot;csrf-param&quot; content=&quot;_token&quot; /&gt;
 
         &lt;title&gt;Менеджер задач&lt;/title&gt;
@@ -2560,7 +2558,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IlhQM2hZb3dJSU5MVmxYdzE3SW1qUHc9PSIsInZhbHVlIjoiZ
         &lt;link href=&quot;https://fonts.bunny.net/css?family=figtree:400,500,600&amp;display=swap&quot; rel=&quot;stylesheet&quot; /&gt;
 
         &lt;!-- Scripts --&gt;
-        &lt;link rel=&quot;preload&quot; as=&quot;style&quot; href=&quot;http://localhost/build/assets/app-CeCQbSnN.css&quot; /&gt;&lt;link rel=&quot;modulepreload&quot; href=&quot;http://localhost/build/assets/app-DedrspOS.js&quot; /&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;http://localhost/build/assets/app-CeCQbSnN.css&quot; /&gt;&lt;script type=&quot;module&quot; src=&quot;http://localhost/build/assets/app-DedrspOS.js&quot;&gt;&lt;/script&gt;    &lt;/head&gt;
+        &lt;link rel=&quot;preload&quot; as=&quot;style&quot; href=&quot;http://localhost/build/assets/app-DIz-wv3R.css&quot; /&gt;&lt;link rel=&quot;modulepreload&quot; href=&quot;http://localhost/build/assets/app-DedrspOS.js&quot; /&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;http://localhost/build/assets/app-DIz-wv3R.css&quot; /&gt;&lt;script type=&quot;module&quot; src=&quot;http://localhost/build/assets/app-DedrspOS.js&quot;&gt;&lt;/script&gt;    &lt;/head&gt;
     &lt;body class=&quot;font-sans antialiased&quot;&gt;
         &lt;div class=&quot;min-h-screen bg-gray-100&quot;&gt;
 
@@ -3487,7 +3485,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="gbailey@example.net"
                data-component="body">
     <br>
-<p>Значение поля value должно быть действительным электронным адресом. Example: <code>gbailey@example.net</code></p>
+<p>The email of the user. Значение поля value должно быть действительным электронным адресом. Example: <code>gbailey@example.net</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -3498,7 +3496,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="|]|{+-"
                data-component="body">
     <br>
-<p>Example: <code>|]|{+-</code></p>
+<p>The password of the User. Example: <code>|]|{+-</code></p>
         </div>
         </form>
 

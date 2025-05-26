@@ -161,7 +161,7 @@ return [
     // For 'laravel' docs, it will be generated to storage/app/scribe/collection.json.
     // Setting `laravel.add_routes` to true (above) will also add a route for the collection.
     'postman' => [
-        'enabled' => true,
+        'enabled' => false,
 
         'overrides' => [
             // 'info.version' => '2.0.0',
@@ -173,7 +173,7 @@ return [
     // For 'laravel' docs, it will be generated to storage/app/scribe/openapi.yaml.
     // Setting `laravel.add_routes` to true (above) will also add a route for the spec.
     'openapi' => [
-        'enabled' => true,
+        'enabled' => false,
 
         'overrides' => [
             // 'info.version' => '2.0.0',

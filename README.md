@@ -57,5 +57,6 @@ See **'config/scribe.php'**
 ```bash
 php artisan route:list
 
+# off 'npm run dev' before:
 php artisan scribe:generate --verbose
 ```
