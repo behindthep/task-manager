@@ -47,3 +47,11 @@ make seed
 
 php artisan make:test Controllers/TaskStatusControllerTest
 ```
+
+## 6 Documentation
+
+https://scribe.knuckles.wtf/laravel/
+
+```bash
+php artisan scribe:generate
+```
