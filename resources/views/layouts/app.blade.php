@@ -28,6 +28,10 @@
                 @include('flash::message')
                 {{ $slot }}
             </main>
+
+            <footer class="sticky top-full bg-gray-700 shadow">
+                @include('layouts.footer')
+            </footer>
         </div>
     </body>
 </html>

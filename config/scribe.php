@@ -32,6 +32,10 @@ return [
             // Include these routes even if they did not match the rules above.
             'include' => [
                 // 'users.index', 'POST /new', '/auth/*'
+                'POST /login',
+                'POST /logout',
+                'POST /register',
+
                 'task_statuses.index',   // GET /task_statuses
                 'task_statuses.store',   // POST /task_statuses
                 'task_statuses.update',  // PUT/PATCH /task_statuses/{taskStatus}

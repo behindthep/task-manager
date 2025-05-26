@@ -29,4 +29,34 @@ class StoreTaskRequest extends FormRequest
             'name.unique' => __('task.validation.name.unique'),
         ];
     }
+
+    public function bodyParameters(): array
+    {
+        return [
+            'name' => [
+                'description' => 'The name of the Task',
+                'required' => true,
+            ],
+            'description' => [
+                'description' => 'The description of the Task',
+                'required' => false,
+            ],
+            'status_id' => [
+                'description' => 'The Status of the Task',
+                'required' => true,
+            ],
+            'assigned_to_id' => [
+                'description' => 'The Executor of the Task',
+                'required' => false,
+            ],
+            'labels' => [
+                'description' => 'The Labels of the Task',
+                'required' => false,
+            ],
+            'labels.*' => [
+                'description' => 'The Labels of the Task must be relevant',
+                'required' => false,
+            ],
+        ];
+    }
 }

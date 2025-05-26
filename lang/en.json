@@ -8,7 +8,7 @@
     "Create": "Create",
     "Email": "Email",
     "Email Password Reset Link": "Email Password Reset Link",
-    "Forgot your password?": "Forgot your password?",    
+    "Forgot your password?": "Forgot your password?",
     "Update": "Update",
     "Hello!": "Hello!",
     "It is simple task manager!": "It is simple task manager!",
@@ -25,5 +25,7 @@
     "Statuses": "Statuses",
     "Task manager": "Task manager",
     "Tasks": "Tasks",
-    "To tasks": "To tasks"
+    "To tasks": "To tasks",
+    "Api": "Api",
+    "DOCUMENTATION": "DOCUMENTATION"
 }

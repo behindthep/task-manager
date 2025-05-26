@@ -25,4 +25,18 @@ class StoreLabelRequest extends FormRequest
             'name.unique' => __('label.validation.name.unique'),
         ];
     }
+
+    public function bodyParameters(): array
+    {
+        return [
+            'name' => [
+                'description' => 'The name of the Label',
+                'required' => true,
+            ],
+            'description' => [
+                'description' => 'The description of the Label',
+                'required' => false,
+            ],
+        ];
+    }
 }

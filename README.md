@@ -52,6 +52,10 @@ php artisan make:test Controllers/TaskStatusControllerTest
 
 https://scribe.knuckles.wtf/laravel/
 
+See **'config/scribe.php'**
+
 ```bash
-php artisan scribe:generate
+php artisan route:list
+
+php artisan scribe:generate --verbose
 ```

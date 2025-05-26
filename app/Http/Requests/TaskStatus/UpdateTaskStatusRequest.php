@@ -24,4 +24,14 @@ class UpdateTaskStatusRequest extends FormRequest
             'name.unique' => __('task_status.validation.name.unique'),
         ];
     }
+
+    public function bodyParameters(): array
+    {
+        return [
+            'name' => [
+                'description' => 'The name of the Task Status',
+                'required' => true,
+            ],
+        ];
+    }
 }

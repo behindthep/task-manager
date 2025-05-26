@@ -1,0 +1,1633 @@
+name: Endpoints
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: task_statuses
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |
+          <!DOCTYPE html>
+          <html lang="ru">
+              <head>
+                  <meta charset="utf-8">
+                  <meta name="viewport" content="width=device-width, initial-scale=1">
+                  <meta name="csrf-token" content="rIJOYmswzGPfXrIXYG6w3A6kAcfwlqGiVVLe9U9q">
+                  <meta name="csrf-param" content="_token" />
+
+                  <title>Менеджер задач</title>
+
+                  <!-- Fonts -->
+                  <link rel="preconnect" href="https://fonts.bunny.net">
+                  <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+                  <!-- Scripts -->
+                  <link rel="preload" as="style" href="http://localhost/build/assets/app-CeCQbSnN.css" /><link rel="modulepreload" href="http://localhost/build/assets/app-DedrspOS.js" /><link rel="stylesheet" href="http://localhost/build/assets/app-CeCQbSnN.css" /><script type="module" src="http://localhost/build/assets/app-DedrspOS.js"></script>    </head>
+              <body class="font-sans antialiased">
+                  <div class="min-h-screen bg-gray-100">
+
+                      <!-- Page Heading -->
+                      <header class="bg-white shadow">
+                          <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+              <!-- Primary Navigation Menu -->
+              <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div class="flex justify-between h-16">
+                      <!-- Logo -->
+                      <div class="shrink-0 flex items-center">
+                          <a href="http://localhost">
+                              <span class="self-center text-xl font-semibold whitespace-nowrap">
+                                  Менеджер задач
+                              </span>
+                          </a>
+                      </div>
+
+                      <!-- Navigation Links -->
+                      <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                          <a class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out" href="http://localhost/tasks">
+              Задачи
+          </a>
+                          <a class="inline-flex items-center px-1 pt-1 border-b-2 border-indigo-400 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out" href="http://localhost/task_statuses">
+              Статусы
+          </a>
+                          <a class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out" href="http://localhost/labels">
+              Метки
+          </a>
+                      </div>
+                      <div class="flex">
+                                              <nav class="flex items-center justify-end gap-4">
+                                                              <a class="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 hover:bg-blue-700 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out bg-blue-500 text-white font-semibold py-1 px-4 border border-gray-400 rounded shadow" href="http://localhost/login">Вход</a>
+
+                                                                      <a class="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 hover:bg-blue-700 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out bg-blue-500 text-white font-semibold py-1 px-4 border border-gray-400 rounded shadow" href="http://localhost/register">Регистрация</a>
+                                                                                  </nav>
+                                      </div>
+                  </div>
+              </div>
+          </nav>
+                      </header>
+
+                      <!-- Page Content -->
+                      <main class="max-w-screen-xl px-4 pt-20 pb-8 mx-auto">
+                                          <div class="mr-auto place-self-center lg:col-span-7">
+                  <div class="grid col-span-full">
+                      <div>
+                          <h1 class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-4xl">
+                              Статусы       
+                          </h1> 
+                                      </div>
+                      
+                      <table class="table mt-5">
+                          <thead class="border-b-2 border-solid border-black text-left">
+                              <tr>
+                                  <th scope="col" class="py-2">ID</th>
+                                  <th scope="col" class="py-2">Имя</th>
+                                  <th scope="col" class="py-2">Дата создания</th>
+                                                      </tr>
+                          </thead>
+                          <tbody>
+                                                      <tr class="border-b border-black text-left">
+                                      <td class="py-2">1</td>
+                                      <td class="py-2">новый</td>
+                                      <td class="py-2">26.05.2025</td>
+                                      <td class="py-2">
+                                                                                                      </td>
+                                  </tr>
+                                                      <tr class="border-b border-black text-left">
+                                      <td class="py-2">2</td>
+                                      <td class="py-2">в работе</td>
+                                      <td class="py-2">26.05.2025</td>
+                                      <td class="py-2">
+                                                                                                      </td>
+                                  </tr>
+                                                      <tr class="border-b border-black text-left">
+                                      <td class="py-2">3</td>
+                                      <td class="py-2">на тестировании</td>
+                                      <td class="py-2">26.05.2025</td>
+                                      <td class="py-2">
+                                                                                                      </td>
+                                  </tr>
+                                                      <tr class="border-b border-black text-left">
+                                      <td class="py-2">4</td>
+                                      <td class="py-2">завершен</td>
+                                      <td class="py-2">26.05.2025</td>
+                                      <td class="py-2">
+                                                                                                      </td>
+                                  </tr>
+                                              </tbody>
+                      </table>
+                      <div class="mt-2">
+                          
+                      </div>
+                  </div>
+              </div>
+                      </main>
+
+                      <footer class="sticky top-full bg-gray-700 shadow">
+                          <div x-data="{ open: false }" class="bg-gray-700 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <nav class="flex h-16 justify-between hidden sm:-my-px sm:ms-10 sm:flex mt-2 space-x-8">
+                  <a class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-white hover:text-gray-300 focus:outline-none focus:text-gray-400 transition duration-150 ease-in-out" href="http://localhost/docs">
+              Api
+          </a>
+              </nav>
+          </div>
+                      </footer>
+                  </div>
+              </body>
+          </html>
+        headers:
+          content-type: 'text/html; charset=UTF-8'
+          cache-control: 'no-cache, private'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IlpzcUd4WHhic3R1WmtJWUp3UkVqMnc9PSIsInZhbHVlIjoiQTFiZW4yV1RWcno2VmlUN0ZuWXNsdmltL0xrZ05BVm5Bd2R3OGs2cmptS0d5S3kxRGxBNDF3Y0NxWFVXQ210M3lMRHNEQkE0aU9yaXdEOG5CRlo2b2g0SkNLQWxmWnJWbVQ0MkdodGxSWHQ1SzYwb2FjR0ZRaEJKcXFHSzl4UmkiLCJtYWMiOiJjMWQwNWJlMTc4Y2QzYTE0ZjMwZTk4YTlhNWI5OTkwOTg4ZGRjNDZhOWUzMjk3Njg4MzY2N2M5MDkwNzYyYWYxIiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 21:48:31 GMT; Max-Age=7200; path=/; samesite=lax; taskmanager_session=eyJpdiI6IkZYV2dvZkplVk9wN3dnVmJZQzNsSGc9PSIsInZhbHVlIjoiWCtzdVB3T3VkYjZYQmFhMFVMcjlMdHR6SUdEUlhKdTB6Q005a1ZtcGc5VTNsSWRoR3B2bHY2UjkvMDNSSnJuY2p2U25KNVRHTGdiZ3pIOStQOGpNTEVjL1pzUjlzSHZoaDlybE1uTG9uMXd5QTJoU1VyUEU0NFZ5SFdwMXpBNkUiLCJtYWMiOiJiNWNlZGJlY2ZjMzQwYjIyNWVmMjViNjUzYzNhNjI0ZTc1MTZhYmQwMTQ5MDUzNTQyOGUzYzZkY2RiYzA4M2FmIiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 21:48:31 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: task_statuses
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'The name of the Task Status.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      name: architecto
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'task_statuses/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the task status.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'The name of the Task Status.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      name: architecto
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'task_statuses/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the task status.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: labels
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |
+          <!DOCTYPE html>
+          <html lang="ru">
+              <head>
+                  <meta charset="utf-8">
+                  <meta name="viewport" content="width=device-width, initial-scale=1">
+                  <meta name="csrf-token" content="rIJOYmswzGPfXrIXYG6w3A6kAcfwlqGiVVLe9U9q">
+                  <meta name="csrf-param" content="_token" />
+
+                  <title>Менеджер задач</title>
+
+                  <!-- Fonts -->
+                  <link rel="preconnect" href="https://fonts.bunny.net">
+                  <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+                  <!-- Scripts -->
+                  <link rel="preload" as="style" href="http://localhost/build/assets/app-CeCQbSnN.css" /><link rel="modulepreload" href="http://localhost/build/assets/app-DedrspOS.js" /><link rel="stylesheet" href="http://localhost/build/assets/app-CeCQbSnN.css" /><script type="module" src="http://localhost/build/assets/app-DedrspOS.js"></script>    </head>
+              <body class="font-sans antialiased">
+                  <div class="min-h-screen bg-gray-100">
+
+                      <!-- Page Heading -->
+                      <header class="bg-white shadow">
+                          <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+              <!-- Primary Navigation Menu -->
+              <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div class="flex justify-between h-16">
+                      <!-- Logo -->
+                      <div class="shrink-0 flex items-center">
+                          <a href="http://localhost">
+                              <span class="self-center text-xl font-semibold whitespace-nowrap">
+                                  Менеджер задач
+                              </span>
+                          </a>
+                      </div>
+
+                      <!-- Navigation Links -->
+                      <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                          <a class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out" href="http://localhost/tasks">
+              Задачи
+          </a>
+                          <a class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out" href="http://localhost/task_statuses">
+              Статусы
+          </a>
+                          <a class="inline-flex items-center px-1 pt-1 border-b-2 border-indigo-400 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out" href="http://localhost/labels">
+              Метки
+          </a>
+                      </div>
+                      <div class="flex">
+                                              <nav class="flex items-center justify-end gap-4">
+                                                              <a class="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 hover:bg-blue-700 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out bg-blue-500 text-white font-semibold py-1 px-4 border border-gray-400 rounded shadow" href="http://localhost/login">Вход</a>
+
+                                                                      <a class="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 hover:bg-blue-700 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out bg-blue-500 text-white font-semibold py-1 px-4 border border-gray-400 rounded shadow" href="http://localhost/register">Регистрация</a>
+                                                                                  </nav>
+                                      </div>
+                  </div>
+              </div>
+          </nav>
+                      </header>
+
+                      <!-- Page Content -->
+                      <main class="max-w-screen-xl px-4 pt-20 pb-8 mx-auto">
+                                          <div class="mr-auto place-self-center lg:col-span-7">
+                  <div class="grid col-span-full">
+                      <div>
+                          <h1 class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-4xl">
+                              Метки       
+                          </h1> 
+                                      </div>
+                      
+                      <table class="table mt-5">
+                          <thead class="border-b-2 border-solid border-black text-left">
+                              <tr>
+                                  <th scope="col" class="py-2">ID</th>
+                                  <th scope="col" class="py-2">Имя</th>
+                                  <th scope="col" class="py-2">Описание</th>
+                                  <th scope="col" class="py-2">Дата создания</th>
+                                                      </tr>
+                          </thead>
+                          <tbody>
+                                                      <tr class="border-b border-black text-left">
+                                      <td class="py-2">1</td>
+                                      <td class="py-2">ошибка</td>
+                                      <td class="py-2">Какая-то ошибка в коде или проблема с функциональностью</td>
+                                      <td class="py-2">26.05.2025</td>
+                                      <td class="py-2">
+                                                                                                      </td>
+                                  </tr>
+                                                      <tr class="border-b border-black text-left">
+                                      <td class="py-2">2</td>
+                                      <td class="py-2">документация</td>
+                                      <td class="py-2">Задача которая касается документации</td>
+                                      <td class="py-2">26.05.2025</td>
+                                      <td class="py-2">
+                                                                                                      </td>
+                                  </tr>
+                                                      <tr class="border-b border-black text-left">
+                                      <td class="py-2">3</td>
+                                      <td class="py-2">дубликат</td>
+                                      <td class="py-2">Повтор другой задачи</td>
+                                      <td class="py-2">26.05.2025</td>
+                                      <td class="py-2">
+                                                                                                      </td>
+                                  </tr>
+                                                      <tr class="border-b border-black text-left">
+                                      <td class="py-2">4</td>
+                                      <td class="py-2">доработка</td>
+                                      <td class="py-2">Новая фича, которую нужно запилить</td>
+                                      <td class="py-2">26.05.2025</td>
+                                      <td class="py-2">
+                                                                                                      </td>
+                                  </tr>
+                                              </tbody>
+                      </table>
+                      <div class="mt-2">
+                          
+                      </div>
+                  </div>
+              </div>
+                      </main>
+
+                      <footer class="sticky top-full bg-gray-700 shadow">
+                          <div x-data="{ open: false }" class="bg-gray-700 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <nav class="flex h-16 justify-between hidden sm:-my-px sm:ms-10 sm:flex mt-2 space-x-8">
+                  <a class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-white hover:text-gray-300 focus:outline-none focus:text-gray-400 transition duration-150 ease-in-out" href="http://localhost/docs">
+              Api
+          </a>
+              </nav>
+          </div>
+                      </footer>
+                  </div>
+              </body>
+          </html>
+        headers:
+          content-type: 'text/html; charset=UTF-8'
+          cache-control: 'no-cache, private'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IkptZ2pBNlBiMkNoMHJvbkhoV2JPMmc9PSIsInZhbHVlIjoibWxVUDZZM2lUYUk1akpKcGhDbk9XK1BQRVNnakFHVnE3WW9VNU13RVlDV2wyajBsNDZrZ28vM054QmpyaXZwNSt0Nlc2L1I0dnEvTE1pZWRhaDNEcVJNUHV2OFpRdUtnVlBaVGErOTJTNFRBS2UyM0ZOaGo0T0pBSTRZbWwySGciLCJtYWMiOiI3OTVkYWIwYTRkYWMzZTAyMTlhYmFkZGIwYTNmMDJlNGNkODgzNjMyYTE1YTcyMzFkMGE3ZTdhNWE0ZDQ2MWU4IiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 21:48:31 GMT; Max-Age=7200; path=/; samesite=lax; taskmanager_session=eyJpdiI6InJ0YUZGT3Z5K3BrN21Jd1R4TGNZclE9PSIsInZhbHVlIjoiTkpKcVJNeWNLbjZua1hZdGtCaUthZmJKbldGUEhBSTJ0dUlMZ0xzRDRlMkpmUzNuemVXakV5TUQzZUdsU2gyU2R4NHFuZzh4Rm9YY3JjY0QvNVRvM0Q2djY0TkpXN0YxbWNmQm9WcFc2cytyb0dQYzVVWlJzNjRUcWNxYk9OQ2UiLCJtYWMiOiJlNWJiNzJlMDdhNTg5MmZiN2E3NGM1ZGM1NGY2MGI4YTAzYjQ5ODYzZWJjOWUxNTFiYmYxODc5MDA4NDVmZjBiIiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 21:48:31 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: labels
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'The name of the Label.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      description:
+        name: description
+        description: 'The description of the Label.'
+        required: false
+        example: 'Eius et animi quos velit et.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      name: architecto
+      description: 'Eius et animi quos velit et.'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'labels/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the label.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'The name of the Label.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      description:
+        name: description
+        description: 'The description of the Label.'
+        required: false
+        example: 'Eius et animi quos velit et.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      name: architecto
+      description: 'Eius et animi quos velit et.'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'labels/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the label.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: tasks
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |
+          <!DOCTYPE html>
+          <html lang="ru">
+              <head>
+                  <meta charset="utf-8">
+                  <meta name="viewport" content="width=device-width, initial-scale=1">
+                  <meta name="csrf-token" content="rIJOYmswzGPfXrIXYG6w3A6kAcfwlqGiVVLe9U9q">
+                  <meta name="csrf-param" content="_token" />
+
+                  <title>Менеджер задач</title>
+
+                  <!-- Fonts -->
+                  <link rel="preconnect" href="https://fonts.bunny.net">
+                  <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+                  <!-- Scripts -->
+                  <link rel="preload" as="style" href="http://localhost/build/assets/app-CeCQbSnN.css" /><link rel="modulepreload" href="http://localhost/build/assets/app-DedrspOS.js" /><link rel="stylesheet" href="http://localhost/build/assets/app-CeCQbSnN.css" /><script type="module" src="http://localhost/build/assets/app-DedrspOS.js"></script>    </head>
+              <body class="font-sans antialiased">
+                  <div class="min-h-screen bg-gray-100">
+
+                      <!-- Page Heading -->
+                      <header class="bg-white shadow">
+                          <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+              <!-- Primary Navigation Menu -->
+              <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div class="flex justify-between h-16">
+                      <!-- Logo -->
+                      <div class="shrink-0 flex items-center">
+                          <a href="http://localhost">
+                              <span class="self-center text-xl font-semibold whitespace-nowrap">
+                                  Менеджер задач
+                              </span>
+                          </a>
+                      </div>
+
+                      <!-- Navigation Links -->
+                      <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                          <a class="inline-flex items-center px-1 pt-1 border-b-2 border-indigo-400 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out" href="http://localhost/tasks">
+              Задачи
+          </a>
+                          <a class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out" href="http://localhost/task_statuses">
+              Статусы
+          </a>
+                          <a class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out" href="http://localhost/labels">
+              Метки
+          </a>
+                      </div>
+                      <div class="flex">
+                                              <nav class="flex items-center justify-end gap-4">
+                                                              <a class="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 hover:bg-blue-700 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out bg-blue-500 text-white font-semibold py-1 px-4 border border-gray-400 rounded shadow" href="http://localhost/login">Вход</a>
+
+                                                                      <a class="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 hover:bg-blue-700 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out bg-blue-500 text-white font-semibold py-1 px-4 border border-gray-400 rounded shadow" href="http://localhost/register">Регистрация</a>
+                                                                                  </nav>
+                                      </div>
+                  </div>
+              </div>
+          </nav>
+                      </header>
+
+                      <!-- Page Content -->
+                      <main class="max-w-screen-xl px-4 pt-20 pb-8 mx-auto">
+                                          <div class="mr-auto place-self-center lg:col-span-7">
+                  <div class="grid col-span-full">
+                      <div>
+                          <h1 class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-4xl">
+                              Задачи       
+                          </h1>
+                          <div class="mb-4">
+                              <form method="GET" action="http://localhost/tasks">
+                                  <select class="rounded border-gray-300 my-3" name="filter[status_id]" id="filter[status_id]"><option value selected="selected">Статус</option><option value="2">в работе</option><option value="4">завершен</option><option value="3">на тестировании</option><option value="1">новый</option></select>
+                                  <select class="rounded border-gray-300 my-3" name="filter[created_by_id]" id="filter[created_by_id]"><option value selected="selected">Автор</option><option value="1">Антонова Наталья Александровна</option><option value="2">Лебедев Аким Дмитриевич</option><option value="3">Суханов Сергей Дмитриевич</option><option value="4">Некрасова Кристина Борисовна</option><option value="5">Полина Евгеньевна Комарова</option><option value="6">Юдина Галина Владимировна</option><option value="7">Любовь Андреевна Некрасова</option><option value="8">Виктор Андреевич Соловьёв</option><option value="9">Розалина Фёдоровна Красильникова</option><option value="10">Овчинников Нестор Романович</option><option value="11">Борис Алексеевич Моисеев</option><option value="12">Сава Максимович Фёдоров</option><option value="13">Иван Владимирович Зверев</option><option value="14">Сергей Геннадьевич Безруков</option><option value="15">Владимир Владимирович Галкин</option><option value="16">Павел Анатольевич Максимов</option><option value="17">Sidney Sauer</option><option value="18">Eda Effertz Jr.</option><option value="19">Prof. Vincenzo Tremblay II</option><option value="20">Raina Lockman I</option><option value="21">Jay Stoltenberg</option><option value="22">Prof. Rachel Franecki I</option><option value="23">Willow D&#039;Amore</option><option value="24">Prof. Jeffery Johnson II</option><option value="25">Edwina Hayes</option><option value="26">Nathen Keebler</option><option value="27">Raphael Abshire</option><option value="28">Kaleb Greenholt</option><option value="29">Anissa Hudson</option><option value="30">Prof. Darryl Howe I</option><option value="31">Trinity McDermott</option><option value="32">Unique Bartell</option><option value="33">Anthony Klein</option><option value="34">Mr. Waino Cummerata I</option><option value="35">Cleora Greenholt</option><option value="36">Lori Reilly</option><option value="37">Lindsay Bednar</option><option value="38">Edgardo Rohan</option><option value="39">Jodie Reichert MD</option><option value="40">Miss Elmira Price</option><option value="41">Rocky Lakin</option><option value="42">Jovani Schumm Sr.</option><option value="43">Devyn Gulgowski</option><option value="44">Prof. Rita Rodriguez</option><option value="45">Cathrine Conn</option><option value="46">Mr. Pietro Schuster IV</option><option value="47">Clare Bailey</option><option value="48">Barrett Lehner V</option><option value="49">alex</option></select>
+                                  <select class="rounded border-gray-300 my-3" name="filter[assigned_to_id]" id="filter[assigned_to_id]"><option value selected="selected">Исполнитель</option><option value="1">Антонова Наталья Александровна</option><option value="2">Лебедев Аким Дмитриевич</option><option value="3">Суханов Сергей Дмитриевич</option><option value="4">Некрасова Кристина Борисовна</option><option value="5">Полина Евгеньевна Комарова</option><option value="6">Юдина Галина Владимировна</option><option value="7">Любовь Андреевна Некрасова</option><option value="8">Виктор Андреевич Соловьёв</option><option value="9">Розалина Фёдоровна Красильникова</option><option value="10">Овчинников Нестор Романович</option><option value="11">Борис Алексеевич Моисеев</option><option value="12">Сава Максимович Фёдоров</option><option value="13">Иван Владимирович Зверев</option><option value="14">Сергей Геннадьевич Безруков</option><option value="15">Владимир Владимирович Галкин</option><option value="16">Павел Анатольевич Максимов</option><option value="17">Sidney Sauer</option><option value="18">Eda Effertz Jr.</option><option value="19">Prof. Vincenzo Tremblay II</option><option value="20">Raina Lockman I</option><option value="21">Jay Stoltenberg</option><option value="22">Prof. Rachel Franecki I</option><option value="23">Willow D&#039;Amore</option><option value="24">Prof. Jeffery Johnson II</option><option value="25">Edwina Hayes</option><option value="26">Nathen Keebler</option><option value="27">Raphael Abshire</option><option value="28">Kaleb Greenholt</option><option value="29">Anissa Hudson</option><option value="30">Prof. Darryl Howe I</option><option value="31">Trinity McDermott</option><option value="32">Unique Bartell</option><option value="33">Anthony Klein</option><option value="34">Mr. Waino Cummerata I</option><option value="35">Cleora Greenholt</option><option value="36">Lori Reilly</option><option value="37">Lindsay Bednar</option><option value="38">Edgardo Rohan</option><option value="39">Jodie Reichert MD</option><option value="40">Miss Elmira Price</option><option value="41">Rocky Lakin</option><option value="42">Jovani Schumm Sr.</option><option value="43">Devyn Gulgowski</option><option value="44">Prof. Rita Rodriguez</option><option value="45">Cathrine Conn</option><option value="46">Mr. Pietro Schuster IV</option><option value="47">Clare Bailey</option><option value="48">Barrett Lehner V</option><option value="49">alex</option></select>
+                                  <button class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow my-3" type="submit">Применить</button>
+                              </form>
+                          </div>
+                                      </div>
+                      <table class="table mt-5">
+                          <thead class="border-b-2 border-solid border-black text-left">
+                              <tr>
+                                  <th scope="col" class="py-2">ID</th>
+                                  <th scope="col" class="py-2">Статус</th>
+                                  <th scope="col" class="py-2">Имя</th>
+                                  <th scope="col" class="py-2">Автор</th>
+                                  <th scope="col" class="py-2">Исполнитель</th>
+                                  <th scope="col" class="py-2">Дата создания</th>
+                                                      </tr>
+                          </thead>
+                          <tbody>
+                                                      <tr class="border-b border-black text-left">
+                                      <td class="py-3">1</td>
+                                      <td class="py-3">завершен</td>
+                                      <td class="py-3">
+                                          <a href="http://localhost/tasks/1" class="text-blue-600 hover:text-blue-900">
+                                              Исправить ошибку в какой-нибудь строке
+                                          </a>
+                                      </td>
+                                      <td class="py-3">Eda Effertz Jr.</td>
+                                      <td class="py-3">Sidney Sauer</td>
+                                      <td class="py-3">26.05.2025</td>
+                                      <td class="py-3">
+                                                                                                      </td>
+                                  </tr>
+                                                      <tr class="border-b border-black text-left">
+                                      <td class="py-3">2</td>
+                                      <td class="py-3">новый</td>
+                                      <td class="py-3">
+                                          <a href="http://localhost/tasks/2" class="text-blue-600 hover:text-blue-900">
+                                              Допилить дизайн главной страницы
+                                          </a>
+                                      </td>
+                                      <td class="py-3">Raina Lockman I</td>
+                                      <td class="py-3">Prof. Vincenzo Tremblay II</td>
+                                      <td class="py-3">26.05.2025</td>
+                                      <td class="py-3">
+                                                                                                      </td>
+                                  </tr>
+                                                      <tr class="border-b border-black text-left">
+                                      <td class="py-3">3</td>
+                                      <td class="py-3">на тестировании</td>
+                                      <td class="py-3">
+                                          <a href="http://localhost/tasks/3" class="text-blue-600 hover:text-blue-900">
+                                              Отрефакторить авторизацию
+                                          </a>
+                                      </td>
+                                      <td class="py-3">Prof. Rachel Franecki I</td>
+                                      <td class="py-3">Jay Stoltenberg</td>
+                                      <td class="py-3">26.05.2025</td>
+                                      <td class="py-3">
+                                                                                                      </td>
+                                  </tr>
+                                                      <tr class="border-b border-black text-left">
+                                      <td class="py-3">4</td>
+                                      <td class="py-3">в работе</td>
+                                      <td class="py-3">
+                                          <a href="http://localhost/tasks/4" class="text-blue-600 hover:text-blue-900">
+                                              Доработать команду подготовки БД
+                                          </a>
+                                      </td>
+                                      <td class="py-3">Prof. Jeffery Johnson II</td>
+                                      <td class="py-3">Willow D&#039;Amore</td>
+                                      <td class="py-3">26.05.2025</td>
+                                      <td class="py-3">
+                                                                                                      </td>
+                                  </tr>
+                                                      <tr class="border-b border-black text-left">
+                                      <td class="py-3">5</td>
+                                      <td class="py-3">завершен</td>
+                                      <td class="py-3">
+                                          <a href="http://localhost/tasks/5" class="text-blue-600 hover:text-blue-900">
+                                              Пофиксить вон ту кнопку
+                                          </a>
+                                      </td>
+                                      <td class="py-3">Nathen Keebler</td>
+                                      <td class="py-3">Edwina Hayes</td>
+                                      <td class="py-3">26.05.2025</td>
+                                      <td class="py-3">
+                                                                                                      </td>
+                                  </tr>
+                                                      <tr class="border-b border-black text-left">
+                                      <td class="py-3">6</td>
+                                      <td class="py-3">завершен</td>
+                                      <td class="py-3">
+                                          <a href="http://localhost/tasks/6" class="text-blue-600 hover:text-blue-900">
+                                              Исправить поиск
+                                          </a>
+                                      </td>
+                                      <td class="py-3">Kaleb Greenholt</td>
+                                      <td class="py-3">Raphael Abshire</td>
+                                      <td class="py-3">26.05.2025</td>
+                                      <td class="py-3">
+                                                                                                      </td>
+                                  </tr>
+                                                      <tr class="border-b border-black text-left">
+                                      <td class="py-3">7</td>
+                                      <td class="py-3">завершен</td>
+                                      <td class="py-3">
+                                          <a href="http://localhost/tasks/7" class="text-blue-600 hover:text-blue-900">
+                                              Добавить интеграцию с облаками
+                                          </a>
+                                      </td>
+                                      <td class="py-3">Prof. Darryl Howe I</td>
+                                      <td class="py-3">Anissa Hudson</td>
+                                      <td class="py-3">26.05.2025</td>
+                                      <td class="py-3">
+                                                                                                      </td>
+                                  </tr>
+                                                      <tr class="border-b border-black text-left">
+                                      <td class="py-3">8</td>
+                                      <td class="py-3">на тестировании</td>
+                                      <td class="py-3">
+                                          <a href="http://localhost/tasks/8" class="text-blue-600 hover:text-blue-900">
+                                              Выпилить лишние зависимости
+                                          </a>
+                                      </td>
+                                      <td class="py-3">Unique Bartell</td>
+                                      <td class="py-3">Trinity McDermott</td>
+                                      <td class="py-3">26.05.2025</td>
+                                      <td class="py-3">
+                                                                                                      </td>
+                                  </tr>
+                                                      <tr class="border-b border-black text-left">
+                                      <td class="py-3">9</td>
+                                      <td class="py-3">на тестировании</td>
+                                      <td class="py-3">
+                                          <a href="http://localhost/tasks/9" class="text-blue-600 hover:text-blue-900">
+                                              Запилить сертификаты
+                                          </a>
+                                      </td>
+                                      <td class="py-3">Mr. Waino Cummerata I</td>
+                                      <td class="py-3">Anthony Klein</td>
+                                      <td class="py-3">26.05.2025</td>
+                                      <td class="py-3">
+                                                                                                      </td>
+                                  </tr>
+                                                      <tr class="border-b border-black text-left">
+                                      <td class="py-3">10</td>
+                                      <td class="py-3">в работе</td>
+                                      <td class="py-3">
+                                          <a href="http://localhost/tasks/10" class="text-blue-600 hover:text-blue-900">
+                                              Выпилить игру престолов
+                                          </a>
+                                      </td>
+                                      <td class="py-3">Lori Reilly</td>
+                                      <td class="py-3">Cleora Greenholt</td>
+                                      <td class="py-3">26.05.2025</td>
+                                      <td class="py-3">
+                                                                                                      </td>
+                                  </tr>
+                                                      <tr class="border-b border-black text-left">
+                                      <td class="py-3">11</td>
+                                      <td class="py-3">на тестировании</td>
+                                      <td class="py-3">
+                                          <a href="http://localhost/tasks/11" class="text-blue-600 hover:text-blue-900">
+                                              Пофиксить спеку во всех репозиториях
+                                          </a>
+                                      </td>
+                                      <td class="py-3">Edgardo Rohan</td>
+                                      <td class="py-3">Lindsay Bednar</td>
+                                      <td class="py-3">26.05.2025</td>
+                                      <td class="py-3">
+                                                                                                      </td>
+                                  </tr>
+                                                      <tr class="border-b border-black text-left">
+                                      <td class="py-3">12</td>
+                                      <td class="py-3">на тестировании</td>
+                                      <td class="py-3">
+                                          <a href="http://localhost/tasks/12" class="text-blue-600 hover:text-blue-900">
+                                              Вернуть крошки
+                                          </a>
+                                      </td>
+                                      <td class="py-3">Miss Elmira Price</td>
+                                      <td class="py-3">Jodie Reichert MD</td>
+                                      <td class="py-3">26.05.2025</td>
+                                      <td class="py-3">
+                                                                                                      </td>
+                                  </tr>
+                                                      <tr class="border-b border-black text-left">
+                                      <td class="py-3">13</td>
+                                      <td class="py-3">на тестировании</td>
+                                      <td class="py-3">
+                                          <a href="http://localhost/tasks/13" class="text-blue-600 hover:text-blue-900">
+                                              Установить Linux
+                                          </a>
+                                      </td>
+                                      <td class="py-3">Jovani Schumm Sr.</td>
+                                      <td class="py-3">Rocky Lakin</td>
+                                      <td class="py-3">26.05.2025</td>
+                                      <td class="py-3">
+                                                                                                      </td>
+                                  </tr>
+                                                      <tr class="border-b border-black text-left">
+                                      <td class="py-3">14</td>
+                                      <td class="py-3">на тестировании</td>
+                                      <td class="py-3">
+                                          <a href="http://localhost/tasks/14" class="text-blue-600 hover:text-blue-900">
+                                              Потребовать прибавки к зарплате
+                                          </a>
+                                      </td>
+                                      <td class="py-3">Prof. Rita Rodriguez</td>
+                                      <td class="py-3">Devyn Gulgowski</td>
+                                      <td class="py-3">26.05.2025</td>
+                                      <td class="py-3">
+                                                                                                      </td>
+                                  </tr>
+                                                      <tr class="border-b border-black text-left">
+                                      <td class="py-3">15</td>
+                                      <td class="py-3">в работе</td>
+                                      <td class="py-3">
+                                          <a href="http://localhost/tasks/15" class="text-blue-600 hover:text-blue-900">
+                                              Добавить поиск по фото
+                                          </a>
+                                      </td>
+                                      <td class="py-3">Mr. Pietro Schuster IV</td>
+                                      <td class="py-3">Cathrine Conn</td>
+                                      <td class="py-3">26.05.2025</td>
+                                      <td class="py-3">
+                                                                                                      </td>
+                                  </tr>
+                                              </tbody>
+                      </table>
+                      <div class="mt-2">
+                          <nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">
+                  <div class="flex justify-between flex-1 sm:hidden">
+                                      <span class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5 rounded-md dark:text-gray-600 dark:bg-gray-800 dark:border-gray-600">
+                              &laquo; Назад
+                          </span>
+                      
+                                      <a href="http://localhost/tasks?page=2" class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-gray-500 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:focus:border-blue-700 dark:active:bg-gray-700 dark:active:text-gray-300">
+                              Вперёд &raquo;
+                          </a>
+                              </div>
+
+                  <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                      <div>
+                          <p class="text-sm text-gray-700 leading-5 dark:text-gray-400">
+                              Showing
+                                                      <span class="font-medium">1</span>
+                                  to
+                                  <span class="font-medium">15</span>
+                                                  of
+                              <span class="font-medium">16</span>
+                              results
+                          </p>
+                      </div>
+
+                      <div>
+                          <span class="relative z-0 inline-flex rtl:flex-row-reverse shadow-sm rounded-md">
+                              
+                                                      <span aria-disabled="true" aria-label="&amp;laquo; Назад">
+                                      <span class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default rounded-l-md leading-5 dark:bg-gray-800 dark:border-gray-600" aria-hidden="true">
+                                          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                              <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                          </svg>
+                                      </span>
+                                  </span>
+                              
+                              
+                                                      
+                                  
+                                  
+                                                                                                                                  <span aria-current="page">
+                                                  <span class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5 dark:bg-gray-800 dark:border-gray-600">1</span>
+                                              </span>
+                                                                                                                                          <a href="http://localhost/tasks?page=2" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400 dark:hover:text-gray-300 dark:active:bg-gray-700 dark:focus:border-blue-800" aria-label="Go to page 2">
+                                                  2
+                                              </a>
+                                                                                                                  
+                              
+                                                      <a href="http://localhost/tasks?page=2" rel="next" class="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md leading-5 hover:text-gray-400 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150 dark:bg-gray-800 dark:border-gray-600 dark:active:bg-gray-700 dark:focus:border-blue-800" aria-label="Вперёд &amp;raquo;">
+                                      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                      </svg>
+                                  </a>
+                                              </span>
+                      </div>
+                  </div>
+              </nav>
+
+                      </div>
+                  </div>
+              </div>
+                      </main>
+
+                      <footer class="sticky top-full bg-gray-700 shadow">
+                          <div x-data="{ open: false }" class="bg-gray-700 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <nav class="flex h-16 justify-between hidden sm:-my-px sm:ms-10 sm:flex mt-2 space-x-8">
+                  <a class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-white hover:text-gray-300 focus:outline-none focus:text-gray-400 transition duration-150 ease-in-out" href="http://localhost/docs">
+              Api
+          </a>
+              </nav>
+          </div>
+                      </footer>
+                  </div>
+              </body>
+          </html>
+        headers:
+          content-type: 'text/html; charset=UTF-8'
+          cache-control: 'no-cache, private'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IlBKNWR0b2pWcG9qbGhpKzJDUFhGVGc9PSIsInZhbHVlIjoiWXhLbGRtSSt2MVZGemFDUktjekMyUmZwcEx4RFBxbkxNTXhNOHhaSktGYXIwWXBScnZKUGZOdm9MZy9vdVBMOU1KMXdYVlhpY016S2J4WXZhODlWaGE3bkJrSDN6bEJkM29TVVIyTTAzYitBajY0eXpiYXlzR3ZidmNWcjJEVTYiLCJtYWMiOiIyNjBhNGQ5NDM2MTk3NmJiMDZmNTZiN2VmMTIyNTRkMGNjZjg5MTViMWVlOGY2ZTBiMGU4YWI3NzlmZjI5MTFiIiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 21:48:31 GMT; Max-Age=7200; path=/; samesite=lax; taskmanager_session=eyJpdiI6Imlmbk9pQzN2U25qOUQ2b1g1U0ZieGc9PSIsInZhbHVlIjoicFRUcWpQYm1nS0tnaVJEdTBWdjA1NDRyRkJlQVppaFhsQXhJYzZheEIwSi9LbVJlMmNaOThyTk9MbmtmMDZQZVgvbVcvaU5zUW1QZUc2S0pYdzJkSFNiMUtaQjA4SU9teTVHWGlXOFlMaUpacDhDa2tHVklFbFdBdFY5QzhWOEwiLCJtYWMiOiI0Zjc3ZjI0MmIxOTBmNzM1MjBmNmI1ZmE4YTdhZDcwYzcxMzBlN2I0YWUwOGY3NWY0ZWY4MTZmYmU4MzY0NWMwIiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 21:48:31 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: tasks
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'The name of the Task.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      description:
+        name: description
+        description: 'The description of the Task.'
+        required: false
+        example: 'Eius et animi quos velit et.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      status_id:
+        name: status_id
+        description: 'The Status of the Task. The <code>id</code> of an existing record in the task_statuses table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      assigned_to_id:
+        name: assigned_to_id
+        description: 'The Executor of the Task. The <code>id</code> of an existing record in the users table.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      labels:
+        name: labels
+        description: 'The Labels of the Task must be relevant. The <code>id</code> of an existing record in the labels table.'
+        required: false
+        example: null
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      name: architecto
+      description: 'Eius et animi quos velit et.'
+      status_id: architecto
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'tasks/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the task.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |
+          <!DOCTYPE html>
+          <html lang="ru">
+              <head>
+                  <meta charset="utf-8">
+                  <meta name="viewport" content="width=device-width, initial-scale=1">
+                  <meta name="csrf-token" content="rIJOYmswzGPfXrIXYG6w3A6kAcfwlqGiVVLe9U9q">
+                  <meta name="csrf-param" content="_token" />
+
+                  <title>Менеджер задач</title>
+
+                  <!-- Fonts -->
+                  <link rel="preconnect" href="https://fonts.bunny.net">
+                  <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+                  <!-- Scripts -->
+                  <link rel="preload" as="style" href="http://localhost/build/assets/app-CeCQbSnN.css" /><link rel="modulepreload" href="http://localhost/build/assets/app-DedrspOS.js" /><link rel="stylesheet" href="http://localhost/build/assets/app-CeCQbSnN.css" /><script type="module" src="http://localhost/build/assets/app-DedrspOS.js"></script>    </head>
+              <body class="font-sans antialiased">
+                  <div class="min-h-screen bg-gray-100">
+
+                      <!-- Page Heading -->
+                      <header class="bg-white shadow">
+                          <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+              <!-- Primary Navigation Menu -->
+              <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div class="flex justify-between h-16">
+                      <!-- Logo -->
+                      <div class="shrink-0 flex items-center">
+                          <a href="http://localhost">
+                              <span class="self-center text-xl font-semibold whitespace-nowrap">
+                                  Менеджер задач
+                              </span>
+                          </a>
+                      </div>
+
+                      <!-- Navigation Links -->
+                      <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                          <a class="inline-flex items-center px-1 pt-1 border-b-2 border-indigo-400 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out" href="http://localhost/tasks">
+              Задачи
+          </a>
+                          <a class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out" href="http://localhost/task_statuses">
+              Статусы
+          </a>
+                          <a class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out" href="http://localhost/labels">
+              Метки
+          </a>
+                      </div>
+                      <div class="flex">
+                                              <nav class="flex items-center justify-end gap-4">
+                                                              <a class="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 hover:bg-blue-700 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out bg-blue-500 text-white font-semibold py-1 px-4 border border-gray-400 rounded shadow" href="http://localhost/login">Вход</a>
+
+                                                                      <a class="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 hover:bg-blue-700 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out bg-blue-500 text-white font-semibold py-1 px-4 border border-gray-400 rounded shadow" href="http://localhost/register">Регистрация</a>
+                                                                                  </nav>
+                                      </div>
+                  </div>
+              </div>
+          </nav>
+                      </header>
+
+                      <!-- Page Content -->
+                      <main class="max-w-screen-xl px-4 pt-20 pb-8 mx-auto">
+                                          <div class="mr-auto place-self-center lg:col-span-7">
+                  <div class="grid col-span-full">
+                      <div>
+                          <h1 class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-4xl xl:text-4xl">
+                          Просмотр задачи: Исправить ошибку в какой-нибудь строке <a href="http://localhost/tasks/1/edit">⚙</a>
+                          </h1> 
+                          <p class="my-1">Имя: Исправить ошибку в какой-нибудь строке</p>
+                          <p class="my-1">Статус: завершен</p>
+                          <p class="my-1">Описание: Я тут ошибку нашёл, надо бы её исправить и так далее и так далее</p>
+                      </div>
+                                  <div class="flex my-1">
+                              <p class="mr-1">Метки:</p>
+                                                      <div class="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-200 text-blue-700 rounded-full me-1">
+                                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                                      </svg>  
+                                      ошибка
+                                  </div>
+                                                      <div class="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-200 text-blue-700 rounded-full me-1">
+                                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                                      </svg>  
+                                      документация
+                                  </div>
+                                                      <div class="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-200 text-blue-700 rounded-full me-1">
+                                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                                      </svg>  
+                                      доработка
+                                  </div>
+                                              </div>
+                         
+                  </div>
+                  <div class="mt-4">
+                      <a href="/tasks" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow" target="_self">
+                          К задачам
+                      </a>
+                  </div>
+              </div>
+                      </main>
+
+                      <footer class="sticky top-full bg-gray-700 shadow">
+                          <div x-data="{ open: false }" class="bg-gray-700 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <nav class="flex h-16 justify-between hidden sm:-my-px sm:ms-10 sm:flex mt-2 space-x-8">
+                  <a class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-white hover:text-gray-300 focus:outline-none focus:text-gray-400 transition duration-150 ease-in-out" href="http://localhost/docs">
+              Api
+          </a>
+              </nav>
+          </div>
+                      </footer>
+                  </div>
+              </body>
+          </html>
+        headers:
+          content-type: 'text/html; charset=UTF-8'
+          cache-control: 'no-cache, private'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IlhQM2hZb3dJSU5MVmxYdzE3SW1qUHc9PSIsInZhbHVlIjoiZjRCV1lDUW1POUNnbGhMbWMrdC9tV2FBV3Q3YUhuOWV4THd0TmRXQXdYM0pEL1NFNUVWZHZYRFNwYVJpMG9Wb3creTc5TEQxbkFRL1ROU08yRkV1eVA2STNCMTNBQ2dOQXpUWTA2ZkxiRGpLZVlpTzhRUm1JNXhhcEJaV2srUUgiLCJtYWMiOiI4NjAxOTU3NjhhZDhmMjdlYTRlMjJmYWU5MjY0ZDQxODBkNTFjM2U1YmM5MTE0NTU2OWVlYzBiZWMxMmY5YmExIiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 21:48:31 GMT; Max-Age=7200; path=/; samesite=lax; taskmanager_session=eyJpdiI6Imxvd1d3emlWMXY1aDdQWHlBRThlRVE9PSIsInZhbHVlIjoiWTFWTjVFUldUWE9tam90cmpVZCtobXJKQ0ZMdGx2MjBvNms1Q3J3ZmpOSUM3THlqTlJrUnNBUmMzaER6ajZRb3oraTQvcFJWbHo0R2lyakhMS0NjMlpWYnVSdTNMSmdXNFFjYVVFYlRLTjB5QjFnTFpZMWsyRjQ3dElKc0p5SGYiLCJtYWMiOiI1NWQ0OGViYTVhMTFmMmFhMjQzMjY2ODE0ZjUxYWQ4YjdiNTVkMGI1MmZlZTI2MDE1NmJkZjg2YjYyNTNiMjRhIiwidGFnIjoiIn0%3D; expires=Mon, 26 May 2025 21:48:31 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'tasks/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the task.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'The name of the Task.'
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      description:
+        name: description
+        description: 'The description of the Task.'
+        required: false
+        example: 'Eius et animi quos velit et.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      status_id:
+        name: status_id
+        description: 'The Status of the Task. The <code>id</code> of an existing record in the task_statuses table.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      assigned_to_id:
+        name: assigned_to_id
+        description: 'The Executor of the Task. The <code>id</code> of an existing record in the users table.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      labels:
+        name: labels
+        description: 'The Labels of the Task must be relevant. The <code>id</code> of an existing record in the labels table.'
+        required: false
+        example: null
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      name: architecto
+      description: 'Eius et animi quos velit et.'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'tasks/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the task.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: register
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Handle an incoming registration request.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Количество символов в значении поля value не может превышать 255.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      email:
+        name: email
+        description: 'Значение поля value должно быть действительным электронным адресом. Количество символов в значении поля value не может превышать 255.'
+        required: true
+        example: zbailey@example.net
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      password:
+        name: password
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      name: b
+      email: zbailey@example.net
+      password: architecto
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: login
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Handle an incoming authentication request.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'Значение поля value должно быть действительным электронным адресом.'
+        required: true
+        example: gbailey@example.net
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      password:
+        name: password
+        description: ''
+        required: true
+        example: '|]|{+-'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      email: gbailey@example.net
+      password: '|]|{+-'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: logout
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Destroy an authenticated session.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
