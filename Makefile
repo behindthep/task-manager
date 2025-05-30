@@ -18,6 +18,9 @@ setup:
 migrate:
 	php artisan migrate
 
+rollback:
+	php artisan migrate:rollback
+
 seed:
 	php artisan db:seed
 

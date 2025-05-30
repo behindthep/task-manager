@@ -18,7 +18,7 @@ class TaskStatusController extends Controller
 
     public function index(): View
     {
-        $statuses = TaskStatus::paginate();
+        $statuses = TaskStatus::paginate(10);
         return view('task_status.index', compact('statuses'));
     }
 
@@ -30,7 +30,10 @@ class TaskStatusController extends Controller
 
     public function store(StoreTaskStatusRequest $request): RedirectResponse
     {
-        TaskStatus::create($request->validated());
+        TaskStatus::create([
+            $request->validated(),
+            'created_by_id' => auth()->id(),
+        ]);
         flash()->success(__('task_status.stored'));
         return redirect(route('task_statuses.index'));
     }
@@ -42,6 +45,8 @@ class TaskStatusController extends Controller
 
     public function update(UpdateTaskStatusRequest $request, TaskStatus $taskStatus): RedirectResponse
     {
+        $this->authorize('update', $taskStatus);
+
         $taskStatus->update($request->validated());
         flash()->success(__('task_status.updated'));
         return redirect(route('task_statuses.index'));
@@ -49,6 +54,8 @@ class TaskStatusController extends Controller
 
     public function destroy(TaskStatus $taskStatus): RedirectResponse
     {
+        $this->authorize('update', $taskStatus);
+
         if ($taskStatus->tasks()->exists()) {
             flash()->error(__('task_status.has_tasks'));
             return back()->withErrors([

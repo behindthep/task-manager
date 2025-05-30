@@ -5,19 +5,20 @@
         <div class="grid col-span-full">
             <div>
                 <h1 class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-4xl">
-                    {{ __('label.index') }}       
-                </h1> 
+                    {{ __('label.index') }}
+                </h1>
                 @can('create', App\Models\Label::class)
                     {{ html()->a(route('labels.create'), __('label.create'))->class('bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow') }}
                 @endcan
             </div>
-            
+
             <table class="table mt-5">
                 <thead class="border-b-2 border-solid border-black text-left">
                     <tr>
                         <th scope="col" class="py-2">{{ __('label.id') }}</th>
                         <th scope="col" class="py-2">{{ __('label.name') }}</th>
                         <th scope="col" class="py-2">{{ __('label.description') }}</th>
+                        <th scope="col" class="py-2">{{ __('label.created_by_id') }}</th>
                         <th scope="col" class="py-2">{{ __('label.created_at') }}</th>
                         @auth
                             <th scope="col" class="py-2">{{ __('label.actions') }}</th>
@@ -30,6 +31,7 @@
                             <td class="py-2">{{ $label->id }}</td>
                             <td class="py-2">{{ $label->name }}</td>
                             <td class="py-2">{{ $label->description }}</td>
+                            <td class="py-2">{{ $label->createdBy->name }}</td>
                             <td class="py-2">{{ $label->created_at->format('d.m.Y') }}</td>
                             <td class="py-2">
                                 @can('delete', $label)

@@ -2,18 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Task;
-use App\Models\User;
-use App\Models\Label;
-use App\Models\TaskStatus;
-use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
+use App\Models\{
+    Task,
+    TaskStatus,
+    User,
+    Label
+};
+use Illuminate\Http\{
+    Request,
+    RedirectResponse
+};
 use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\View\View;
-use Spatie\QueryBuilder\QueryBuilder;
-use Spatie\QueryBuilder\AllowedFilter;
-use App\Http\Requests\Task\StoreTaskRequest;
-use App\Http\Requests\Task\UpdateTaskRequest;
+use App\Http\Requests\Task\{
+    StoreTaskRequest,
+    UpdateTaskRequest
+};
+use Spatie\QueryBuilder\{
+    QueryBuilder,
+    AllowedFilter
+};
 
 class TaskController extends Controller
 {
@@ -31,7 +39,7 @@ class TaskController extends Controller
                 AllowedFilter::exact('assigned_to_id'),
             ])
             ->with('status', 'assignedTo', 'createdBy')
-            ->paginate();
+            ->paginate(10);
 
         $users = User::pluck('name', 'id');
         $statuses = TaskStatus::pluck('name', 'id');
@@ -81,6 +89,8 @@ class TaskController extends Controller
 
     public function update(UpdateTaskRequest $request, Task $task): RedirectResponse
     {
+        $this->authorize('update', $task);
+
         DB::transaction(function () use ($request, $task) {
             $task->update($request->except('labels'));
             $task->labels()->sync($request->get('labels'));
@@ -93,6 +103,8 @@ class TaskController extends Controller
     public function destroy(Task $task): RedirectResponse
     {
         $this->authorize('delete', $task);
+
+        $task->labels()->detach();
 
         $task->delete();
         flash()->success(__('task.deleted'));

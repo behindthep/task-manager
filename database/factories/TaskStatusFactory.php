@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\TaskStatus>
@@ -18,6 +19,7 @@ class TaskStatusFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
+            'created_by_id' => fn() => User::factory()->create()->id,
         ];
     }
 }

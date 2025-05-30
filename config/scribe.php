@@ -39,7 +39,7 @@ return [
                 'task_statuses.index',   // GET /task_statuses
                 'task_statuses.store',   // POST /task_statuses
                 'task_statuses.update',  // PUT/PATCH /task_statuses/{taskStatus}
-                'task_statuses.destroy',  // DELETE /task_statuses/{taskStatus}
+                'task_statuses.destroy', // DELETE /task_statuses/{taskStatus}
 
                 'labels.index',          // GET /labels
                 'labels.store',          // POST /labels
@@ -161,7 +161,7 @@ return [
     // For 'laravel' docs, it will be generated to storage/app/scribe/collection.json.
     // Setting `laravel.add_routes` to true (above) will also add a route for the collection.
     'postman' => [
-        'enabled' => false,
+        'enabled' => true,
 
         'overrides' => [
             // 'info.version' => '2.0.0',
@@ -173,7 +173,7 @@ return [
     // For 'laravel' docs, it will be generated to storage/app/scribe/openapi.yaml.
     // Setting `laravel.add_routes` to true (above) will also add a route for the spec.
     'openapi' => [
-        'enabled' => false,
+        'enabled' => true,
 
         'overrides' => [
             // 'info.version' => '2.0.0',

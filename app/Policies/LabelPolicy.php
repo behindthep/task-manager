@@ -20,11 +20,13 @@ class LabelPolicy
 
     public function update(User $user, Label $label): bool
     {
-        return Auth::check();
+        $creator = $label->createdBy();
+        return $creator->is($user);
     }
 
     public function delete(User $user, Label $label): bool
     {
-        return Auth::check();
+        $creator = $label->createdBy();
+        return $creator->is($user);
     }
 }

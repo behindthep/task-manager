@@ -17,7 +17,7 @@ class LabelController extends Controller
 
     public function index(): View
     {
-        $labels = Label::paginate();
+        $labels = Label::paginate(15);
         return view('label.index', compact('labels'));
     }
 
@@ -29,7 +29,10 @@ class LabelController extends Controller
 
     public function store(StoreLabelRequest $request): RedirectResponse
     {
-        Label::create($request->validated());
+        Label::create([
+            $request->validated(),
+            'created_by_id' => auth()->id(),
+        ]);
         flash()->success(__('label.stored'));
         return redirect(route('labels.index'));
     }
@@ -41,6 +44,8 @@ class LabelController extends Controller
 
     public function update(UpdateLabelRequest $request, Label $label): RedirectResponse
     {
+        $this->authorize('update', $label);
+
         $label->update($request->validated());
         flash()->success(__('label.updated'));
         return redirect(route('labels.index'));
@@ -48,6 +53,8 @@ class LabelController extends Controller
 
     public function destroy(Label $label): RedirectResponse
     {
+        $this->authorize('update', $label);
+
         if ($label->tasks()->exists()) {
             flash()->error(__('label.has_tasks'));
             return back()->withErrors([

@@ -16,7 +16,7 @@ return [
     'deleted' => 'Label successfully deleted',
     'stored' => 'Label successfully created',
     'updated' => 'Label successfully changed',
-    'has_tasks' => 'Failed to delete label',
+    'has_tasks' => 'Failed to delete label, it has a corresponding task(s)',
     'validation' => [
         'name' => [
             'unique' => 'A label by that name already exists',

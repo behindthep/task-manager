@@ -15,7 +15,7 @@ return [
     'deleted' => 'Status successfully deleted',
     'stored' => 'Status successfully created',
     'updated' => 'Status successfully changed',
-    'has_tasks' => 'Failed to delete status',
+    'has_tasks' => 'Failed to delete status, it has a corresponding task(s)',
     'validation' => [
         'name' => [
             'unique' => 'A status by that name already exists',

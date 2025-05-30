@@ -20,11 +20,13 @@ class TaskStatusPolicy
 
     public function update(User $user, TaskStatus $taskStatus): bool
     {
-        return Auth::check();
+        $creator = $taskStatus->createdBy();
+        return $creator->is($user);
     }
 
     public function delete(User $user, TaskStatus $taskStatus): bool
     {
-        return Auth::check();
+        $creator = $taskStatus->createdBy();
+        return $creator->is($user);
     }
 }
