@@ -14,7 +14,7 @@ class UpdateTaskStatusRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|unique:task_statuses,name'
+            'name' => 'required|unique:task_statuses,name|max:50'
         ];
     }
 
@@ -22,16 +22,7 @@ class UpdateTaskStatusRequest extends FormRequest
     {
         return [
             'name.unique' => __('task_status.validation.name.unique'),
-        ];
-    }
-
-    public function bodyParameters(): array
-    {
-        return [
-            'name' => [
-                'description' => 'The name of the Task Status',
-                'required' => true,
-            ],
+            'name.max' => __('task_status.validation.name.max'),
         ];
     }
 }

@@ -24,6 +24,10 @@ return [
     'validation' => [
         'name' => [
             'unique' => 'A task by that name already exists',
+            'max' => 'A task name must not be greater than :max characters.',
+        ],
+        'description' => [
+            'max' => 'A task description must not be greater than :max characters.',
         ],
     ],
     'task_view' => 'Task view',

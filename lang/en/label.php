@@ -6,6 +6,7 @@ return [
     'destroy' => 'Delete',
     'created_at' => 'Created at',
     'name' => 'Name',
+    'created_by_id' => 'Creator',
     'description' => 'Description',
     'edit' => 'Edit',
     'actions' => 'Actions',
@@ -20,6 +21,10 @@ return [
     'validation' => [
         'name' => [
             'unique' => 'A label by that name already exists',
+            'max' => 'A label name must not be greater than :max characters.',
+        ],
+        'description' => [
+            'max' => 'A label description must not be greater than :max characters.',
         ],
     ],
 ];

@@ -14,8 +14,8 @@ class UpdateLabelRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|unique:labels,name,' . ($this->label ? $this->label->id : 'NULL'),
-            'description' => 'nullable|string'
+            'name' => 'required|unique:labels,name,' . ($this->label ? $this->label->id : 'NULL') . '|max:50',
+            'description' => 'nullable|string|max:255'
         ];
     }
 
@@ -23,20 +23,8 @@ class UpdateLabelRequest extends FormRequest
     {
         return [
             'name.unique' => __('label.validation.name.unique'),
-        ];
-    }
-
-    public function bodyParameters(): array
-    {
-        return [
-            'name' => [
-                'description' => 'The name of the Label',
-                'required' => true,
-            ],
-            'description' => [
-                'description' => 'The description of the Label',
-                'required' => false,
-            ],
+            'name.max' => __('label.validation.name.max'),
+            'description.max' => __('label.validation.description.max'),
         ];
     }
 }

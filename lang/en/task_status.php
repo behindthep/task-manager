@@ -6,6 +6,7 @@ return [
     'destroy' => 'Destroy',
     'created_at' => 'Created at',
     'name' => 'Name',
+    'created_by_id' => 'Creator',
     'edit' => 'Edit',
     'actions' => 'Actions',
     'create' => 'Create status',
@@ -19,6 +20,7 @@ return [
     'validation' => [
         'name' => [
             'unique' => 'A status by that name already exists',
+            'max' => 'A status name must not be greater than :max characters.',
         ],
     ],
 ];
