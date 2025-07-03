@@ -16,12 +16,12 @@
                 <thead class="border-b-2 border-solid border-black text-left">
                     <tr>
                         <th scope="col" class="py-2">{{ __('label.id') }}</th>
-                        <th scope="col" class="py-2">{{ __('label.name') }}</th>
-                        <th scope="col" class="py-2">{{ __('label.description') }}</th>
-                        <th scope="col" class="py-2">{{ __('label.created_by_id') }}</th>
-                        <th scope="col" class="py-2">{{ __('label.created_at') }}</th>
+                        <th scope="col" class="py-2 pl-3">{{ __('label.name') }}</th>
+                        <th scope="col" class="py-2 pl-3">{{ __('label.description') }}</th>
+                        <th scope="col" class="py-2 pl-3">{{ __('label.created_by_id') }}</th>
+                        <th scope="col" class="py-2 pl-3">{{ __('label.created_at') }}</th>
                         @auth
-                            <th scope="col" class="py-2">{{ __('label.actions') }}</th>
+                            <th scope="col" class="py-2 pl-6">{{ __('label.actions') }}</th>
                         @endauth
                     </tr>
                 </thead>
@@ -29,11 +29,11 @@
                     @foreach($labels as $label)
                         <tr class="border-b border-black text-left">
                             <td class="py-2">{{ $label->id }}</td>
-                            <td class="py-2">{{ $label->name }}</td>
-                            <td class="py-2">{{ $label->description }}</td>
-                            <td class="py-2">{{ $label->createdBy->name }}</td>
-                            <td class="py-2">{{ $label->created_at->format('d.m.Y') }}</td>
-                            <td class="py-2">
+                            <td class="py-2 pl-3">{{ $label->name }}</td>
+                            <td class="py-2 pl-3">{{ $label->description }}</td>
+                            <td class="py-2 pl-3">{{ $label->createdBy->name }}</td>
+                            <td class="py-2 pl-3">{{ $label->created_at->format('d.m.Y') }}</td>
+                            <td class="py-2 pl-6">
                                 @can('delete', $label)
                                     {{ html()->a(route('labels.destroy', $label), __('label.destroy'))
                                         ->class('btn btn-sm btn-danger text-red-600 hover:text-red-900')

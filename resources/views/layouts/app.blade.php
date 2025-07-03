@@ -24,7 +24,7 @@
             </header>
 
             <!-- Page Content -->
-            <main class="max-w-screen-xl px-4 pt-20 pb-8 mx-auto">
+            <main class="max-w-screen-xl px-4 pt-10 pb-8 mx-auto">
                 @include('flash::message')
                 {{ $slot }}
             </main>

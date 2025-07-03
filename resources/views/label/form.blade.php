@@ -1,5 +1,10 @@
+@php
+    use App\Http\Helpers\FormStyles;
+    $commonClasses = FormStyles::commonClasses();
+@endphp
+
 {{  html()->label(__('label.name'), 'name') }}
-{{  html()->input('text', 'name')->class('rounded border-gray-300 w-1/3 mt-3') }}
+{{  html()->input('text', 'name')->class($commonClasses) }}
 
 @if ($errors->any())
     <div>
@@ -12,4 +17,4 @@
 @endif
 
 {{  html()->label(__('label.description'), 'description') }}
-{{  html()->textarea('description')->class('rounded border-gray-300 w-1/3 mt-3') }}
+{{  html()->textarea('description')->class($commonClasses) }}

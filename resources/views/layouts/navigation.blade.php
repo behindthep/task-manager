@@ -27,6 +27,11 @@
                 @if (Route::has('login'))
                     <nav class="flex items-center justify-end gap-4">
                         @auth
+                            <x-dropdown-link :href="route('profile.edit')"
+                                    class="bg-blue-500 text-white font-semibold py-1 px-4 border border-gray-400 rounded shadow">
+                                {{ __('Profile') }}
+                            </x-dropdown-link>
+
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
 

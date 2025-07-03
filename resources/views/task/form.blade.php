@@ -1,18 +1,23 @@
+@php
+    use App\Http\Helpers\FormStyles;
+    $commonClasses = FormStyles::commonClasses();
+@endphp
+
 {{ html()->label(__('task.name'), 'name') }}
-{{ html()->input('text', 'name')->class('rounded border-gray-300 w-1/3 mt-1 mb-3') }}
+{{ html()->input('text', 'name')->class($commonClasses) }}
 
 @error('name')
     <div class="text-rose-600">{{ $message }}</div>
 @enderror
 
 {{ html()->label(__('task.description'), 'description') }}
-{{ html()->textarea('description')->class('rounded border-gray-300 w-1/3 mt-1 mb-3') }}
+{{ html()->textarea('description')->class($commonClasses) }}
 
 {{ html()->label(__('task.status'), 'status_id') }}
 {{ html()->select('status_id',
     $statuses)
-    ->class('rounded border-gray-300 w-1/3 mt-1 mb-3')
-    ->placeholder('') 
+    ->class($commonClasses)
+    ->placeholder('')
 }}
 
 @error('status_id')
@@ -20,13 +25,15 @@
 @enderror
 
 {{ html()->label(__('task.executor'), 'assigned_to_id') }}
-{{ html()->select('assigned_to_id', 
+{{ html()->select('assigned_to_id',
     $assignees)
-    ->class('rounded border-gray-300 w-1/3 mt-1 mb-3')
+    ->class($commonClasses)
     ->placeholder('')
 }}
 
 {{ html()->label(__('task.labels'), 'labels[]') }}
 {{ html()->select('labels[]', $labels->pluck('name', 'id')->toArray())
-    ->class('rounded border-gray-300 w-1/3 mt-1 mb-3')
-    ->multiple() }}
+    ->class($commonClasses)
+    ->attributes(['size' => 5])
+    ->multiple()
+}}

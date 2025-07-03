@@ -1,11 +1,11 @@
 <x-guest-layout>
     <h2 class="text-center text-2xl font-semibold">
-        <a href="/">{{ __('Task manager') }}</a>
-    </h2> 
+        <a href="/" class="hover:text-indigo-600 transition duration-200">{{ __('Task manager') }}</a>
+    </h2>
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-    
+
     <!--Validation Errors-->
     <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
@@ -36,7 +36,10 @@
             </label>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
+        <div class="flex items-center justify-between mt-4">
+            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('register') }}">
+                {{ __('Register') }}
+            </a>
             @if (Route::has('password.request'))
                 <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
                     {{ __('Forgot your password?') }}
