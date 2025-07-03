@@ -25,9 +25,9 @@ class AppServiceProvider extends ServiceProvider
             $url->forceScheme('https');
         }
 
-        Rollbar::init([
-            'access_token' => env('ROLLBAR_TOKEN'),
-            'environment' => env('APP_ENV'),
-        ]);
+        // Rollbar::init([
+        //     'access_token' => env('ROLLBAR_TOKEN'),
+        //     'environment' => env('APP_ENV'),
+        // ]);
     }
 }
