@@ -1,0 +1,15 @@
+parameters:
+    level: 8
+    paths:
+        - app
+        - tests
+    ignoreErrors:
+        - identifier: missingType.generics
+        - identifier: missingType.iterableValue
+        - identifier: return.type
+        - identifier: method.notFound
+        - identifier: property.notFound
+        - identifier: staticMethod.notFound
+        - identifier: argument.type
+        - identifier: class.notFound
+        - identifier: method.nonObject
