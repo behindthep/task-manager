@@ -11,8 +11,14 @@ class TaskStatus extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = [
+        'name',
+        'created_by_id',
+    ];
 
+    /**
+     * App\Models\TaskStatus::find(3)->tasks()->whereLike('name', '%Добавить%')->get();
+     */
     public function tasks(): HasMany
     {
         return $this->hasMany(Task::class, 'status_id');

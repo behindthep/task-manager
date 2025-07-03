@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\TaskStatus\StoreTaskStatusRequest;
 use App\Http\Requests\TaskStatus\UpdateTaskStatusRequest;
+use Illuminate\Support\Facades\DB;
 
 class TaskStatusController extends Controller
 {
@@ -31,9 +32,10 @@ class TaskStatusController extends Controller
     public function store(StoreTaskStatusRequest $request): RedirectResponse
     {
         TaskStatus::create([
-            $request->validated(),
+            ...$request->validated(),
             'created_by_id' => auth()->id(),
         ]);
+
         flash()->success(__('task_status.stored'));
         return redirect(route('task_statuses.index'));
     }

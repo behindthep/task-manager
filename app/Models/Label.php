@@ -14,6 +14,7 @@ class Label extends Model
     protected $fillable = [
         'name',
         'description',
+        'created_by_id',
     ];
 
     public function tasks(): BelongsToMany

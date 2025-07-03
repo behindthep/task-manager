@@ -7,6 +7,7 @@ use App\Http\Requests\Label\UpdateLabelRequest;
 use App\Models\Label;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 
 class LabelController extends Controller
 {
@@ -17,7 +18,7 @@ class LabelController extends Controller
 
     public function index(): View
     {
-        $labels = Label::paginate(15);
+        $labels = Label::paginate(10);
         return view('label.index', compact('labels'));
     }
 
@@ -30,9 +31,10 @@ class LabelController extends Controller
     public function store(StoreLabelRequest $request): RedirectResponse
     {
         Label::create([
-            $request->validated(),
+            ...$request->validated(),
             'created_by_id' => auth()->id(),
         ]);
+
         flash()->success(__('label.stored'));
         return redirect(route('labels.index'));
     }
