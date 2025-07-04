@@ -25,13 +25,16 @@ class TaskPolicy
 
     public function update(User $user, Task $task): bool
     {
-        $creator = $task->createdBy();
-        return $creator->is($user);
+        return $task->createdBy->is($user);
     }
 
     public function delete(User $user, Task $task): bool
     {
-        $creator = $task->createdBy();
-        return $creator->is($user);
+        return $task->createdBy->is($user);
     }
+
+    // public function seeActions()
+    // {
+    //     return $task->createdBy()->is($user);
+    // }
 }

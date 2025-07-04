@@ -20,13 +20,16 @@ class LabelPolicy
 
     public function update(User $user, Label $label): bool
     {
-        $creator = $label->createdBy();
-        return $creator->is($user);
+        return $label->createdBy->is($user);
     }
 
     public function delete(User $user, Label $label): bool
     {
-        $creator = $label->createdBy();
-        return $creator->is($user);
+        return $label->createdBy->is($user);
     }
+
+    // public function seeActions()
+    // {
+    //     return $task->createdBy()->is($user);
+    // }
 }
