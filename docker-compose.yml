@@ -1,0 +1,48 @@
+# Версия схемы, которую мы используем. Зависит от установленной версии docker
+version: "3"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # Команда, которая выполнена после старта сервиса
+    command: make start
+    ports:
+      - "3000:8000"
+    restart: unless-stopped
+    volumes:
+      - ".:/app"
+      - "/tmp:/tmp"
+    depends_on:
+      - db
+    networks:
+      - internet
+      - localnet
+
+  db:
+    image: postgres:latest
+    container_name: app-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: password
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    # проверки готовности БД к работе
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - localnet
+
+  volumes:
+    pgdata:
+
+  networks:
+    internet:
+      name: internet
+      driver: bridge
+    localnet:
+      name: localnet
+      driver: bridge
