@@ -46,8 +46,6 @@ class LabelController extends Controller
 
     public function update(UpdateLabelRequest $request, Label $label): RedirectResponse
     {
-        $this->authorize('update', $label);
-
         $label->update($request->validated());
         flash()->success(__('label.updated'));
         return redirect(route('labels.index'));
@@ -55,8 +53,6 @@ class LabelController extends Controller
 
     public function destroy(Label $label): RedirectResponse
     {
-        $this->authorize('update', $label);
-
         if ($label->tasks()->exists()) {
             flash()->error(__('label.has_tasks'));
             return back()->withErrors([

@@ -47,8 +47,6 @@ class TaskStatusController extends Controller
 
     public function update(UpdateTaskStatusRequest $request, TaskStatus $taskStatus): RedirectResponse
     {
-        $this->authorize('update', $taskStatus);
-
         $taskStatus->update($request->validated());
         flash()->success(__('task_status.updated'));
         return redirect(route('task_statuses.index'));
@@ -56,8 +54,6 @@ class TaskStatusController extends Controller
 
     public function destroy(TaskStatus $taskStatus): RedirectResponse
     {
-        $this->authorize('update', $taskStatus);
-
         if ($taskStatus->tasks()->exists()) {
             flash()->error(__('task_status.has_tasks'));
             return back()->withErrors([

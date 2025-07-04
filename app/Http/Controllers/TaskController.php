@@ -81,8 +81,6 @@ class TaskController extends Controller
 
     public function update(UpdateTaskRequest $request, Task $task): RedirectResponse
     {
-        $this->authorize('update', $task);
-
         DB::transaction(function () use ($request, $task) {
             $task->update($request->except('labels'));
             $task->labels()->sync($request->get('labels'));
@@ -94,8 +92,6 @@ class TaskController extends Controller
 
     public function destroy(Task $task): RedirectResponse
     {
-        $this->authorize('delete', $task);
-
         $task->labels()->detach();
 
         $task->delete();
