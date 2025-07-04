@@ -4,6 +4,7 @@ namespace Tests\Feature\Controllers;
 
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Task;
 use App\Models\TaskStatus;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -11,72 +12,87 @@ class TaskControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    private User $user;
+    private TaskStatus $taskStatus;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->user = User::factory()->create();
+        $this->taskStatus = TaskStatus::factory()->create();
+    }
+
+    // public function testFilter(): void
+    // {
+    //     Можно ли в тестах сделать логику заполнения формы?
+    //     Task::factory()->count(10)->create();
+    // }
+
     public function testIndex(): void
     {
-        $response = $this->get(route('task_statuses.index'));
-
+        $response = $this->get(route('tasks.index'));
         $response->assertOk();
     }
 
     public function testEdit(): void
     {
-        $this->actingAs(User::factory()->create());
-
-        $model = TaskStatus::factory()->create();
-        $response = $this->get(route('task_statuses.edit', $model));
-
+        $task = Task::factory()->create([
+            'created_by_id' => $this->user->id,
+        ]);
+        $response = $this->actingAs($this->user)->get(route('tasks.edit', $task));
         $response->assertOk();
     }
 
     public function testCreate(): void
     {
-        $this->actingAs(User::factory()->create());
-
-        $response = $this->get(route('task_statuses.create'));
-
+        $response = $this->actingAs($this->user)->get(route('tasks.create'));
         $response->assertOk();
     }
 
     public function testStore(): void
     {
-        $this->actingAs(User::factory()->create());
-
-        $body = TaskStatus::factory()->make()->toArray();
-        $response = $this->post(route('task_statuses.store'), $body);
-
-        $response->assertRedirect();
+        $data = Task::factory()->make([
+            'created_by_id' => $this->user->id
+        ])->toArray();
+        $response = $this->actingAs($this->user)->post(route('tasks.store'), $data);
         $response->assertSessionHasNoErrors();
+        $response->assertRedirect();
 
-        $this->assertDatabaseHas('task_statuses', $body);
+        $this->assertDatabaseHas('tasks', $data);
     }
 
     public function testUpdate(): void
     {
-        $this->actingAs(User::factory()->create());
-
-        $model = TaskStatus::factory()->create();
-        $body = TaskStatus::factory()->make()->toArray();
-        $response = $this->put(route('task_statuses.update', $model), $body);
-
-        $response->assertRedirect();
+        $task = Task::factory()->create([
+            'created_by_id' => $this->user->id,
+        ]);
+        $data = Task::factory()->make()->except('created_by_id');
+        $response = $this->actingAs($this->user)->patch(route('tasks.update', $task), $data);
         $response->assertSessionHasNoErrors();
+        $response->assertRedirect();
 
-        $this->assertDatabaseHas('task_statuses', [
-            'id' => $model->id,
-            ...$body,
+        $this->assertDatabaseHas('tasks', [
+            'id' => $task->id,
+            ...$data,
         ]);
     }
 
     public function testDestroy(): void
     {
-        $this->actingAs(User::factory()->create());
-
-        $model = TaskStatus::factory()->create();
-        $response = $this->delete(route('task_statuses.destroy', $model));
-
-        $response->assertRedirect();
+        $task = Task::factory()->create([
+            'created_by_id' => $this->user->id
+        ]);
+        $response = $this->actingAs($this->user)->delete(route('tasks.destroy', $task));
         $response->assertSessionHasNoErrors();
+        $response->assertRedirect();
 
-        $this->assertDatabaseMissing('task_statuses', ['id' => $model->id]);
+        $this->assertDatabaseMissing('tasks', ['id' => $task->id]);
+    }
+
+    public function testShow(): void
+    {
+        $task = Task::factory()->create();
+        $response = $this->get(route('tasks.show', $task));
+        $response->assertOk();
     }
 }

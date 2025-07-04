@@ -11,72 +11,72 @@ class LabelControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    private User $user;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->user = User::factory()->create();
+    }
+
     public function testIndex(): void
     {
         $response = $this->get(route('labels.index'));
-
         $response->assertOk();
     }
 
     public function testEdit(): void
     {
-        $this->actingAs(User::factory()->create());
-
-        $model = Label::factory()->create();
-        $response = $this->get(route('labels.edit', $model));
-
+        $label = Label::factory()->create([
+            'created_by_id' => $this->user->id,
+        ]);
+        $response = $this->actingAs($this->user)->get(route('labels.edit', $label));
         $response->assertOk();
     }
 
     public function testCreate(): void
     {
-        $this->actingAs(User::factory()->create());
-
-        $response = $this->get(route('labels.create'));
-
+        $response = $this->actingAs($this->user)->get(route('labels.create'));
         $response->assertOk();
     }
 
     public function testStore(): void
     {
-        $this->actingAs(User::factory()->create());
-
-        $body = Label::factory()->make()->toArray();
-        $response = $this->post(route('labels.store'), $body);
-
-        $response->assertRedirect();
+        $data = Label::factory()->make([
+            'created_by_id' => $this->user->id,
+        ])->toArray();
+        $response = $this->actingAs($this->user)->post(route('labels.store'), $data);
         $response->assertSessionHasNoErrors();
+        $response->assertRedirect();
 
-        $this->assertDatabaseHas('labels', $body);
+        $this->assertDatabaseHas('labels', $data);
     }
 
     public function testUpdate(): void
     {
-        $this->actingAs(User::factory()->create());
-
-        $model = Label::factory()->create();
-        $body = Label::factory()->make()->toArray();
-        $response = $this->put(route('labels.update', $model), $body);
-
-        $response->assertRedirect();
+        $label = Label::factory()->create([
+            'created_by_id' => $this->user->id,
+        ]);
+        $data = Label::factory()->make()->except('created_by_id');
+        $response = $this->actingAs($this->user)->patch(route('labels.update', $label), $data);
         $response->assertSessionHasNoErrors();
+        $response->assertRedirect();
 
         $this->assertDatabaseHas('labels', [
-            'id' => $model->id,
-            ...$body,
+            'id' => $label->id,
+            ...$data,
         ]);
     }
 
     public function testDestroy(): void
     {
-        $this->actingAs(User::factory()->create());
-
-        $model = Label::factory()->create();
-        $response = $this->delete(route('labels.destroy', $model));
-
-        $response->assertRedirect();
+        $label = Label::factory()->create([
+            'created_by_id' => $this->user->id,
+        ]);
+        $response = $this->actingAs($this->user)->delete(route('labels.destroy', $label));
         $response->assertSessionHasNoErrors();
+        $response->assertRedirect();
 
-        $this->assertDatabaseMissing('labels', ['id' => $model->id]);
+        $this->assertDatabaseMissing('labels', ['id' => $label->id]);
     }
 }
