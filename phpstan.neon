@@ -13,3 +13,6 @@ parameters:
         - identifier: argument.type
         - identifier: class.notFound
         - identifier: method.nonObject
+        - identifier: assign.propertyType
+        - identifier: arrayUnpacking.nonIterable
+        - identifier: property.onlyWritten
