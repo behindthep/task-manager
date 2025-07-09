@@ -13,6 +13,11 @@ class TaskStatusPolicy
         return true;
     }
 
+    public function view(User $user, TaskStatus $taskStatus): bool
+    {
+        return true;
+    }
+
     public function create(User $user): bool
     {
         return Auth::check();
@@ -27,9 +32,4 @@ class TaskStatusPolicy
     {
         return $taskStatus->createdBy->is($user);
     }
-
-    // public function seeActions()
-    // {
-    //     return $task->createdBy()->is($user);
-    // }
 }

@@ -32,9 +32,4 @@ class TaskPolicy
     {
         return $task->createdBy->is($user);
     }
-
-    // public function seeActions()
-    // {
-    //     return $task->createdBy()->is($user);
-    // }
 }

@@ -13,6 +13,11 @@ class LabelPolicy
         return true;
     }
 
+    public function view(User $user, Label $label): bool
+    {
+        return true;
+    }
+
     public function create(User $user): bool
     {
         return Auth::check();
@@ -27,9 +32,4 @@ class LabelPolicy
     {
         return $label->createdBy->is($user);
     }
-
-    // public function seeActions()
-    // {
-    //     return $task->createdBy()->is($user);
-    // }
 }
