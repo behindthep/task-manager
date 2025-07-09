@@ -55,12 +55,11 @@ jobs:
       - name: Install PostgreSQL client
         run: sudo apt-get update && sudo apt-get install -y postgresql-client
 
-      - name: Check DB connection
-        run: |
-          PGPASSWORD=password psql -h db -U postgres -d postgres -c '\l'
-
       - name: Setup project
         run: make setup
+        env:
+          POSTGRES_HOST: db
+          POSTGRES_PORT: 5432
 
       - name: Check lint
         run: make lint
