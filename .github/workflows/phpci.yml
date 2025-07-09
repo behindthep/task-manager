@@ -41,6 +41,14 @@ jobs:
         with:
           node-version: '18'
 
+      - name: Export DB env vars
+        run: |
+          echo "DB_HOST=db" >> $GITHUB_ENV
+          echo "DB_PORT=5432" >> $GITHUB_ENV
+          echo "DB_DATABASE=postgres" >> $GITHUB_ENV
+          echo "DB_USERNAME=postgres" >> $GITHUB_ENV
+          echo "DB_PASSWORD=password" >> $GITHUB_ENV
+
       - name: Wait for PostgreSQL to be ready
         run: |
           for i in {1..30}; do

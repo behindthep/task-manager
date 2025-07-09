@@ -6,7 +6,7 @@ start-frontend:
 
 setup:
 	composer install
-	cp .env.example .env
+	cp -n .env.example .env
 	php artisan key:gen --ansi
 	php artisan config:clear
 	php artisan config:cache
