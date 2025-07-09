@@ -13,7 +13,7 @@ jobs:
         php-versions: ['8.3']
 
     services:
-      db:
+      postgres:
         image: postgres:16.9
         env:
           POSTGRES_DB: postgres
@@ -44,7 +44,7 @@ jobs:
       - name: Wait for PostgreSQL to be ready
         run: |
           for i in {1..30}; do
-            pg_isready -h db -p 5432 && break
+            pg_isready -h postgres -p 5432 && break
             echo "Waiting for PostgreSQL..."
             sleep 2
           done
