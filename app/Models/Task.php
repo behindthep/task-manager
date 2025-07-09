@@ -25,12 +25,12 @@ class Task extends Model
         return $this->belongsTo(TaskStatus::class);
     }
 
-    public function assignedTo(): BelongsTo
+    public function createdBy(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function createdBy(): BelongsTo
+    public function assignedTo(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

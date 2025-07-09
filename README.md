@@ -9,20 +9,22 @@
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=behindthep_task-manager&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=behindthep_task-manager)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=behindthep_task-manager&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=behindthep_task-manager)
 
-### Render
 
+### Render
 ```
 https://laravel-project-wnty.onrender.com
 ```
 
-## 1 Initialization
 
+
+---
+
+## 1 Initialization
 ```bash
 composer create-project --prefer-dist laravel/laravel task-manager
 ```
 
 ## 2 Check
-
 ```bash
 npm install
 
@@ -37,19 +39,16 @@ make start
 ```
 
 ## 3 Authentication
-
 ```bash
 php artisan breeze:install
 ```
 
 ## 4 Localization
-
 ```bash
 php artisan lang:publish
 ```
 
 ## 5 CRUD
-
 ```bash
 php artisan make:model TaskStatus --all
 php artisan make:model Label --all
@@ -62,7 +61,6 @@ php artisan make:test Controllers/TaskStatusControllerTest
 ```
 
 ## 6 Documentation
-
 ```bash
 php artisan route:list
 ```
