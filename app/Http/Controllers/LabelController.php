@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Label;
+use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 use App\Http\Requests\Label\StoreLabelRequest;
 use App\Http\Requests\Label\UpdateLabelRequest;
-use App\Models\Label;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\DB;
 
 class LabelController extends Controller
 {
@@ -16,10 +16,14 @@ class LabelController extends Controller
         $this->authorizeResource(Label::class);
     }
 
-    public function index(): View
+    public function index(Request $request): View
     {
-        $labels = Label::paginate(10);
-        return view('label.index', compact('labels'));
+        $labels = $request->get('name')
+            ? Label::where('name', 'like', "%{$request->get('name')}%")->paginate(10)
+            : Label::paginate(10);
+        $inputName = $request->input('name');
+
+        return view('label.index', compact('labels', 'inputName'));
     }
 
     public function create(): View
@@ -41,7 +45,7 @@ class LabelController extends Controller
 
     public function edit(Label $label): View
     {
-        return view('label.edit', ['label' => $label,]);
+        return view('label.edit', compact('label'));
     }
 
     public function update(UpdateLabelRequest $request, Label $label): RedirectResponse

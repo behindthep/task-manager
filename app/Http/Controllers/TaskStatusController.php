@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\TaskStatus;
 use Illuminate\Http\Request;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\View;
 use App\Http\Requests\TaskStatus\StoreTaskStatusRequest;
 use App\Http\Requests\TaskStatus\UpdateTaskStatusRequest;
-use Illuminate\Support\Facades\DB;
 
 class TaskStatusController extends Controller
 {
@@ -17,10 +16,14 @@ class TaskStatusController extends Controller
         $this->authorizeResource(TaskStatus::class);
     }
 
-    public function index(): View
+    public function index(Request $request): View
     {
-        $statuses = TaskStatus::paginate(10);
-        return view('task_status.index', compact('statuses'));
+        $statuses = $request->get('name')
+            ? TaskStatus::where('name', 'like', "%{$request->get('name')}%")->paginate(10)
+            : TaskStatus::paginate(10);
+        $inputName = $request->input('name');
+
+        return view('task_status.index', compact('statuses', 'inputName'));
     }
 
     public function create(): View
@@ -48,6 +51,7 @@ class TaskStatusController extends Controller
     public function update(UpdateTaskStatusRequest $request, TaskStatus $taskStatus): RedirectResponse
     {
         $taskStatus->update($request->validated());
+
         flash()->success(__('task_status.updated'));
         return redirect(route('task_statuses.index'));
     }

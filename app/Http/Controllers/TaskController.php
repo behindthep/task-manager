@@ -37,7 +37,12 @@ class TaskController extends Controller
         $statuses = TaskStatus::pluck('name', 'id');
         $filter = $request->input('filter');
 
-        return view('task.index', compact('tasks', 'users', 'statuses', 'filter'));
+        return view('task.index', compact(
+            'tasks',
+            'users',
+            'statuses',
+            'filter'
+        ));
     }
 
     public function create(): View
@@ -46,7 +51,8 @@ class TaskController extends Controller
             'task' => new Task(),
             'statuses' => TaskStatus::pluck('name', 'id'),
             'assignees' => User::pluck('name', 'id'),
-            'labels' => Label::all()
+            'labels' => Label::orderBy('name')->pluck('name', 'id'),
+            'selectedLabels' => old('labels', []),
         ]);
     }
 
@@ -57,7 +63,7 @@ class TaskController extends Controller
                 ...$request->except('labels'),
                 'created_by_id' => auth()->id(),
             ]);
-            $task->labels()->sync($request->get('labels'));
+            $task->labels()->sync($request->get('labels', []));
         });
 
         flash()->success(__('task.stored'));
@@ -66,7 +72,7 @@ class TaskController extends Controller
 
     public function show(Task $task): View
     {
-        return view('task.show', ['task' => $task]);
+        return view('task.show', compact('task'));
     }
 
     public function edit(Task $task): View
@@ -75,7 +81,8 @@ class TaskController extends Controller
             'task' => $task,
             'statuses' => TaskStatus::pluck('name', 'id'),
             'assignees' => User::pluck('name', 'id'),
-            'labels' => Label::all()
+            'labels' => Label::orderBy('name')->pluck('name', 'id'),
+            'selectedLabels' => old('labels', $task->labels->pluck('id')->toArray()),
         ]);
     }
 
@@ -83,17 +90,16 @@ class TaskController extends Controller
     {
         DB::transaction(function () use ($request, $task) {
             $task->update($request->except('labels'));
-            $task->labels()->sync($request->get('labels'));
+            $task->labels()->sync($request->get('labels', []));
         });
 
         flash()->success(__('task.updated'));
-        return redirect(route('tasks.show', ['task' => $task]));
+        return redirect(route('tasks.index'));
     }
 
     public function destroy(Task $task): RedirectResponse
     {
         $task->labels()->detach();
-
         $task->delete();
         flash()->success(__('task.deleted'));
         return redirect(route('tasks.index'));
