@@ -15,5 +15,6 @@ return [
 
     'previous' => '&laquo; Назад',
     'next' => 'Вперёд &raquo;',
+    'showing' => 'Показано :from до :to из :total результатов',
 
 ];

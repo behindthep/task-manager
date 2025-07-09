@@ -29,6 +29,9 @@ return [
         'description' => [
             'max' => 'A task description must not be greater than :max characters.',
         ],
+        'status_id' => [
+            'exists' => 'Status cannot be empty.',
+        ],
     ],
     'task_view' => 'Task view',
     'task_create' => 'Task create',

@@ -15,6 +15,7 @@ return [
     'store' => 'Create',
     'update' => 'Update',
     'deleted' => 'Label successfully deleted',
+    'accept_filter' => 'Accept',
     'stored' => 'Label successfully created',
     'updated' => 'Label successfully changed',
     'has_tasks' => 'Failed to delete label, it has a corresponding task(s)',

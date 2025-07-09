@@ -14,6 +14,7 @@ return [
     'store' => 'Create',
     'update' => 'Update',
     'deleted' => 'Status successfully deleted',
+    'accept_filter' => 'Accept',
     'stored' => 'Status successfully created',
     'updated' => 'Status successfully changed',
     'has_tasks' => 'Failed to delete status, it has a corresponding task(s)',
