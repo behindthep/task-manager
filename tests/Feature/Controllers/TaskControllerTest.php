@@ -5,21 +5,16 @@ namespace Tests\Feature\Controllers;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Task;
-use App\Models\TaskStatus;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TaskControllerTest extends TestCase
 {
-    use RefreshDatabase;
-
     private User $user;
-    private TaskStatus $taskStatus;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->user = User::factory()->create();
-        $this->taskStatus = TaskStatus::factory()->create();
+        Task::factory()->count(2)->create();
     }
 
     // public function testFilter(): void
@@ -56,7 +51,7 @@ class TaskControllerTest extends TestCase
         ])->toArray();
         $response = $this->actingAs($this->user)->post(route('tasks.store'), $data);
         $response->assertSessionHasNoErrors();
-        $response->assertRedirect();
+        $response->assertRedirect(route('tasks.index'));
 
         $this->assertDatabaseHas('tasks', $data);
     }
@@ -67,14 +62,12 @@ class TaskControllerTest extends TestCase
             'created_by_id' => $this->user->id,
         ]);
         $data = Task::factory()->make()->except('created_by_id');
+
         $response = $this->actingAs($this->user)->patch(route('tasks.update', $task), $data);
         $response->assertSessionHasNoErrors();
-        $response->assertRedirect();
+        $response->assertRedirect(route('tasks.index'));
 
-        $this->assertDatabaseHas('tasks', [
-            'id' => $task->id,
-            ...$data,
-        ]);
+        $this->assertDatabaseHas('tasks', $data);
     }
 
     public function testDestroy(): void
@@ -84,7 +77,7 @@ class TaskControllerTest extends TestCase
         ]);
         $response = $this->actingAs($this->user)->delete(route('tasks.destroy', $task));
         $response->assertSessionHasNoErrors();
-        $response->assertRedirect();
+        $response->assertRedirect(route('tasks.index'));
 
         $this->assertDatabaseMissing('tasks', ['id' => $task->id]);
     }

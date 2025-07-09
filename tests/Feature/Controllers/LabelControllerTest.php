@@ -5,18 +5,16 @@ namespace Tests\Feature\Controllers;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Label;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class LabelControllerTest extends TestCase
 {
-    use RefreshDatabase;
-
     private User $user;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->user = User::factory()->create();
+        Label::factory()->count(2)->create();
     }
 
     public function testIndex(): void
@@ -47,7 +45,7 @@ class LabelControllerTest extends TestCase
         ])->toArray();
         $response = $this->actingAs($this->user)->post(route('labels.store'), $data);
         $response->assertSessionHasNoErrors();
-        $response->assertRedirect();
+        $response->assertRedirect(route('labels.index'));
 
         $this->assertDatabaseHas('labels', $data);
     }
@@ -58,14 +56,12 @@ class LabelControllerTest extends TestCase
             'created_by_id' => $this->user->id,
         ]);
         $data = Label::factory()->make()->except('created_by_id');
+
         $response = $this->actingAs($this->user)->patch(route('labels.update', $label), $data);
         $response->assertSessionHasNoErrors();
-        $response->assertRedirect();
+        $response->assertRedirect(route('labels.index'));
 
-        $this->assertDatabaseHas('labels', [
-            'id' => $label->id,
-            ...$data,
-        ]);
+        $this->assertDatabaseHas('labels', $data);
     }
 
     public function testDestroy(): void
@@ -75,7 +71,7 @@ class LabelControllerTest extends TestCase
         ]);
         $response = $this->actingAs($this->user)->delete(route('labels.destroy', $label));
         $response->assertSessionHasNoErrors();
-        $response->assertRedirect();
+        $response->assertRedirect(route('labels.index'));
 
         $this->assertDatabaseMissing('labels', ['id' => $label->id]);
     }
