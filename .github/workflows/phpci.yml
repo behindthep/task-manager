@@ -52,9 +52,6 @@ jobs:
       - name: PHP Security Checker
         uses: StephaneBour/actions-php-security-checker@1.1
 
-      - name: Install PostgreSQL client
-        run: sudo apt-get update && sudo apt-get install -y postgresql-client
-
       - name: Setup project
         run: make setup
         env:
@@ -66,6 +63,9 @@ jobs:
 
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: make test-coverage
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
 
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
