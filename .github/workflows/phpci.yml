@@ -31,7 +31,6 @@ jobs:
       - name: Check lint
         run: make lint
 
-      # https://docs.sonarsource.com/sonarqube-cloud/enriching/test-coverage/php-test-coverage/
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: make test-coverage
 
@@ -59,6 +58,6 @@ jobs:
   #       with:
   #         context: .
   #         push: true
-  #         cache-from: behindthep/laravel-project:latest
+  #         cache-from: behindthep/task-manager:latest
   #         cache-to: type=inline
-  #         tags: behindthep/laravel-project:latest
+  #         tags: behindthep/task-manager:latest
