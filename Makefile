@@ -5,15 +5,17 @@ start-frontend:
 	npm run dev
 
 setup:
+	cp -n .env.example .env || true
 	composer install
-	cp -n .env.example .env
-	php artisan key:gen --ansi
-	php artisan config:clear
-	php artisan config:cache
-	php artisan migrate
-	php artisan db:seed
 	npm ci
+	php artisan key:generate
+	php artisan migrate:fresh --seed
+	php artisan config:cache
 	npm run build
+
+clear:
+	php artisan config:clear
+	php artisan view:clear
 
 migrate:
 	php artisan migrate
@@ -40,23 +42,36 @@ lint:
 lint-fix:
 	composer exec --verbose phpcbf -- app tests
 
-compose:
-	docker-compose up
+BUILD_ARGS:= --build-arg UID=$(shell id -u) --build-arg GID=$(shell id -u)
 
-compose-test:
-	docker-compose run web make test
+compose: compose-clear compose-setup compose-start
 
-compose-bash:
-	docker-compose run web bash
-
-compose-setup: compose-build
-	docker-compose run web make setup
+compose-clear:
+	docker-compose down -v --remove-orphans || true
 
 compose-build:
-	docker-compose build
+	docker-compose build ${BUILD_ARGS}
+
+compose-setup: compose-build
+	docker-compose run --rm app make setup
+
+compose-start:
+	docker-compose up --abort-on-container-exit
+
+compose-bash:
+	docker-compose run --rm app bash
+
+compose-test:
+	docker-compose run app make test
+
+compose-lint:
+	docker-compose run app make lint
 
 compose-db:
 	docker-compose exec db psql -U postgres
 
-compose-down:
-	docker-compose down -v
+ci:
+	docker-compose -f docker-compose.yml -p task-manager-ci build ${BUILD_ARGS}
+	docker-compose -f docker-compose.yml -p task-manager-ci run app make setup
+	docker-compose -f docker-compose.yml -p task-manager-ci up --abort-on-container-exit
+	docker-compose -f docker-compose.yml -p task-manager-ci down -v --remove-orphans
