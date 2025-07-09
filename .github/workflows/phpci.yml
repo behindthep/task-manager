@@ -55,7 +55,7 @@ jobs:
       - name: Setup project
         run: make setup
         env:
-          POSTGRES_HOST: localhost
+          DB_HOST: localhost
 
       - name: Check lint
         run: make lint
