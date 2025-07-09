@@ -13,13 +13,15 @@ class TaskStatusSeeder extends Seeder
      */
     public function run(): void
     {
-        TaskStatus::truncate();
-
-        TaskStatus::factory()->createMany([
+        $seeders = [
             ['name' => 'новый'],
             ['name' => 'в работе'],
             ['name' => 'на тестировании'],
             ['name' => 'завершен'],
-        ]);
+        ];
+
+        TaskStatus::truncate();
+
+        TaskStatus::factory()->createMany($seeders);
     }
 }

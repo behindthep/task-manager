@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Антонова Наталья Александровна',
                 'email' => 'admin@gmail.com',
-                'password' => '12345'
+                'password' => '12345a'
             ],
             ['name' => 'Лебедев Аким Дмитриевич'],
             ['name' => 'Суханов Сергей Дмитриевич'],

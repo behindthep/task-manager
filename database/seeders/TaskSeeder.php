@@ -4,8 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Task;
 use App\Models\Label;
-use App\Models\User;
-use App\Models\TaskStatus;
 use Illuminate\Database\Seeder;
 
 class TaskSeeder extends Seeder
@@ -85,14 +83,15 @@ class TaskSeeder extends Seeder
         Task::factory()
             ->count(count($seeders))
             ->sequence(...$seeders)
-            ->create();
+            ->create()
+        //     ;
+        // Task::all()
+            ->each(function ($task) {
+                $labels = Label::inRandomOrder()
+                    ->limit(rand(1, Label::count()))
+                    ->get();
 
-        Task::all()->each(function ($task) {
-            $labels = Label::inRandomOrder()
-                ->limit(rand(1, Label::count()))
-                ->get();
-
-            $task->labels()->attach($labels);
-        });
+                $task->labels()->attach($labels);
+            });
     }
 }
