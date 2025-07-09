@@ -1,6 +1,6 @@
 <x-guest-layout>
     <h2 class="text-center text-2xl font-semibold">
-        <a href="/" class="hover:text-indigo-600 transition duration-200">{{ __('Task manager') }}</a>
+        <a href="{{ route('dashboard') }}" class="hover:text-indigo-600 transition duration-200">{{ __('Task manager') }}</a>
     </h2>
 
     <x-auth-validation-errors class="mb-4" :errors="$errors" />

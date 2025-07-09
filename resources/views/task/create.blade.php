@@ -1,12 +1,11 @@
-<x-app-layout >
-    <x-slot:title>{{ __('Task manager')}}</x-slot:title>
+@extends('layouts.app')
 
+@section('content')
     <div class="mr-auto place-self-center lg:col-span-7">
-        <div>
-            <h1 class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-4xl">
-                {{ __('task.create') }}       
-            </h1>
-        </div>
+        <h1 class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-4xl">
+            {{ __('task.create') }}
+        </h1>
+
         {{ html()->modelForm($task, 'POST', route('tasks.store'))->open() }}
             <div class="flex flex-col items-start">
                 @include('task.form')
@@ -14,4 +13,4 @@
             </div>
         {{ html()->closeModelForm() }}
     </div>
-</x-app-layout>
+@endsection

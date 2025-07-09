@@ -3,10 +3,12 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="csrf-param" content="_token" />
 
-        <title>{{ $title }}</title>
+        <title>@yield('title', __('Task manager'))</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -26,7 +28,7 @@
             <!-- Page Content -->
             <main class="max-w-screen-xl px-4 pt-10 pb-8 mx-auto">
                 @include('flash::message')
-                {{ $slot }}
+                @yield('content')
             </main>
 
             <footer class="sticky top-full bg-gray-700 shadow">

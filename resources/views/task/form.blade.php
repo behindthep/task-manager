@@ -1,22 +1,20 @@
 @php
     use App\Http\Helpers\FormStyles;
-    $commonClasses = FormStyles::commonClasses();
+    $inputField = FormStyles::inputField();
 @endphp
 
-{{ html()->label(__('task.name'), 'name') }}
-{{ html()->input('text', 'name')->class($commonClasses) }}
+{{  html()->label(__('task.name'), 'name')->class('form-label') }}
+{{  html()->input('text', 'name')->class($inputField) }}
 
 @error('name')
     <div class="text-rose-600">{{ $message }}</div>
 @enderror
 
-{{ html()->label(__('task.description'), 'description') }}
-{{ html()->textarea('description')->class($commonClasses) }}
+{{  html()->label(__('task.description'), 'description')->class('form-label') }}
+{{  html()->textarea('description')->class($inputField) }}
 
-{{ html()->label(__('task.status'), 'status_id') }}
-{{ html()->select('status_id',
-    $statuses)
-    ->class($commonClasses)
+{{  html()->label(__('task.status'), 'status_id')->class('form-label') }}
+{{  html()->select('status_id', $statuses)->class($inputField)
     ->placeholder('')
 }}
 
@@ -24,16 +22,18 @@
     <div class="text-rose-600">{{ $message }}</div>
 @enderror
 
-{{ html()->label(__('task.executor'), 'assigned_to_id') }}
-{{ html()->select('assigned_to_id',
-    $assignees)
-    ->class($commonClasses)
+{{  html()->label(__('task.executor'), 'assigned_to_id')->class('form-label') }}
+{{  html()->select('assigned_to_id', $assignees)->class($inputField)
     ->placeholder('')
 }}
 
-{{ html()->label(__('task.labels'), 'labels[]') }}
-{{ html()->select('labels[]', $labels->pluck('name', 'id')->toArray())
-    ->class($commonClasses)
-    ->attributes(['size' => 5])
-    ->multiple()
-}}
+{{ html()->label(__('task.labels'), 'labels[]')->class('form-label') }}
+<div class="scrollable-checkbox-list">
+    @foreach($labels as $id => $name)
+        <div>
+            <input type="checkbox" name="labels[]" value="{{ $id }}"
+                {{ in_array($id, $selectedLabels) ? 'checked' : '' }} id="label-{{ $id }}">
+            <label for="label-{{ $id }}">{{ $name }}</label>
+        </div>
+    @endforeach
+</div>

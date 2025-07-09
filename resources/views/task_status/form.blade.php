@@ -1,10 +1,10 @@
 @php
     use App\Http\Helpers\FormStyles;
-    $commonClasses = FormStyles::commonClasses();
+    $inputField = FormStyles::inputField();
 @endphp
 
-{{  html()->label(__('task_status.name'), 'name') }}
-{{  html()->input('text', 'name')->class($commonClasses) }}
+{{  html()->label(__('task_status.name'), 'name')->class('form-label') }}
+{{  html()->input('text', 'name')->class($inputField) }}
 
 @if ($errors->any())
     <div>

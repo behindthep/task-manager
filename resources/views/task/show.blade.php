@@ -1,14 +1,16 @@
-<x-app-layout >
-    <x-slot:title>{{ __('Task manager')}}</x-slot:title>
+@extends('layouts.app')
 
-    <div class="mr-auto place-self-center lg:col-span-7">
-        <div class="grid col-span-full">
+@section('title', __('task.task_view'))
+
+@section('content')
+    <div class="place-self-center lg:col-span-7">
+        <div class="grid col-span-full mb-4">
             <div>
                 <h1 class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-4xl xl:text-4xl">
-                {{ __('task.task_view') }}: {{ $task->name }}
-                @can('update', $task)
-                    <a href="{{ route('tasks.edit', $task) }}">⚙</a>
-                @endcan
+                    {{ $task->name }}
+                    @can('update', $task)
+                        <a href="{{ route('tasks.edit', $task) }}">&#9881;</a>
+                    @endcan
                 </h1>
                 <p class="my-1">{{ __('task.name') }}: {{ $task->name }}</p>
                 <p class="my-1">{{ __('task.status') }}: {{ $task->status->name }}</p>
@@ -28,10 +30,10 @@
                 </div>
             @endif
         </div>
-        <div class="mt-4">
-            <a href="/tasks" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow" target="_self">
+        <div class="place-self-center mt-7">
+            <a href="{{ route('tasks.index') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-3 px-5 border border-gray-400 rounded shadow" target="_self">
                 {{ __('To tasks') }}
             </a>
         </div>
     </div>
-</x-app-layout>
+@endsection
