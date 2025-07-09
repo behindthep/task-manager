@@ -42,15 +42,13 @@ lint:
 lint-fix:
 	composer exec --verbose phpcbf -- app tests
 
-BUILD_ARGS:= --build-arg UID=$(shell id -u) --build-arg GID=$(shell id -u)
-
 compose: compose-clear compose-setup compose-start
 
 compose-clear:
 	docker-compose down -v --remove-orphans || true
 
 compose-build:
-	docker-compose build ${BUILD_ARGS}
+	docker-compose build --build-arg UID=$(shell id -u) --build-arg GID=$(shell id -u)
 
 compose-setup: compose-build
 	docker-compose run --rm app make setup
@@ -71,7 +69,7 @@ compose-db:
 	docker-compose exec db psql -U postgres
 
 ci:
-	docker-compose -f docker-compose.yml -p task-manager-ci build ${BUILD_ARGS}
+	docker-compose -f docker-compose.yml -p task-manager-ci build --build-arg UID=$(shell id -u) --build-arg GID=$(shell id -u)
 	docker-compose -f docker-compose.yml -p task-manager-ci run app make setup
 	docker-compose -f docker-compose.yml -p task-manager-ci up --abort-on-container-exit
 	docker-compose -f docker-compose.yml -p task-manager-ci down -v --remove-orphans
