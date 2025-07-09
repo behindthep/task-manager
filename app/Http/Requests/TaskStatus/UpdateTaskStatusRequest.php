@@ -14,7 +14,8 @@ class UpdateTaskStatusRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|unique:task_statuses,name|max:50'
+            'name' => 'required|unique:task_statuses,name,' .
+            ($this->taskStatus ? $this->taskStatus->id : 'NULL') . '|max:50',
         ];
     }
 
