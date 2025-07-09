@@ -10,7 +10,6 @@ setup:
 	php artisan key:gen --ansi
 	php artisan config:clear
 	php artisan config:cache
-	touch database/database.sqlite
 	php artisan migrate
 	php artisan db:seed
 	npm ci
