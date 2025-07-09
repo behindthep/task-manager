@@ -1,5 +1,5 @@
 start:
-	php artisan serve
+	php artisan serve --host 0.0.0.0 --port 8000
 
 start-frontend:
 	npm run dev
@@ -19,21 +19,11 @@ setup:
 migrate:
 	php artisan migrate
 
-rollback:
-	php artisan migrate:rollback
-
-seed:
-	php artisan db:seed
-
 console:
 	php artisan tinker
 
-lint:
-	composer exec --verbose phpcs -- app tests
-	composer exec --verbose phpstan
-
-lint-fix:
-	composer exec --verbose phpcbf -- app tests
+log:
+	tail -f storage/logs/laravel.log
 
 test:
 	php artisan test
@@ -44,28 +34,30 @@ test-coverage:
 test-coverage-text:
 	XDEBUG_MODE=coverage composer exec --verbose phpunit tests -- --coverage-text
 
-# Собирает сервисы, описанные в конфигурационных файлах
-# docker compose build
+lint:
+	composer exec --verbose phpcs -- app tests
+	composer exec --verbose phpstan
 
-# docker compose up
+lint-fix:
+	composer exec --verbose phpcbf -- app tests
 
-# docker compose up -d
+compose:
+	docker-compose up
 
-# docker compose logs -f
+compose-test:
+	docker-compose run web make test
 
-# # Если какой-то из сервисов завершит работу, остальные остановлены автоматически
-# docker compose up --abort-on-container-exit
+compose-bash:
+	docker-compose run web bash
 
-# # Запустит сервис application и выполнит внутри команду make install
-# docker compose run application make install
+compose-setup: compose-build
+	docker-compose run web make setup
 
-# # запустить сервис и подключиться к нему с bash
-# docker compose run application bash
+compose-build:
+	docker-compose build
 
-# docker compose run --rm application bash
+compose-db:
+	docker-compose exec db psql -U postgres
 
-# docker compose down
-
-# docker compose stop
-
-# docker compose restart
+compose-down:
+	docker-compose down -v
