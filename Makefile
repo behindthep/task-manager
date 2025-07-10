@@ -73,3 +73,9 @@ compose-stop:
 
 compose-restart:
 	docker compose restart
+
+make ci:
+	docker compose -f docker-compose.ci.yml -p task-manager-ci build
+	docker compose -f docker-compose.ci.yml -p task-manager-ci run web make setup
+	docker compose -f docker-compose.ci.yml -p task-manager-ci up --abort-on-container-exit
+	docker compose -f docker-compose.ci.yml -p task-manager-ci down -v --remove-orphans
