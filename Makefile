@@ -42,13 +42,16 @@ lint-fix:
 	composer exec --verbose phpcbf -- app tests
 
 compose-up:
-	docker compose up
+	docker compose up --abort-on-container-exit
 
 compose-up-db:
 	docker compose up db
 
 compose-test:
 	docker compose run --rm web make test
+
+compose-lint:
+	docker compose run --rm web composer exec --verbose phpcs -- app tests
 
 compose-bash:
 	docker compose run --rm web bash
@@ -63,7 +66,7 @@ compose-db:
 	docker compose exec db psql -U postgres
 
 compose-down:
-	docker compose down -v
+	docker compose down -v --remove-orphans
 
 compose-stop:
 	docker compose stop
