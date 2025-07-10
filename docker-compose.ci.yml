@@ -5,7 +5,9 @@ services:
       POSTGRES_HOST_AUTH_METHOD: trust
 
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - .:/app
     depends_on:

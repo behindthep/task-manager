@@ -40,15 +40,16 @@ services:
     networks:
       initial:
 
-  frontend:
-    build: .
-    volumes:
-      - .:/app:delegated
-    ports:
-      - "3000:3000"
-    command: ["make", "start-frontend"]
-    networks:
-      initial:
+  # frontend:
+  #   build: .
+  #   container_name: tmanager-frontend
+  #   volumes:
+  #     - ".:/app"
+  #   ports:
+  #     - "3000:3000"
+  #   command: ["make", "start-frontend"]
+  #   networks:
+  #     initial:
 
 volumes:
   pgdata:

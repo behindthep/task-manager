@@ -2,10 +2,9 @@
 
 [![PHP CI](https://github.com/behindthep/task-manager/actions/workflows/phpci.yml/badge.svg)](https://github.com/behindthep/task-manager/actions/workflows/phpci.yml)
 
-### Render
-```
-https://laravel-project-wnty.onrender.com
-```
+### Deployed project on Render
+
+[Task Manager](https://laravel-project-wnty.onrender.com)
 
 ---
 

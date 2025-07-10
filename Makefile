@@ -8,16 +8,13 @@ setup:
 	composer install
 	cp -n .env.example .env
 	php artisan key:gen --ansi
-	php artisan migrate --force
+	php artisan migrate:refresh --force
 	php artisan db:seed --force
 	npm ci
 	npm run build
 
 migrate:
 	php artisan migrate
-
-db-prepare:
-	php artisan migrate:refresh --force --seed
 
 console:
 	php artisan tinker
@@ -47,7 +44,7 @@ compose-up:
 	docker compose up --abort-on-container-exit
 
 compose-up-db:
-	docker compose up db
+	docker compose up db -d
 
 compose-test:
 	docker compose run --rm web make test

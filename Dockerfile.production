@@ -1,9 +1,5 @@
 FROM php:8.2-cli
 
-ARG user
-ARG uid=1000
-ARG gid=1000
-
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y \
@@ -33,7 +29,10 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
 RUN apt-get install -y nodejs
 
-RUN groupadd -g $gid -o tmanager
-RUN useradd -m -u $uid -g $gid -o -s /bin/bash tmanager
+COPY . .
 
-USER $user
+RUN composer update
+RUN npm ci
+RUN npm run build
+
+CMD ["bash", "-c", "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"]
