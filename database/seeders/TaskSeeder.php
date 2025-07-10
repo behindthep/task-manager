@@ -92,7 +92,7 @@ class TaskSeeder extends Seeder
         $labelsCount = Label::count();
         Task::all()->each(function ($task) use ($labelsCount) {
             $labels = Label::inRandomOrder()
-                ->limit(rand(1, $labelsCount))
+                ->limit(random_int(1, $labelsCount))
                 ->get();
 
             $task->labels()->attach($labels);
