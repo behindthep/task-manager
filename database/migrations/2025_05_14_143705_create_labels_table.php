@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('labels', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name');
             $table->text('description')->nullable();
             $table->foreignId('created_by_id')
                 ->constrained('users')
@@ -21,7 +21,6 @@ return new class extends Migration
         Schema::create('label_task', function (Blueprint $table) {
             $table->foreignId('task_id');
             $table->foreignId('label_id');
-            $table->unique(['task_id', 'label_id']);
         });
     }
 

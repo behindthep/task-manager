@@ -4,16 +4,15 @@ namespace Database\Seeders;
 
 use App\Models\Task;
 use App\Models\Label;
+use App\Models\TaskStatus;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class TaskSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        $seeders = [
+        $tasks = [
             [
                 'name' => 'Исправить ошибку в какой-нибудь строке',
                 'description' => 'Я тут ошибку нашёл, надо бы её исправить и так далее и так далее',
@@ -80,18 +79,23 @@ class TaskSeeder extends Seeder
             ],
         ];
 
-        Task::factory()
-            ->count(count($seeders))
-            ->sequence(...$seeders)
-            ->create()
-        //     ;
-        // Task::all()
-            ->each(function ($task) {
-                $labels = Label::inRandomOrder()
-                    ->limit(rand(1, Label::count()))
-                    ->get();
+        foreach ($tasks as $task) {
+            Task::firstOrCreate([
+                'name' => $task['name'],
+                'description' => $task['description'],
+                'status_id' => TaskStatus::inRandomOrder()->first()->id,
+                'created_by_id' => User::inRandomOrder()->first()->id,
+                'assigned_to_id' => User::inRandomOrder()->first()->id,
+            ]);
+        }
 
-                $task->labels()->attach($labels);
-            });
+        $labelsCount = Label::count();
+        Task::all()->each(function ($task) use ($labelsCount) {
+            $labels = Label::inRandomOrder()
+                ->limit(rand(1, $labelsCount))
+                ->get();
+
+            $task->labels()->attach($labels);
+        });
     }
 }

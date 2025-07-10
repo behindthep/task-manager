@@ -18,8 +18,8 @@ class LabelFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->word,
-            'description' => $this->faker->text,
+            'name' => fake()->words(2, true),
+            'description' => fake()->sentence(),
             'created_by_id' => fn() => User::factory()->create()->id,
         ];
     }
