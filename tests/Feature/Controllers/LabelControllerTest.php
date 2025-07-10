@@ -14,7 +14,7 @@ class LabelControllerTest extends TestCase
     {
         parent::setUp();
         $this->user = User::factory()->create();
-        Label::factory()->count(2)->create();
+        Label::factory()->count(10)->create();
     }
 
     public function testIndex(): void
@@ -40,9 +40,7 @@ class LabelControllerTest extends TestCase
 
     public function testStore(): void
     {
-        $data = Label::factory()->make([
-            'created_by_id' => $this->user->id,
-        ])->toArray();
+        $data = Label::factory()->make()->only('name', 'description');
         $response = $this->actingAs($this->user)->post(route('labels.store'), $data);
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('labels.index'));
@@ -55,7 +53,7 @@ class LabelControllerTest extends TestCase
         $label = Label::factory()->create([
             'created_by_id' => $this->user->id,
         ]);
-        $data = Label::factory()->make()->except('created_by_id');
+        $data = Label::factory()->make()->only('name', 'description');
 
         $response = $this->actingAs($this->user)->patch(route('labels.update', $label), $data);
         $response->assertSessionHasNoErrors();

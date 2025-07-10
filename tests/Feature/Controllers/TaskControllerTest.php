@@ -14,13 +14,12 @@ class TaskControllerTest extends TestCase
     {
         parent::setUp();
         $this->user = User::factory()->create();
-        Task::factory()->count(2)->create();
+        Task::factory()->count(10)->create();
     }
 
     // public function testFilter(): void
     // {
     //     Можно ли в тестах сделать логику заполнения формы?
-    //     Task::factory()->count(10)->create();
     // }
 
     public function testIndex(): void
@@ -46,9 +45,7 @@ class TaskControllerTest extends TestCase
 
     public function testStore(): void
     {
-        $data = Task::factory()->make([
-            'created_by_id' => $this->user->id
-        ])->toArray();
+        $data = Task::factory()->make()->only(['name', 'description', 'status_id', 'assigned_to_id']);
         $response = $this->actingAs($this->user)->post(route('tasks.store'), $data);
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('tasks.index'));
@@ -61,7 +58,7 @@ class TaskControllerTest extends TestCase
         $task = Task::factory()->create([
             'created_by_id' => $this->user->id,
         ]);
-        $data = Task::factory()->make()->except('created_by_id');
+        $data = Task::factory()->make()->only(['name', 'description', 'status_id', 'assigned_to_id']);
 
         $response = $this->actingAs($this->user)->patch(route('tasks.update', $task), $data);
         $response->assertSessionHasNoErrors();

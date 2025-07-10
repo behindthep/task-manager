@@ -14,7 +14,7 @@ class TaskStatusControllerTest extends TestCase
     {
         parent::setUp();
         $this->user = User::factory()->create();
-        TaskStatus::factory()->count(2)->create();
+        TaskStatus::factory()->count(10)->create();
     }
 
     public function testIndex(): void
@@ -40,9 +40,7 @@ class TaskStatusControllerTest extends TestCase
 
     public function testStore(): void
     {
-        $data = TaskStatus::factory()->make([
-            'created_by_id' => $this->user->id,
-        ])->toArray();
+        $data = TaskStatus::factory()->make()->only('name');
         $response = $this->actingAs($this->user)->post(route('task_statuses.store'), $data);
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('task_statuses.index'));
@@ -55,11 +53,11 @@ class TaskStatusControllerTest extends TestCase
         $taskStatus = TaskStatus::factory()->create([
             'created_by_id' => $this->user->id,
         ]);
-        $data = TaskStatus::factory()->make()->except('created_by_id');
+        $data = TaskStatus::factory()->make()->only('name');
 
         $response = $this->actingAs($this->user)->patch(route('task_statuses.update', $taskStatus), $data);
-        $response->assertRedirect(route('task_statuses.index'));
         $response->assertSessionHasNoErrors();
+        $response->assertRedirect(route('task_statuses.index'));
 
         $this->assertDatabaseHas('task_statuses', $data);
     }
