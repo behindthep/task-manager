@@ -41,6 +41,8 @@ lint:
 lint-fix:
 	composer exec --verbose phpcbf -- app tests
 
+BUILD_ARGS:= --build-arg UID=$(shell id -u) --build-arg GID=$(shell id -u)
+
 compose-up:
 	docker compose up --abort-on-container-exit
 
@@ -60,7 +62,7 @@ compose-setup: compose-build
 	docker compose run --rm web make setup
 
 compose-build:
-	docker compose build
+	docker compose build ${BUILD_ARGS}
 	docker image prune -f
 
 compose-db:
@@ -76,7 +78,7 @@ compose-restart:
 	docker compose restart
 
 make ci:
-	docker compose -f docker-compose.ci.yml -p task-manager-ci build
+	docker compose -f docker-compose.ci.yml -p task-manager-ci build ${BUILD_ARGS}
 	docker compose -f docker-compose.ci.yml -p task-manager-ci run web make setup
 	docker compose -f docker-compose.ci.yml -p task-manager-ci up --abort-on-container-exit
 	docker compose -f docker-compose.ci.yml -p task-manager-ci down -v --remove-orphans

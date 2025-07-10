@@ -2,32 +2,51 @@ services:
 
   db:
     image: postgres:16.9-bullseye
+    container_name: tmanager-db
     environment:
       POSTGRES_PASSWORD: password
     volumes:
       - pgdata:/var/lib/postgresql/data
-    networks:
-      initial:
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 5s
       retries: 5
+    networks:
+      initial:
 
   web:
     build:
+      args:
+        user: tmanager
+        uid: 1000
+        gid: 1000
       context: .
-    command: make start
-    ports:
-      - "8000:8000"
+      dockerfile: Dockerfile
     # env_file: '.env'
+    image: task-manager-web
+    container_name: tmanager-web
+    working_dir: /app
+    restart: unless-stopped
     volumes:
       - ".:/app"
       - "/tmp:/tmp"
     depends_on:
       db:
         condition: service_healthy
-    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    command: ["make", "start"]
+    networks:
+      initial:
+
+  frontend:
+    build: .
+    volumes:
+      - .:/app:delegated
+    ports:
+      - "3000:3000"
+    command: ["make", "start-frontend"]
     networks:
       initial:
 
