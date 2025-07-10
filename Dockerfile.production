@@ -1,26 +1,9 @@
 FROM php:8.2-cli
 
-WORKDIR /app
-
 RUN apt-get update && apt-get install -y \
-    git \
     libpq-dev \
-    libzip-dev \
-    sqlite3 \
-    zip \
-    unzip \
-    --no-install-recommends \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN docker-php-ext-install \
-    bcmath \
-    exif \
-    pdo \
-    pdo_pgsql \
-    pgsql \
-    zip
-
-RUN pecl install xdebug && docker-php-ext-enable xdebug
+    libzip-dev
+RUN docker-php-ext-install pdo pdo_pgsql zip
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
@@ -29,12 +12,11 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
 RUN apt-get install -y nodejs
 
-COPY . .
+WORKDIR /app
 
+COPY . .
 RUN composer update --no-dev
 RUN npm ci
-RUN php artisan config:cache
-RUN php artisan route:cache
 RUN npm run build
 
-CMD ["bash", "-c", "php artisan migrate:refresh --force && echo 'it is a production' && php artisan serve --host=0.0.0.0 --port=$PORT"]
+CMD ["bash", "-c", "php artisan migrate:refresh --force && php artisan serve --host=0.0.0.0 --port=$PORT"]
