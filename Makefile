@@ -61,6 +61,7 @@ compose-setup: compose-build
 
 compose-build:
 	docker compose build
+	docker image prune -f
 
 compose-db:
 	docker compose exec db psql -U postgres
@@ -79,3 +80,6 @@ make ci:
 	docker compose -f docker-compose.ci.yml -p task-manager-ci run web make setup
 	docker compose -f docker-compose.ci.yml -p task-manager-ci up --abort-on-container-exit
 	docker compose -f docker-compose.ci.yml -p task-manager-ci down -v --remove-orphans
+
+ci-lint:
+	composer exec --verbose phpcs -- app tests
