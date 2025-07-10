@@ -32,12 +32,12 @@ jobs:
       # - name: PHP Security Checker
       #   uses: StephaneBour/actions-php-security-checker@1.1
 
-      - name: Setup project
+      - name: Run CI (Setup project, Cheick lint and Execute tests)
         run: |
-          docker-compose -f docker-compose.ci.yml -p task-manager-ci build
-          docker-compose -f docker-compose.ci.yml -p task-manager-ci run web make setup
-          docker-compose -f docker-compose.ci.yml -p task-manager-ci up --abort-on-container-exit
-          docker-compose -f docker-compose.ci.yml -p task-manager-ci down -v --remove-orphans
+          docker compose -f docker-compose.ci.yml -p task-manager-ci build
+          docker compose -f docker-compose.ci.yml -p task-manager-ci run web make setup
+          docker compose -f docker-compose.ci.yml -p task-manager-ci up --abort-on-container-exit
+          docker compose -f docker-compose.ci.yml -p task-manager-ci down -v --remove-orphans
 
       # - name: Check lint
       #   run: make lint
