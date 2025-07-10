@@ -12,44 +12,46 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    # strategy:
-    #   matrix:
-    #     php-versions: ['8.3']
+    services:
+      postgres:
+        image: postgres:16.9-bullseye
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    strategy:
+      matrix:
+        php-versions: ['8.3']
 
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0 #Shallow clones should be disabled for a better relevancy of analysis
 
-      - uses: satackey/action-docker-layer-caching@v0.0.11
-        continue-on-error: true
+      - name: Set up PHP ${{ matrix.php-versions }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
 
-      - name: Run CI
-        run: |
-          make ci
+      - name: PHP Security Checker
+        uses: StephaneBour/actions-php-security-checker@1.1
 
-      # - name: Set up PHP ${{ matrix.php-versions }}
-      #   uses: shivammathur/setup-php@v2
-      #   with:
-      #     php-version: ${{ matrix.php-versions }}
-      #     coverage: xdebug
+      - name: Setup project
+        run: make setup
 
-      # - name: Setup Node.js
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: '18'
+      - name: Check lint
+        run: make lint
 
-      # - name: PHP Security Checker
-      #   uses: StephaneBour/actions-php-security-checker@1.1
-
-      # - name: Setup project
-      #   run: make setup
-
-      # - name: Check lint
-      #   run: make lint
-
-      # - name: Execute tests (Unit and Feature tests) via PHPUnit
-      #   run: make test-coverage
+      - name: Execute tests (Unit and Feature tests) via PHPUnit
+        run: make test-coverage
 
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
