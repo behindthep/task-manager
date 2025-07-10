@@ -14,3 +14,4 @@ parameters:
         - identifier: class.notFound
         - identifier: method.nonObject
         - identifier: assign.propertyType
+        - identifier: arguments.count

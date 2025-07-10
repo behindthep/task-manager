@@ -8,7 +8,7 @@
                 <h1 class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-5xl">
                     {{ __('Hello!') }}
                 </h1>
-                <p class="max-w-2xl mb-2 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl">
+                <p class="max-w-2xl font-light text-gray-500 md:text-lg lg:text-xl">
                     {{ __('It is simple task manager!') }}
                 </p>
                 <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl whitespace-nowrap">
