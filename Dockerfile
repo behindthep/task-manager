@@ -5,6 +5,8 @@ RUN apt-get update && apt-get install -y \
     libzip-dev
 RUN docker-php-ext-install pdo pdo_pgsql zip
 
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
     && php -r "unlink('composer-setup.php');"
