@@ -7,9 +7,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=behindthep_task-manager&metric=coverage)](https://sonarcloud.io/summary/new_code?id=behindthep_task-manager)
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=behindthep_task-manager&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=behindthep_task-manager)
 
-## Deployed on
-
-[Task Manager](https://laravel-project-wnty.onrender.com)
+## See deployed [Task Manager](https://laravel-project-wnty.onrender.com)
 
 ## Prerequisites
 

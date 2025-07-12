@@ -15,6 +15,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Execute tests (Unit and Feature tests) via PHPUnit
+        run: make test-coverage
+
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
         env:
