@@ -12,15 +12,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        php-versions: ['8.3']
+    # strategy:
+    #   matrix:
+    #     php-versions: ['8.3']
 
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0 #Shallow clones should be disabled for a better relevancy of analysis
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
 
+      # Все PHP-команды выполняются внутри Docker-контейнера
       # - name: Set up PHP ${{ matrix.php-versions }}
       #   uses: shivammathur/setup-php@v2
       #   with:
@@ -29,23 +30,12 @@ jobs:
       - uses: satackey/action-docker-layer-caching@v0.0.11
         continue-on-error: true
 
-      # - name: PHP Security Checker
-      #   uses: StephaneBour/actions-php-security-checker@1.1
+      - name: PHP Security Checker
+        uses: StephaneBour/actions-php-security-checker@1.1
 
       - name: Run CI
         run: |
           make ci
-
-      # - name: Check lint
-      #   run: make lint
-
-      # - name: Execute tests (Unit and Feature tests) via PHPUnit
-      #   run: make test-coverage
-
-      # - name: SonarQube Scan
-      #   uses: SonarSource/sonarqube-scan-action@v5
-      #   env:
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   # deploy:
   #   needs: build
