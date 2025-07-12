@@ -14,12 +14,14 @@ class TaskControllerTest extends TestCase
     {
         parent::setUp();
         $this->user = User::factory()->create();
-        Task::factory()->count(10)->create();
+        Task::factory()->count(5)->create();
     }
 
     // public function testFilter(): void
     // {
     //     Можно ли в тестах сделать логику заполнения формы?
+    //
+    //     Создать скоупы в модели, которые помогут тесту?
     // }
 
     public function testIndex(): void
