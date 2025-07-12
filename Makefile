@@ -8,10 +8,13 @@ setup:
 	composer install
 	cp -n .env.example .env
 	php artisan key:gen --ansi
-	php artisan migrate:refresh --force
+	php artisan migrate --force
 	php artisan db:seed --force
 	npm ci
 	npm run build
+
+db-prepare:
+	php artisan migrate:refresh --force
 
 migrate:
 	php artisan migrate
@@ -37,6 +40,10 @@ lint:
 
 lint-fix:
 	composer exec --verbose phpcbf -- app tests
+
+clear:
+	php artisan view:clear
+#	php artisan optimize:clear
 
 BUILD_ARGS:= --build-arg UID=$(shell id -u) --build-arg GID=$(shell id -u)
 
