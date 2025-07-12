@@ -1,10 +1,5 @@
-@php
-    use App\Http\Helpers\FormStyles;
-    $inputField = FormStyles::inputField();
-@endphp
-
 {{  html()->label(__('task_status.name'), 'name')->class('form-label') }}
-{{  html()->input('text', 'name')->class($inputField) }}
+{{  html()->input('text', 'name')->class('rounded border-gray-300 w-full mt-1 mb-3') }}
 
 @if ($errors->any())
     <div>

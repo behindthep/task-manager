@@ -1,20 +1,15 @@
-@php
-    use App\Http\Helpers\FormStyles;
-    $inputField = FormStyles::inputField();
-@endphp
-
 {{  html()->label(__('task.name'), 'name')->class('form-label') }}
-{{  html()->input('text', 'name')->class($inputField) }}
+{{  html()->input('text', 'name')->class('rounded border-gray-300 w-full mt-1 mb-3') }}
 
 @error('name')
     <div class="text-rose-600">{{ $message }}</div>
 @enderror
 
 {{  html()->label(__('task.description'), 'description')->class('form-label') }}
-{{  html()->textarea('description')->class($inputField) }}
+{{  html()->textarea('description')->class('rounded border-gray-300 w-full mt-1 mb-3') }}
 
 {{  html()->label(__('task.status'), 'status_id')->class('form-label') }}
-{{  html()->select('status_id', $statuses)->class($inputField)
+{{  html()->select('status_id', $statuses)->class('rounded border-gray-300 w-full mt-1 mb-3')
     ->placeholder('')
 }}
 
@@ -23,7 +18,7 @@
 @enderror
 
 {{  html()->label(__('task.executor'), 'assigned_to_id')->class('form-label') }}
-{{  html()->select('assigned_to_id', $assignees)->class($inputField)
+{{  html()->select('assigned_to_id', $assignees)->class('rounded border-gray-300 w-full mt-1 mb-3')
     ->placeholder('')
 }}
 

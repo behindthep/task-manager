@@ -1,10 +1,5 @@
-@php
-    use App\Http\Helpers\FormStyles;
-    $inputField = FormStyles::inputField();
-@endphp
-
 {{  html()->label(__('label.name'), 'name')->class('form-label') }}
-{{  html()->input('text', 'name')->class($inputField) }}
+{{  html()->input('text', 'name')->class('rounded border-gray-300 w-full mt-1 mb-3') }}
 
 @if ($errors->any())
     <div>
@@ -17,4 +12,4 @@
 @endif
 
 {{  html()->label(__('label.description'), 'description')->class('form-label') }}
-{{  html()->textarea('description')->class($inputField) }}
+{{  html()->textarea('description')->class('rounded border-gray-300 w-full mt-1 mb-3') }}
