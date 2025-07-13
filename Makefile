@@ -82,10 +82,10 @@ compose-restart:
 	docker compose restart
 
 make ci:
-	docker compose -f docker-compose.ci.yml -p task-manager-ci build ${BUILD_ARGS}
-	docker compose -f docker-compose.ci.yml -p task-manager-ci run web make setup
-	docker compose -f docker-compose.ci.yml -p task-manager-ci up --abort-on-container-exit
-	docker compose -f docker-compose.ci.yml -p task-manager-ci down -v --remove-orphans
+	docker compose -f docker-compose.ci.yml build ${BUILD_ARGS}
+	docker compose -f docker-compose.ci.yml run web make setup
+	docker compose -f docker-compose.ci.yml up --abort-on-container-exit
+	docker compose -f docker-compose.ci.yml down -v --remove-orphans
 
 ci-lint:
 	composer exec --verbose phpcs -- app tests
