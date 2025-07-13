@@ -15,8 +15,11 @@ RUN apt-get install -y nodejs
 WORKDIR /app
 
 COPY . .
+RUN chmod +x bin/entrypoint.sh
+
 RUN composer update --no-dev
 RUN npm ci
 RUN npm run build
 
-CMD ["bash", "-c", "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"]
+CMD ["bin/entrypoint.sh"]
+# CMD ["bash", "-c", "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"]

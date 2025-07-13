@@ -72,11 +72,17 @@ compose-build:
 compose-db:
 	docker compose exec db psql -U postgres
 
-compose-down:
-	docker compose down -v --remove-orphans
+compose-migrate:
+	docker compose up -d
+	docker compose exec web php artisan migrate
 
+# Stop containers, save data
 compose-stop:
 	docker compose stop
+
+# Delete containers, networks, and volumes (-v)
+compose-down:
+	docker compose down -v --remove-orphans
 
 compose-restart:
 	docker compose restart
