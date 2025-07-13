@@ -4,7 +4,7 @@ namespace Tests\Feature\Controllers;
 
 use Tests\TestCase;
 
-class PageControllerTest extends TestCase
+class ErrorPageControllerTest extends TestCase
 {
     public function testNotFoundPageIsDisplayed(): void
     {

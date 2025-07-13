@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Response;
 
-class PageController extends Controller
+class ErrorPageController extends Controller
 {
     public function notFound(): Response
     {
