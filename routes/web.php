@@ -6,7 +6,7 @@ use App\Http\Controllers\{
     TaskStatusController,
     LabelController,
     TaskController,
-    PageController,
+    ErrorPageController,
 };
 
 Route::view('/', 'dashboard')->name('dashboard');
@@ -17,7 +17,9 @@ Route::resources([
     'tasks' => TaskController::class
 ]);
 
-Route::fallback([PageController::class, 'notFound'])->middleware('web');
+Route::fallback([ErrorPageController::class, 'notFound'])->middleware('web');
+
+Route::view('/docs', 'api.docs')->name('api.docs');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

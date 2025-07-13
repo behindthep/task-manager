@@ -1,0 +1,688 @@
+openapi: 3.0.0
+
+info:
+  title: Task Manager API
+  version: "1.0"
+  description: Laravel, Breeze authentication.
+
+servers:
+  - url: /api
+    description: Server endpoint
+    variables: {}
+
+security:
+  - BearerAuth: []
+
+tags:
+  - name: Tasks
+    description: Tasks
+  - name: TaskStatuses
+    description: Task statuses
+  - name: Auth
+    description: Authentication and session management
+  - name: Labels
+    description: Labels for tasks
+
+paths:
+  /login:
+    post:
+      operationId: AuthService_create
+      tags:
+        - Auth
+      summary: User login
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthData'
+      responses:
+        '200':
+          description: Successful login, returns token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthToken'
+
+  /tasks:
+    get:
+      operationId: TaskService_list
+      tags:
+        - Tasks
+      summary: Get list of tasks (public)
+      security: []  # public access
+      parameters:
+        - name: status_id
+          in: query
+          schema:
+            type: integer
+          description: Filter by task status ID
+          example: 1
+        - name: created_by_id
+          in: query
+          schema:
+            type: integer
+          description: Filter by creator user ID
+          example: 1
+        - name: assigned_to_id
+          in: query
+          schema:
+            type: integer
+          description: Filter by assignee user ID
+          example: 2
+        - name: page
+          in: query
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+          description: Page number for pagination
+          example: 1
+        - name: per_page
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 15
+          description: Number of items per page
+          example: 30
+      responses:
+        '200':
+          description: List of tasks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tasks'
+
+    post:
+      operationId: TaskService_create
+      tags:
+        - Tasks
+      summary: Create a new task (requires authentication)
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTaskDto'
+      responses:
+        '201':
+          description: Task created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+
+  /tasks/{id}:
+    get:
+      operationId: TaskService_get
+      tags:
+        - Tasks
+      summary: Get task by ID (public)
+      security: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Task details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+
+    patch:
+      operationId: TaskService_update
+      tags:
+        - Tasks
+      summary: Update a task (requires authentication)
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditTaskDto'
+      responses:
+        '200':
+          description: Task updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+
+    delete:
+      operationId: TaskService_delete
+      tags:
+        - Tasks
+      summary: Delete a task (requires authentication)
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: "Task deleted. There is no content to send for this request, but the headers maybe useful."
+
+  /task_statuses:
+    get:
+      operationId: TaskStatusService_list
+      tags:
+        - TaskStatuses
+      summary: Get list of task statuses (public)
+      security: []
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: Filter by name
+          example: Backlog
+        - name: page
+          in: query
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+          description: Page number
+          example: 1
+        - name: per_page
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 15
+          description: Number of items per page
+          example: 30
+      responses:
+        '200':
+          description: List of task statuses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatuses'
+
+    post:
+      operationId: TaskStatusService_create
+      tags:
+        - TaskStatuses
+      summary: Create a new task status (requires authentication)
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTaskStatusDto'
+      responses:
+        '201':
+          description: Task status created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+
+  /task_statuses/{id}:
+    patch:
+      operationId: TaskStatusService_update
+      tags:
+        - TaskStatuses
+      summary: Update a task status (requires authentication)
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditTaskStatusDto'
+      responses:
+        '200':
+          description: Task status updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+
+    delete:
+      operationId: TaskStatusService_delete
+      tags:
+        - TaskStatuses
+      summary: Delete a task status (requires authentication)
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: "Task status deleted. There is no content to send for this request, but the headers maybe useful."
+
+  /labels:
+    get:
+      operationId: LabelService_list
+      tags:
+        - Labels
+      summary: Get list of labels (public)
+      security: []
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: Filter by name
+          example: Bug
+        - name: page
+          in: query
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+          description: Page number
+          example: 1
+        - name: per_page
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 15
+          description: Number of items per page
+          example: 30
+      responses:
+        '200':
+          description: List of labels
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Labels'
+
+    post:
+      operationId: LabelService_create
+      tags:
+        - Labels
+      summary: Create a label (requires authentication)
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewLabelDto'
+      responses:
+        '201':
+          description: Label created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Label'
+
+  /labels/{id}:
+    patch:
+      operationId: LabelService_update
+      tags:
+        - Labels
+      summary: Update a label (requires authentication)
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditLabelDto'
+      responses:
+        '200':
+          description: Label updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Label'
+
+    delete:
+      operationId: LabelService_delete
+      tags:
+        - Labels
+      summary: Delete a label (requires authentication)
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: "Label deleted. There is no content to send for this request, but the headers maybe useful."
+
+components:
+  schemas:
+    AuthData:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          example: user@example.com
+          minLength: 1
+        password:
+          type: string
+          format: password
+          example: password123
+          minLength: 1
+
+    AuthToken:
+      type: object
+      required:
+        - token
+      properties:
+        token:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+          minLength: 1
+
+    Task:
+      type: object
+      required:
+        - name
+        - status_id
+        - created_by_id
+      properties:
+        name:
+          type: string
+          maxLength: 100
+          example: Update documentation
+          minLength: 1
+        description:
+          type: string
+          maxLength: 255
+          nullable: true
+          example: Add request examples
+          minLength: 1
+        status_id:
+          # type: integer
+          # example: 3
+          $ref: "#/components/schemas/TaskStatus"
+        assigned_to_id:
+          $ref: '#/components/schemas/User'
+        created_by_id:
+          $ref: '#/components/schemas/User'
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Label'
+
+    Tasks:
+      type: object
+      required:
+        - total
+        - tasks
+        - page
+        - per_page
+      properties:
+        total:
+          type: integer
+          example: 25
+        tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
+        page:
+          type: integer
+          default: 0
+        per_page:
+          type: integer
+          default: 15
+
+    TaskStatus:
+      type: object
+      required:
+        - id
+        - name
+        - created_by_id
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Backlog
+          minLength: 1
+        created_by_id:
+          $ref: '#/components/schemas/User'
+
+    TaskStatuses:
+      type: object
+      required:
+        - total
+        - task_statuses
+        - page
+        - per_page
+      properties:
+        total:
+          type: integer
+          example: 5
+        task_statuses:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskStatus'
+        page:
+          type: integer
+          default: 0
+        per_page:
+          type: integer
+          default: 15
+
+    Label:
+      type: object
+      required:
+        - id
+        - name
+        - created_by_id
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Bug
+          minLength: 1
+        description:
+          type: string
+          nullable: true
+          example: System error
+          minLength: 1
+        created_by_id:
+          $ref: '#/components/schemas/User'
+
+    Labels:
+      type: object
+      required:
+        - total
+        - labels
+        - page
+        - per_page
+      properties:
+        total:
+          type: integer
+          example: 10
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Label'
+        page:
+          type: integer
+          default: 0
+        per_page:
+          type: integer
+          default: 15
+
+    User:
+      type: object
+      required:
+        - id
+        - name
+        - email
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: John Doe
+          minLength: 1
+        email:
+          type: string
+          format: email
+          example: user@example.com
+          minLength: 1
+
+    NewTaskDto:
+      type: object
+      required:
+        - name
+        - status_id
+      properties:
+        name:
+          type: string
+          maxLength: 100
+          example: Add tests
+          minLength: 1
+        description:
+          type: string
+          maxLength: 255
+          nullable: true
+          example: Write unit tests for controllers
+          minLength: 1
+        status_id:
+          $ref: "#/components/schemas/TaskStatus"
+        assigned_to_id:
+          $ref: '#/components/schemas/User'
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Label'
+
+    EditTaskDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Write documentation
+          minLength: 1
+        description:
+          type: string
+          nullable: true
+          example: Describe the project API
+          minLength: 1
+        status_id:
+          $ref: '#/components/schemas/TaskStatus'
+        assigned_to_id:
+          $ref: '#/components/schemas/User'
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Label'
+
+    NewTaskStatusDto:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          maxLength: 50
+          example: Ready
+          minLength: 1
+
+    EditTaskStatusDto:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 50
+          example: In Progress
+          minLength: 1
+
+    NewLabelDto:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          maxLength: 50
+          example: Feature
+          minLength: 1
+        description:
+          type: string
+          maxLength: 255
+          nullable: true
+          example: New functionality
+          minLength: 1
+
+    EditLabelDto:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 50
+          example: Improvement
+          minLength: 1
+        description:
+          type: string
+          maxLength: 255
+          nullable: true
+          example: Enhancement of existing features
+          minLength: 1
+
+    Versions:
+      type: string
+      enum:
+        - "1.0"
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
