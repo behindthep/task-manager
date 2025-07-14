@@ -11,7 +11,7 @@ parameters:
         - identifier: property.notFound
         - identifier: staticMethod.notFound
         - identifier: argument.type
-        - identifier: class.notFound
         - identifier: method.nonObject
         - identifier: assign.propertyType
         - identifier: arguments.count
+        - identifier: binaryOp.invalid
