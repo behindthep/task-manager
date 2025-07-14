@@ -6,10 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use Illuminate\Http\JsonResponse;
+use App\Http\Requests\Task\StoreTaskRequest;
+use App\Http\Requests\Task\UpdateTaskRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
 
 class TaskController extends Controller
 {
-    // GET /tasks — публичный список с фильтрами и пагинацией
     public function index(Request $request): JsonResponse
     {
         $query = Task::with('labels');
@@ -36,81 +39,57 @@ class TaskController extends Controller
         ]);
     }
 
-    // GET /tasks/{id} — получить задачу по ID
     public function show(int $id): JsonResponse
     {
         $task = Task::with('labels')->find($id);
 
         if (!$task) {
-            return response()->json(['message' => 'Task not found'], 404);
+            return response()->json(['message' => __('task.api.not_found')], 404);
         }
 
         return response()->json($task);
     }
 
-    // POST /tasks — создать задачу (требует auth)
-    public function store(Request $request): JsonResponse
+    public function store(StoreTaskRequest $request): JsonResponse
     {
-        $data = $request->validate([
-            'name' => 'required|string|max:100|min:1',
-            'description' => 'nullable|string|max:255|min:1',
-            'status_id' => 'required|integer|exists:task_statuses,id',
-            'assigned_to_id' => 'nullable|integer|exists:users,id',
-            // created_by_id игнорируем из тела, берем из аутентификации
-            'labels' => 'nullable|array',
-            'labels.*' => 'integer|exists:labels,id',
-        ]);
+        $task = DB::transaction(function () use ($request) {
+            $data = Arr::except($request->validated(), ['labels']);
+            $data['created_by_id'] = $request->user()->id;
 
-        $data['created_by_id'] = $request->user()->id;
+            $task = Task::create($data);
+            $task->labels()->sync($request->get('labels', []));
 
-        $task = Task::create($data);
-
-        if (!empty($data['labels'])) {
-            $task->labels()->sync($data['labels']);
-        }
+            return $task;
+        });
 
         $task->load('labels');
-
         return response()->json($task, 201);
     }
 
-    // PATCH /tasks/{id} — обновить задачу (требует auth)
-    public function update(Request $request, int $id): JsonResponse
+    public function update(UpdateTaskRequest $request, int $id): JsonResponse
     {
         $task = Task::find($id);
 
         if (!$task) {
-            return response()->json(['message' => 'Task not found'], 404);
+            return response()->json(['message' => __('task.api.not_found')], 404);
         }
 
-        $data = $request->validate([
-            'name' => 'sometimes|string|min:1|max:100',
-            'description' => 'sometimes|nullable|string|min:1|max:255',
-            'status_id' => 'sometimes|integer|exists:task_statuses,id',
-            'assigned_to_id' => 'sometimes|nullable|integer|exists:users,id',
-            'labels' => 'sometimes|array',
-            'labels.*' => 'integer|exists:labels,id',
-        ]);
-
-        $task->fill($data);
-        $task->save();
-
-        if (array_key_exists('labels', $data)) {
-            $task->labels()->sync($data['labels']);
-        }
+        DB::transaction(function () use ($request, $task) {
+            $data = Arr::except($request->validated(), ['labels']);
+            $task->update($data);
+            $task->labels()->sync($request->get('labels', []));
+        });
 
         $task->load('labels');
-
         return response()->json($task);
     }
 
-    // DELETE /tasks/{id} — удалить задачу (требует auth)
     public function destroy(int $id): JsonResponse
     {
         $task = Task::find($id);
 
         if (!$task) {
-            return response()->json(['message' => 'Task not found'], 404);
+            return response()->json(['message' => __('task.api.not_found')], 404);
         }
 
         $task->delete();

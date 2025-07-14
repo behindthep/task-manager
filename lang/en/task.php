@@ -35,4 +35,7 @@ return [
     ],
     'task_view' => 'Task view',
     'task_create' => 'Task create',
+    'api' => [
+        'not_found' => 'Task not found'
+    ]
 ];

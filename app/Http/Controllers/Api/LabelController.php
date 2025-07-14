@@ -6,10 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Label;
 use Illuminate\Http\JsonResponse;
+use App\Http\Requests\Label\StoreLabelRequest;
+use App\Http\Requests\Label\UpdateLabelRequest;
 
 class LabelController extends Controller
 {
-    // GET /labels — список с фильтром по имени и пагинацией
     public function index(Request $request): JsonResponse
     {
         $query = Label::query();
@@ -30,60 +31,35 @@ class LabelController extends Controller
         ]);
     }
 
-    // GET /labels/{id} — получить метку по ID
-    public function show(int $id): JsonResponse
+    public function store(StoreLabelRequest $request): JsonResponse
     {
-        $label = Label::find($id);
-
-        if (!$label) {
-            return response()->json(['message' => 'Label not found'], 404);
-        }
-
-        return response()->json($label);
-    }
-
-    // POST /labels — создать метку (auth)
-    public function store(Request $request): JsonResponse
-    {
-        $data = $request->validate([
-            'name' => 'required|string|max:50|min:1',
-            'description' => 'nullable|string|max:255|min:1',
+        $label =  Label::create([
+            ...$request->validated(),
+            'created_by_id' => $request->user()->id,
         ]);
-
-        $data['created_by_id'] = $request->user()->id;
-
-        $label = Label::create($data);
 
         return response()->json($label, 201);
     }
 
-    // PATCH /labels/{id} — обновить метку (auth)
-    public function update(Request $request, int $id): JsonResponse
+    public function update(UpdateLabelRequest $request, int $id): JsonResponse
     {
         $label = Label::find($id);
 
         if (!$label) {
-            return response()->json(['message' => 'Label not found'], 404);
+            return response()->json(['message' => __('label.api.not_found')], 404);
         }
 
-        $data = $request->validate([
-            'name' => 'sometimes|string|max:50|min:1',
-            'description' => 'sometimes|nullable|string|max:255|min:1',
-        ]);
-
-        $label->fill($data);
-        $label->save();
+        $label->update($request->validated());
 
         return response()->json($label);
     }
 
-    // DELETE /labels/{id} — удалить метку (auth)
     public function destroy(int $id): JsonResponse
     {
         $label = Label::find($id);
 
         if (!$label) {
-            return response()->json(['message' => 'Label not found'], 404);
+            return response()->json(['message' => __('label.api.not_found')], 404);
         }
 
         $label->delete();

@@ -14,6 +14,7 @@ use App\Http\Requests\Task\StoreTaskRequest;
 use App\Http\Requests\Task\UpdateTaskRequest;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
+use Illuminate\Support\Arr;
 
 class TaskController extends Controller
 {
@@ -59,10 +60,9 @@ class TaskController extends Controller
     public function store(StoreTaskRequest $request): RedirectResponse
     {
         DB::transaction(function () use ($request) {
-            $task = Task::create([
-                ...$request->except('labels'),
-                'created_by_id' => auth()->id(),
-            ]);
+            $data = Arr::except($request->validated(), ['labels']);
+            $data['created_by_id'] = auth()->id();
+            $task = Task::create($data);
             $task->labels()->sync($request->get('labels', []));
         });
 
@@ -89,7 +89,8 @@ class TaskController extends Controller
     public function update(UpdateTaskRequest $request, Task $task): RedirectResponse
     {
         DB::transaction(function () use ($request, $task) {
-            $task->update($request->except('labels'));
+            $data = Arr::except($request->validated(), ['labels']);
+            $task->update($data);
             $task->labels()->sync($request->get('labels', []));
         });
 

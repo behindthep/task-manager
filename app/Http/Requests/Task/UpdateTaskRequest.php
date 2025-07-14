@@ -14,12 +14,12 @@ class UpdateTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|unique:tasks,name,' . ($this->task ? $this->task->id : 'NULL') . '|max:100',
-            'description' => 'nullable|string|max:255',
-            'status_id' => 'required|integer|exists:task_statuses,id',
-            'assigned_to_id' => 'nullable|exists:users,id',
-            'labels' => 'array',
-            'labels.*' => 'exists:labels,id',
+            'name' => 'sometimes|string|unique:tasks,name,' . ($this->task ? $this->task->id : 'NULL') . '|max:100',
+            'description' => 'sometimes|nullable|string|max:255',
+            'status_id' => 'sometimes|integer|exists:task_statuses,id',
+            'assigned_to_id' => 'sometimes|nullable|exists:users,id',
+            'labels' => 'sometimes|array',
+            'labels.*' => 'integer|exists:labels,id',
         ];
     }
 

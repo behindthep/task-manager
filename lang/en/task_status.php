@@ -24,4 +24,7 @@ return [
             'max' => 'A status name must not be greater than :max characters.',
         ],
     ],
+    'api' => [
+        'not_found' => 'Task Status not found'
+    ]
 ];

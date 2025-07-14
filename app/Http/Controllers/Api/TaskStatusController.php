@@ -6,10 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\TaskStatus;
 use Illuminate\Http\JsonResponse;
+use App\Http\Requests\TaskStatus\StoreTaskStatusRequest;
+use App\Http\Requests\TaskStatus\UpdateTaskStatusRequest;
 
 class TaskStatusController extends Controller
 {
-    // GET /task_statuses — список с фильтром по имени и пагинацией
     public function index(Request $request): JsonResponse
     {
         $query = TaskStatus::query();
@@ -30,47 +31,35 @@ class TaskStatusController extends Controller
         ]);
     }
 
-    // POST /task_statuses — создать статус (auth)
-    public function store(Request $request): JsonResponse
+    public function store(StoreTaskStatusRequest $request): JsonResponse
     {
-        $data = $request->validate([
-            'name' => 'required|string|max:50|min:1',
-            // created_by_id игнорируем из тела, берем из auth
+        $status = TaskStatus::create([
+            ...$request->validated(),
+            'created_by_id' => $request->user()->id,
         ]);
-
-        $data['created_by_id'] = $request->user()->id;
-
-        $status = TaskStatus::create($data);
 
         return response()->json($status, 201);
     }
 
-    // PATCH /task_statuses/{id} — обновить статус (auth)
-    public function update(Request $request, int $id): JsonResponse
+    public function update(UpdateTaskStatusRequest $request, int $id): JsonResponse
     {
         $status = TaskStatus::find($id);
 
         if (!$status) {
-            return response()->json(['message' => 'Task status not found'], 404);
+            return response()->json(['message' => __('task_status.api.not_found')], 404);
         }
 
-        $data = $request->validate([
-            'name' => 'sometimes|string|max:50|min:1',
-        ]);
-
-        $status->fill($data);
-        $status->save();
+        $status->update($request->validated());
 
         return response()->json($status);
     }
 
-    // DELETE /task_statuses/{id} — удалить статус (auth)
     public function destroy(int $id): JsonResponse
     {
         $status = TaskStatus::find($id);
 
         if (!$status) {
-            return response()->json(['message' => 'Task status not found'], 404);
+            return response()->json(['message' => __('task_status.api.not_found')], 404);
         }
 
         $status->delete();

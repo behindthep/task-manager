@@ -40,7 +40,7 @@ class TaskControllerTest extends TestCase
         $response = $this->getJson('/api/tasks/999999');
 
         $response->assertStatus(404)
-                 ->assertJson(['message' => 'Task not found']);
+                 ->assertJson(['message' => __('task.api.not_found')]);
 
         return $response;
     }
@@ -114,7 +114,7 @@ class TaskControllerTest extends TestCase
         ]);
 
         $response->assertStatus(404)
-                 ->assertJson(['message' => 'Task not found']);
+                 ->assertJson(['message' => __('task.api.not_found')]);
 
         return $response;
     }
@@ -140,7 +140,7 @@ class TaskControllerTest extends TestCase
         $response = $this->actingAs($user, 'sanctum')->deleteJson('/api/tasks/999999');
 
         $response->assertStatus(404)
-                 ->assertJson(['message' => 'Task not found']);
+                 ->assertJson(['message' => __('task.api.not_found')]);
 
         return $response;
     }

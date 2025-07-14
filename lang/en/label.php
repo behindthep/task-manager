@@ -28,4 +28,7 @@ return [
             'max' => 'A label description must not be greater than :max characters.',
         ],
     ],
+    'api' => [
+        'not_found' => 'Label not found'
+    ]
 ];

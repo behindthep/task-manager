@@ -22,28 +22,6 @@ class LabelControllerTest extends TestCase
         return $response;
     }
 
-    public function testShowLabel(): TestResponse
-    {
-        $label = Label::factory()->create();
-
-        $response = $this->getJson("/api/labels/{$label->id}");
-
-        $response->assertStatus(200)
-                 ->assertJson(['id' => $label->id]);
-
-        return $response;
-    }
-
-    public function testShowLabelNotFound(): TestResponse
-    {
-        $response = $this->getJson('/api/labels/999999');
-
-        $response->assertStatus(404)
-                 ->assertJson(['message' => 'Label not found']);
-
-        return $response;
-    }
-
     public function testStoreLabelRequiresAuth(): TestResponse
     {
         $response = $this->postJson('/api/labels', [
@@ -102,7 +80,7 @@ class LabelControllerTest extends TestCase
         ]);
 
         $response->assertStatus(404)
-                 ->assertJson(['message' => 'Label not found']);
+                 ->assertJson(['message' => __('label.api.not_found')]);
 
         return $response;
     }
@@ -128,7 +106,7 @@ class LabelControllerTest extends TestCase
         $response = $this->actingAs($user, 'sanctum')->deleteJson('/api/labels/999999');
 
         $response->assertStatus(404)
-                 ->assertJson(['message' => 'Label not found']);
+                 ->assertJson(['message' => __('label.api.not_found')]);
 
         return $response;
     }
