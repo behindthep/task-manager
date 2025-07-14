@@ -9,13 +9,10 @@ use App\Http\Controllers\Api\LabelController;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::get('/task_statuses', [TaskStatusController::class, 'index']);
+Route::get('/labels', [LabelController::class, 'index']);
 Route::get('/tasks', [TaskController::class, 'index']);
 Route::get('/tasks/{id}', [TaskController::class, 'show']);
-
-Route::get('/task_statuses', [TaskStatusController::class, 'index']);
-
-Route::get('/labels', [LabelController::class, 'index']);
-Route::get('/labels/{id}', [LabelController::class, 'show']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/tasks', [TaskController::class, 'store']);

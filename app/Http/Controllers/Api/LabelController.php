@@ -2,33 +2,18 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Label;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\Label\StoreLabelRequest;
 use App\Http\Requests\Label\UpdateLabelRequest;
 
-class LabelController extends Controller
+class LabelController extends ApiController
 {
     public function index(Request $request): JsonResponse
     {
         $query = Label::query();
-
-        if ($request->has('name')) {
-            $query->where('name', 'like', '%' . $request->query('name') . '%');
-        }
-
-        $page = max(1, (int) $request->query('page', 1));
-        $perPage = 10;
-
-        $paginator = $query->paginate($perPage, ['*'], 'page', $page);
-
-        return response()->json([
-            'total' => $paginator->total(),
-            'labels' => $paginator->items(),
-            'page' => $paginator->currentPage(),
-        ]);
+        return $this->paginateAndFilterByName($request, $query, 'labels');
     }
 
     public function store(StoreLabelRequest $request): JsonResponse

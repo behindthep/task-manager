@@ -2,33 +2,19 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\TaskStatus;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\TaskStatus\StoreTaskStatusRequest;
 use App\Http\Requests\TaskStatus\UpdateTaskStatusRequest;
 
-class TaskStatusController extends Controller
+class TaskStatusController extends ApiController
 {
     public function index(Request $request): JsonResponse
     {
         $query = TaskStatus::query();
 
-        if ($request->has('name')) {
-            $query->where('name', 'like', '%' . $request->query('name') . '%');
-        }
-
-        $page = max(1, (int) $request->query('page', 1));
-        $perPage = 10;
-
-        $paginator = $query->paginate($perPage, ['*'], 'page', $page);
-
-        return response()->json([
-            'total' => $paginator->total(),
-            'task_statuses' => $paginator->items(),
-            'page' => $paginator->currentPage(),
-        ]);
+        return $this->paginateAndFilterByName($request, $query, 'task_statuses');
     }
 
     public function store(StoreTaskStatusRequest $request): JsonResponse
