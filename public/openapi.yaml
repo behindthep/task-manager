@@ -8,29 +8,44 @@ info:
 servers:
   - url: /api
     description: Server endpoint
-    variables: {}
-
-security:
-  - BearerAuth: []
 
 tags:
   - name: Tasks
     description: Tasks
   - name: TaskStatuses
     description: Task statuses
-  - name: Auth
-    description: Authentication and session management
   - name: Labels
     description: Labels for tasks
+  - name: Auth
+    description: Authentication and session management
 
 paths:
+  /register:
+    post:
+      operationId: AuthService_register
+      tags:
+        - Auth
+      summary: User registration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterData'
+      responses:
+        '200':
+          description: User registered successfully, returns token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthToken'
+
   /login:
     post:
-      operationId: AuthService_create
+      operationId: AuthService_login
       tags:
         - Auth
       summary: User login
-      parameters: []
       requestBody:
         required: true
         content:
@@ -51,43 +66,29 @@ paths:
       tags:
         - Tasks
       summary: Get list of tasks (public)
-      security: []  # public access
+      security: []
       parameters:
         - name: status_id
           in: query
           schema:
             type: integer
           description: Filter by task status ID
-          example: 1
         - name: created_by_id
           in: query
           schema:
             type: integer
           description: Filter by creator user ID
-          example: 1
         - name: assigned_to_id
           in: query
           schema:
             type: integer
           description: Filter by assignee user ID
-          example: 2
         - name: page
           in: query
           schema:
             type: integer
-            minimum: 0
-            default: 0
-          description: Page number for pagination
-          example: 1
-        - name: per_page
-          in: query
-          schema:
-            type: integer
             minimum: 1
-            maximum: 100
-            default: 15
-          description: Number of items per page
-          example: 30
+          description: Page number for pagination
       responses:
         '200':
           description: List of tasks
@@ -180,7 +181,7 @@ paths:
             type: integer
       responses:
         '204':
-          description: "Task deleted. There is no content to send for this request, but the headers maybe useful."
+          description: Task deleted. No content.
 
   /task_statuses:
     get:
@@ -195,24 +196,12 @@ paths:
           schema:
             type: string
           description: Filter by name
-          example: Backlog
         - name: page
           in: query
           schema:
             type: integer
-            minimum: 0
-            default: 0
-          description: Page number
-          example: 1
-        - name: per_page
-          in: query
-          schema:
-            type: integer
             minimum: 1
-            maximum: 100
-            default: 15
-          description: Number of items per page
-          example: 30
+          description: Page number
       responses:
         '200':
           description: List of task statuses
@@ -285,7 +274,7 @@ paths:
             type: integer
       responses:
         '204':
-          description: "Task status deleted. There is no content to send for this request, but the headers maybe useful."
+          description: Task status deleted. No content.
 
   /labels:
     get:
@@ -300,24 +289,12 @@ paths:
           schema:
             type: string
           description: Filter by name
-          example: Bug
         - name: page
           in: query
           schema:
             type: integer
-            minimum: 0
-            default: 0
-          description: Page number
-          example: 1
-        - name: per_page
-          in: query
-          schema:
-            type: integer
             minimum: 1
-            maximum: 100
-            default: 15
-          description: Number of items per page
-          example: 30
+          description: Page number
       responses:
         '200':
           description: List of labels
@@ -390,7 +367,7 @@ paths:
             type: integer
       responses:
         '204':
-          description: "Label deleted. There is no content to send for this request, but the headers maybe useful."
+          description: Label deleted. No content.
 
 components:
   schemas:
@@ -402,14 +379,32 @@ components:
       properties:
         email:
           type: string
-          format: email
-          example: user@example.com
           minLength: 1
+          default: Jason@mask.ru
         password:
           type: string
-          format: password
-          example: password123
           minLength: 1
+          default: asdabvgd
+
+    RegisterData:
+      type: object
+      required:
+        - name
+        - email
+        - password
+      properties:
+        name:
+          type: string
+          minLength: 1
+          default: Jason
+        email:
+          type: string
+          minLength: 1
+          default: Jason@mask.ru
+        password:
+          type: string
+          minLength: 1
+          default: asdabvgd
 
     AuthToken:
       type: object
@@ -418,7 +413,6 @@ components:
       properties:
         token:
           type: string
-          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
           minLength: 1
 
     Task:
@@ -440,13 +434,15 @@ components:
           example: Add request examples
           minLength: 1
         status_id:
-          # type: integer
-          # example: 3
-          $ref: "#/components/schemas/TaskStatus"
+          type: integer
+          example: 3
         assigned_to_id:
-          $ref: '#/components/schemas/User'
+          type: integer
+          nullable: true
+          example: 5
         created_by_id:
-          $ref: '#/components/schemas/User'
+          type: integer
+          example: 1
         labels:
           type: array
           items:
@@ -458,7 +454,6 @@ components:
         - total
         - tasks
         - page
-        - per_page
       properties:
         total:
           type: integer
@@ -469,10 +464,8 @@ components:
             $ref: '#/components/schemas/Task'
         page:
           type: integer
-          default: 0
-        per_page:
-          type: integer
-          default: 15
+          minimum: 1
+          default: 1
 
     TaskStatus:
       type: object
@@ -489,7 +482,8 @@ components:
           example: Backlog
           minLength: 1
         created_by_id:
-          $ref: '#/components/schemas/User'
+          type: integer
+          example: 1
 
     TaskStatuses:
       type: object
@@ -497,7 +491,6 @@ components:
         - total
         - task_statuses
         - page
-        - per_page
       properties:
         total:
           type: integer
@@ -508,10 +501,8 @@ components:
             $ref: '#/components/schemas/TaskStatus'
         page:
           type: integer
-          default: 0
-        per_page:
-          type: integer
-          default: 15
+          minimum: 1
+          default: 1
 
     Label:
       type: object
@@ -533,7 +524,8 @@ components:
           example: System error
           minLength: 1
         created_by_id:
-          $ref: '#/components/schemas/User'
+          type: integer
+          example: 1
 
     Labels:
       type: object
@@ -541,7 +533,6 @@ components:
         - total
         - labels
         - page
-        - per_page
       properties:
         total:
           type: integer
@@ -552,10 +543,8 @@ components:
             $ref: '#/components/schemas/Label'
         page:
           type: integer
-          default: 0
-        per_page:
-          type: integer
-          default: 15
+          minimum: 1
+          default: 1
 
     User:
       type: object
@@ -582,6 +571,7 @@ components:
       required:
         - name
         - status_id
+        - created_by_id
       properties:
         name:
           type: string
@@ -595,13 +585,20 @@ components:
           example: Write unit tests for controllers
           minLength: 1
         status_id:
-          $ref: "#/components/schemas/TaskStatus"
+          type: integer
+          example: 3
         assigned_to_id:
-          $ref: '#/components/schemas/User'
+          type: integer
+          nullable: true
+          example: 5
+        created_by_id:
+          type: integer
+          example: 3
         labels:
           type: array
           items:
-            $ref: '#/components/schemas/Label'
+            type: integer
+          example: [1, 2, 3]
 
     EditTaskDto:
       type: object
@@ -616,24 +613,32 @@ components:
           example: Describe the project API
           minLength: 1
         status_id:
-          $ref: '#/components/schemas/TaskStatus'
+          type: integer
+          example: 3
         assigned_to_id:
-          $ref: '#/components/schemas/User'
+          type: integer
+          nullable: true
+          example: 5
         labels:
           type: array
           items:
-            $ref: '#/components/schemas/Label'
+            type: integer
+          example: [1, 2, 3]
 
     NewTaskStatusDto:
       type: object
       required:
         - name
+        - created_by_id
       properties:
         name:
           type: string
           maxLength: 50
           example: Ready
           minLength: 1
+        created_by_id:
+          type: integer
+          example: 3
 
     EditTaskStatusDto:
       type: object
@@ -648,6 +653,7 @@ components:
       type: object
       required:
         - name
+        - created_by_id
       properties:
         name:
           type: string
@@ -660,6 +666,9 @@ components:
           nullable: true
           example: New functionality
           minLength: 1
+        created_by_id:
+          type: integer
+          example: 3
 
     EditLabelDto:
       type: object
@@ -685,4 +694,8 @@ components:
     BearerAuth:
       type: http
       scheme: bearer
-      bearerFormat: JWT
+      # bearerFormat: JWT
+    # ApiKeyAuth:
+    #   type: apiKey
+    #   in: header
+    #   name: X-API-KEY

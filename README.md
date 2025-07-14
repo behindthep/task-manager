@@ -81,7 +81,11 @@ make seed
 php artisan make:test Controllers/TaskStatusControllerTest
 ```
 
-### 6 Documentation
+### 6 API Documentation
+
 ```bash
-php artisan route:list
+php artisan install:api
+php artisan make:controller --api Api/TaskController
+
+php artisan route:list --path=api
 ```
