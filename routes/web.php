@@ -9,17 +9,15 @@ use App\Http\Controllers\{
     ErrorPageController,
 };
 
-Route::view('/', 'dashboard')->name('dashboard');
-
 Route::resources([
     'task_statuses' => TaskStatusController::class,
     'labels' => LabelController::class,
     'tasks' => TaskController::class
 ]);
 
-Route::fallback([ErrorPageController::class, 'notFound'])->middleware('web');
-
+Route::view('/', 'dashboard')->name('dashboard');
 Route::view('/docs', 'api.docs')->name('api.docs');
+Route::fallback([ErrorPageController::class, 'notFound'])->middleware('web');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

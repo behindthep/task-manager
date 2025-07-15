@@ -13,8 +13,7 @@ class TaskStatusController extends ApiController
     public function index(Request $request): JsonResponse
     {
         $query = TaskStatus::query();
-
-        return $this->paginateAndFilterByName($request, $query, 'task_statuses');
+        return $this->getFilteredResponse($request, $query, 'task_statuses');
     }
 
     public function store(StoreTaskStatusRequest $request): JsonResponse

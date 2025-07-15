@@ -13,7 +13,7 @@ class LabelController extends ApiController
     public function index(Request $request): JsonResponse
     {
         $query = Label::query();
-        return $this->paginateAndFilterByName($request, $query, 'labels');
+        return $this->getFilteredResponse($request, $query, 'labels');
     }
 
     public function store(StoreLabelRequest $request): JsonResponse
