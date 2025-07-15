@@ -35,10 +35,6 @@ class Task extends Model
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * $task1 = Task::find(1);
-     * $labels1 = $task1->labels()->get();
-     */
     public function labels(): BelongsToMany
     {
         return $this->belongsToMany(Label::class);
@@ -51,9 +47,6 @@ class Task extends Model
         });
     }
 
-    /**
-     * $currentFeatures = Task::currentFeatures()->get();
-     */
     public function scopeCurrentFeatures(Builder $query): Builder
     {
         return $query->inWork()->whereHas('labels', function ($query) {
@@ -61,9 +54,6 @@ class Task extends Model
         });
     }
 
-    /**
-     * $tasksOfType = Task::ofTextInDescription('text')->get();
-     */
     public function scopeOfTextInDescription(Builder $query, string $type): Builder
     {
         return $query->whereLike('description', "%$type%");
