@@ -13,8 +13,9 @@ class UpdateLabelRequest extends FormRequest
      */
     public function rules(): array
     {
+        $labelId = $this->label ? $this->label->id : 'NULL';
         return [
-            'name' => 'sometimes|unique:labels,name,' . ($this->label ? $this->label->id : 'NULL') . '|max:50',
+            'name' => "sometimes|unique:labels,name,$labelId|max:50",
             'description' => 'sometimes|nullable|string|max:255'
         ];
     }

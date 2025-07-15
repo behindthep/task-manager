@@ -13,9 +13,9 @@ class UpdateTaskStatusRequest extends FormRequest
      */
     public function rules(): array
     {
+        $taskStatusId = $this->taskStatus ? $this->taskStatus->id : 'NULL';
         return [
-            'name' => 'sometimes|unique:task_statuses,name,' .
-            ($this->taskStatus ? $this->taskStatus->id : 'NULL') . '|max:50',
+            'name' => "sometimes|unique:task_statuses,name,$taskStatusId|max:50",
         ];
     }
 

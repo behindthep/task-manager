@@ -13,8 +13,9 @@ class UpdateTaskRequest extends FormRequest
      */
     public function rules(): array
     {
+        $taskId = $this->task ? $this->task->id : 'NULL';
         return [
-            'name' => 'sometimes|string|unique:tasks,name,' . ($this->task ? $this->task->id : 'NULL') . '|max:100',
+            'name' => "sometimes|string|unique:tasks,name,$taskId|max:100",
             'description' => 'sometimes|nullable|string|max:255',
             'status_id' => 'sometimes|integer|exists:task_statuses,id',
             'assigned_to_id' => 'sometimes|nullable|exists:users,id',

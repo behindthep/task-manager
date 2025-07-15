@@ -14,4 +14,4 @@ parameters:
         - identifier: method.nonObject
         - identifier: assign.propertyType
         - identifier: arguments.count
-        - identifier: binaryOp.invalid
+        - identifier: encapsedStringPart.nonString

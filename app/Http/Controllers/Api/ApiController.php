@@ -12,7 +12,7 @@ class ApiController extends Controller
 {
     protected function getFilteredResponse(Request $request, Builder $query, string $resourceKey): JsonResponse
     {
-        $filteredQuery = $this->getFilteredQuery($request, $query);
+        $filteredQuery = $this->getQueryFilteredByName($request, $query);
         $paginator = $this->makePaginator($request, $filteredQuery);
 
         return response()->json([
@@ -22,13 +22,11 @@ class ApiController extends Controller
         ]);
     }
 
-    private function getFilteredQuery(Request $request, Builder $query): Builder
+    private function getQueryFilteredByName(Request $request, Builder $query): Builder
     {
-        if ($request->has('name')) {
-            $query->where('name', 'like', '%' . $request->query('name') . '%');
-        }
-
-        return $query;
+        return ($request->has('name'))
+            ? $query->whereLike('name', "%{$request->query('name')}%")
+            : $query;
     }
 
     private function makePaginator(Request $request, Builder $query): LengthAwarePaginator
