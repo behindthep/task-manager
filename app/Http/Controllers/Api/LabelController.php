@@ -18,7 +18,7 @@ class LabelController extends ApiController
 
     public function store(StoreLabelRequest $request): JsonResponse
     {
-        $label =  Label::create([
+        $label = Label::create([
             ...$request->validated(),
             'created_by_id' => $request->user()->id,
         ]);

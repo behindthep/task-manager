@@ -11,7 +11,7 @@ class LabelControllerTest extends TestCase
 {
     public function testIndexLabels(): TestResponse
     {
-        Label::factory()->count(15)->create(['name' => 'TestLabel']);
+        Label::factory()->count(5)->create();
 
         $response = $this->getJson('/api/labels');
 

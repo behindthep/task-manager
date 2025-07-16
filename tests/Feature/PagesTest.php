@@ -14,7 +14,7 @@ class PagesTest extends TestCase
 
     public function testDocsPage(): void
     {
-        $response = $this->get(route('api.docs'));
+        $response = $this->get(route('docs.api'));
         $response->assertOk();
     }
 }

@@ -16,7 +16,7 @@ Route::resources([
 ]);
 
 Route::view('/', 'dashboard')->name('dashboard');
-Route::view('/docs', 'api.docs')->name('api.docs');
+Route::view('/api', 'docs.api')->name('docs.api');
 Route::fallback([ErrorPageController::class, 'notFound'])->middleware('web');
 
 Route::middleware('auth')->group(function () {
