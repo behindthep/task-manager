@@ -25,6 +25,8 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('users');
             $table->timestamps();
+
+            $table->unique(['name', 'assigned_to_id']);
         });
     }
 
