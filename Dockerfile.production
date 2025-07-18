@@ -17,7 +17,7 @@ WORKDIR /app
 COPY . .
 RUN chmod +x bin/entrypoint.sh
 
-RUN composer update --no-dev
+RUN composer install
 RUN npm ci
 RUN npm run build
 
