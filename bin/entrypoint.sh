@@ -1,7 +1,8 @@
 #!/bin/bash
+
 set -e
 
-php artisan migrate:refresh --force
+php artisan migrate --force
 
 USER_COUNT=$(php artisan tinker --execute="echo \App\Models\User::count();")
 

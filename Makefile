@@ -69,6 +69,9 @@ compose-build:
 	docker compose build ${BUILD_ARGS}
 	docker image prune -f
 
+compose-logs:
+	docker compose logs -f
+
 compose-db:
 	docker compose exec db psql -U postgres
 
