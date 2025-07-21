@@ -12,7 +12,7 @@
 ## Prerequisites
 
 * Linux
-* PHP >=8.2
+* PHP >= 8.2
 * Xdebug
 * Make
 * Git
