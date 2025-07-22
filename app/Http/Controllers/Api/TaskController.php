@@ -13,6 +13,12 @@ use Illuminate\Support\Arr;
 
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum')->except(['index', 'show']);
+        $this->authorizeResource(Task::class, 'task');
+    }
+
     public function index(Request $request): JsonResponse
     {
         $query = Task::with('labels');
@@ -39,14 +45,8 @@ class TaskController extends Controller
         ]);
     }
 
-    public function show(int $id): JsonResponse
+    public function show(Task $task): JsonResponse
     {
-        $task = Task::with('labels')->find($id);
-
-        if (!$task) {
-            return response()->json(['message' => __('task.api.not_found')], 404);
-        }
-
         return response()->json($task);
     }
 
@@ -66,14 +66,8 @@ class TaskController extends Controller
         return response()->json($task, 201);
     }
 
-    public function update(UpdateTaskRequest $request, int $id): JsonResponse
+    public function update(UpdateTaskRequest $request, Task $task): JsonResponse
     {
-        $task = Task::find($id);
-
-        if (!$task) {
-            return response()->json(['message' => __('task.api.not_found')], 404);
-        }
-
         DB::transaction(function () use ($request, $task) {
             $data = Arr::except($request->validated(), ['labels']);
             $task->update($data);
@@ -84,16 +78,10 @@ class TaskController extends Controller
         return response()->json($task);
     }
 
-    public function destroy(int $id): JsonResponse
+    public function destroy(Task $task): JsonResponse
     {
-        $task = Task::find($id);
-
-        if (!$task) {
-            return response()->json(['message' => __('task.api.not_found')], 404);
-        }
-
+        $task->labels()->detach();
         $task->delete();
-
         return response()->json(null, 204);
     }
 }

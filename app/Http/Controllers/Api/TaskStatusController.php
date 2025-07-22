@@ -10,6 +10,12 @@ use App\Http\Requests\TaskStatus\UpdateTaskStatusRequest;
 
 class TaskStatusController extends ApiController
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum')->except(['index']);
+        $this->authorizeResource(TaskStatus::class, 'task_status');
+    }
+
     public function index(Request $request): JsonResponse
     {
         $query = TaskStatus::query();
@@ -26,28 +32,22 @@ class TaskStatusController extends ApiController
         return response()->json($status, 201);
     }
 
-    public function update(UpdateTaskStatusRequest $request, int $id): JsonResponse
+    public function update(UpdateTaskStatusRequest $request, TaskStatus $taskStatus): JsonResponse
     {
-        $status = TaskStatus::find($id);
+        $taskStatus->update($request->validated());
 
-        if (!$status) {
-            return response()->json(['message' => __('task_status.api.not_found')], 404);
-        }
-
-        $status->update($request->validated());
-
-        return response()->json($status);
+        return response()->json($taskStatus);
     }
 
-    public function destroy(int $id): JsonResponse
+    public function destroy(TaskStatus $taskStatus): JsonResponse
     {
-        $status = TaskStatus::find($id);
-
-        if (!$status) {
-            return response()->json(['message' => __('task_status.api.not_found')], 404);
+        if ($taskStatus->tasks()->exists()) {
+            return response()->json([
+                'message' => __('task_status.has_tasks'),
+            ], 409);
         }
 
-        $status->delete();
+        $taskStatus->delete();
 
         return response()->json(null, 204);
     }

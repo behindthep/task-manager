@@ -10,6 +10,12 @@ use App\Http\Requests\Label\UpdateLabelRequest;
 
 class LabelController extends ApiController
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum')->except(['index']);
+        $this->authorizeResource(Label::class, 'label');
+    }
+
     public function index(Request $request): JsonResponse
     {
         $query = Label::query();
@@ -26,25 +32,19 @@ class LabelController extends ApiController
         return response()->json($label, 201);
     }
 
-    public function update(UpdateLabelRequest $request, int $id): JsonResponse
+    public function update(UpdateLabelRequest $request, Label $label): JsonResponse
     {
-        $label = Label::find($id);
-
-        if (!$label) {
-            return response()->json(['message' => __('label.api.not_found')], 404);
-        }
-
         $label->update($request->validated());
 
         return response()->json($label);
     }
 
-    public function destroy(int $id): JsonResponse
+    public function destroy(Label $label): JsonResponse
     {
-        $label = Label::find($id);
-
-        if (!$label) {
-            return response()->json(['message' => __('label.api.not_found')], 404);
+        if ($label->tasks()->exists()) {
+            return response()->json([
+                'message' => __('label.has_tasks'),
+            ], 409);
         }
 
         $label->delete();

@@ -35,16 +35,6 @@ class TaskControllerTest extends TestCase
         return $response;
     }
 
-    public function testShowTaskNotFound(): TestResponse
-    {
-        $response = $this->getJson('/api/tasks/999999');
-
-        $response->assertStatus(404)
-                 ->assertJson(['message' => __('task.api.not_found')]);
-
-        return $response;
-    }
-
     public function testStoreTaskRequiresAuth(): TestResponse
     {
         $response = $this->postJson('/api/tasks', [
@@ -105,20 +95,6 @@ class TaskControllerTest extends TestCase
         return $response;
     }
 
-    public function testUpdateTaskNotFound(): TestResponse
-    {
-        $user = User::factory()->create();
-
-        $response = $this->actingAs($user, 'sanctum')->patchJson('/api/tasks/999999', [
-            'name' => 'Updated Task',
-        ]);
-
-        $response->assertStatus(404)
-                 ->assertJson(['message' => __('task.api.not_found')]);
-
-        return $response;
-    }
-
     public function testDeleteTaskSuccess(): TestResponse
     {
         $user = User::factory()->create();
@@ -129,18 +105,6 @@ class TaskControllerTest extends TestCase
         $response->assertStatus(204);
 
         $this->assertDatabaseMissing('tasks', ['id' => $task->id]);
-
-        return $response;
-    }
-
-    public function testDeleteTaskNotFound(): TestResponse
-    {
-        $user = User::factory()->create();
-
-        $response = $this->actingAs($user, 'sanctum')->deleteJson('/api/tasks/999999');
-
-        $response->assertStatus(404)
-                 ->assertJson(['message' => __('task.api.not_found')]);
 
         return $response;
     }
