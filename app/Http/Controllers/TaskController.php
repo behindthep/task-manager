@@ -32,6 +32,7 @@ class TaskController extends Controller
                 AllowedFilter::exact('assigned_to_id'),
             ])
             ->with('status', 'assignedTo', 'createdBy')
+            ->orderBy('id')
             ->paginate(10);
 
         $users = User::pluck('name', 'id');
@@ -82,7 +83,7 @@ class TaskController extends Controller
             'statuses' => TaskStatus::pluck('name', 'id'),
             'assignees' => User::pluck('name', 'id'),
             'labels' => Label::orderBy('name')->pluck('name', 'id'),
-            'selectedLabels' => old('labels', $task->labels->pluck('id')->toArray()),
+            'selectedLabels' => (array) old('labels', $task->labels->pluck('id')->toArray()),
         ]);
     }
 

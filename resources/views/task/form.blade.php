@@ -23,6 +23,7 @@
 }}
 
 {{ html()->label(__('task.labels'), 'labels[]')->class('form-label') }}
+<input type="hidden" name="labels" value="">
 <div class="scrollable-checkbox-list">
     @foreach($labels as $id => $name)
         <div>
