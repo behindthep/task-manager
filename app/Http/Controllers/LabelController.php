@@ -19,8 +19,8 @@ class LabelController extends Controller
     public function index(Request $request): View
     {
         $labels = $request->get('name')
-            ? Label::where('name', 'like', "%{$request->get('name')}%")->paginate(10)
-            : Label::paginate(10);
+            ? Label::where('name', 'like', "%{$request->get('name')}%")->orderBy('id')->paginate(10)
+            : Label::orderBy('id')->paginate(10);
         $inputName = $request->input('name');
 
         return view('label.index', compact('labels', 'inputName'));

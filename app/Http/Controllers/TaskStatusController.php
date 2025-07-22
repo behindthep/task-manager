@@ -19,8 +19,8 @@ class TaskStatusController extends Controller
     public function index(Request $request): View
     {
         $statuses = $request->get('name')
-            ? TaskStatus::where('name', 'like', "%{$request->get('name')}%")->paginate(10)
-            : TaskStatus::paginate(10);
+            ? TaskStatus::where('name', 'like', "%{$request->get('name')}%")->orderBy('id')->paginate(10)
+            : TaskStatus::orderBy('id')->paginate(10);
         $inputName = $request->input('name');
 
         return view('task_status.index', compact('statuses', 'inputName'));
