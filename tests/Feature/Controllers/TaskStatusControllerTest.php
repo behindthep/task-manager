@@ -5,6 +5,7 @@ namespace Tests\Feature\Controllers;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\TaskStatus;
+use App\Models\Task;
 
 class TaskStatusControllerTest extends TestCase
 {
@@ -72,5 +73,21 @@ class TaskStatusControllerTest extends TestCase
         $response->assertRedirect(route('task_statuses.index'));
 
         $this->assertDatabaseMissing('task_statuses', ['id' => $taskStatus->id]);
+    }
+
+    public function testDestroyWithTasks(): void
+    {
+        $taskStatus = TaskStatus::factory()->create([
+            'created_by_id' => $this->user->id
+        ]);
+        Task::factory()->create([
+            'status_id' => $taskStatus->id
+        ]);
+
+        $response = $this->actingAs($this->user)->delete(route('task_statuses.destroy', $taskStatus));
+        $response->assertSessionHasErrors();
+        $response->assertRedirect(url()->previous());
+
+        $this->assertDatabaseHas('task_statuses', ['id' => $taskStatus->id]);
     }
 }

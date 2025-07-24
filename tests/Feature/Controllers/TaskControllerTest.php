@@ -19,9 +19,7 @@ class TaskControllerTest extends TestCase
 
     // public function testFilter(): void
     // {
-    //     Можно ли в тестах сделать логику заполнения формы?
-    //
-    //     Создать скоупы в модели, которые помогут тесту?
+    //     в тестах сделать логику заполнения формы фильтрации?
     // }
 
     public function testIndex(): void

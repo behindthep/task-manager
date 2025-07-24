@@ -5,6 +5,7 @@ namespace Tests\Feature\Controllers;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Label;
+use App\Models\Task;
 
 class LabelControllerTest extends TestCase
 {
@@ -72,5 +73,20 @@ class LabelControllerTest extends TestCase
         $response->assertRedirect(route('labels.index'));
 
         $this->assertDatabaseMissing('labels', ['id' => $label->id]);
+    }
+
+    public function testDestroyWithTasks(): void
+    {
+        $label = Label::factory()->create([
+            'created_by_id' => $this->user->id,
+        ]);
+        $task = Task::factory()->create();
+        $task->labels()->sync([$label->id]);
+
+        $response = $this->actingAs($this->user)->delete(route('labels.destroy', $label));
+        $response->assertSessionHasErrors();
+        $response->assertRedirect(url()->previous());
+
+        $this->assertDatabaseHas('labels', ['id' => $label->id]);
     }
 }

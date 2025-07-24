@@ -5,14 +5,22 @@ namespace Tests\Feature\Controllers\Api;
 use Tests\TestCase;
 use App\Models\Label;
 use App\Models\User;
+use App\Models\Task;
 use Illuminate\Testing\TestResponse;
 
 class LabelControllerTest extends TestCase
 {
+    private User $user;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->user = User::factory()->create();
+        Label::factory()->count(5)->create();
+    }
+
     public function testIndex(): TestResponse
     {
-        Label::factory()->count(5)->create();
-
         $response = $this->getJson('/api/labels');
 
         $response->assertStatus(200)
@@ -24,13 +32,11 @@ class LabelControllerTest extends TestCase
 
     public function testStore(): TestResponse
     {
-        $user = User::factory()->create();
-
         $data = [
             'name' => 'New Label',
             'description' => 'Test description'
         ];
-        $response = $this->actingAs($user, 'sanctum')->postJson('/api/labels', $data);
+        $response = $this->actingAs($this->user, 'sanctum')->postJson('/api/labels', $data);
 
         $response->assertStatus(201)
                  ->assertJson($data)
@@ -41,14 +47,13 @@ class LabelControllerTest extends TestCase
 
     public function testUpdate(): TestResponse
     {
-        $user = User::factory()->create();
-        $label = Label::factory()->create(['created_by_id' => $user->id]);
+        $label = Label::factory()->create(['created_by_id' => $this->user->id]);
 
         $data = [
             'name' => 'Updated Label',
             'description' => 'Updated description',
         ];
-        $response = $this->actingAs($user, 'sanctum')->patchJson("/api/labels/{$label->id}", $data);
+        $response = $this->actingAs($this->user, 'sanctum')->patchJson("/api/labels/{$label->id}", $data);
 
         $response->assertStatus(200)
                  ->assertJson($data);
@@ -63,14 +68,31 @@ class LabelControllerTest extends TestCase
 
     public function testDestroy(): TestResponse
     {
-        $user = User::factory()->create();
-        $label = Label::factory()->create(['created_by_id' => $user->id]);
+        $label = Label::factory()->create([
+            'created_by_id' => $this->user->id
+        ]);
 
-        $response = $this->actingAs($user, 'sanctum')->deleteJson("/api/labels/{$label->id}");
+        $response = $this->actingAs($this->user, 'sanctum')->deleteJson("/api/labels/{$label->id}");
 
         $response->assertStatus(204);
 
         $this->assertDatabaseMissing('labels', ['id' => $label->id]);
+
+        return $response;
+    }
+
+    public function testDestroyWithTasks(): TestResponse
+    {
+        $label = Label::factory()->create([
+            'created_by_id' => $this->user->id,
+        ]);
+        $task = Task::factory()->create();
+        $task->labels()->sync([$label->id]);
+
+        $response = $this->actingAs($this->user, 'sanctum')->deleteJson("/api/labels/{$label->id}");
+        $response->assertStatus(409);
+
+        $this->assertDatabaseHas('labels', ['id' => $label->id]);
 
         return $response;
     }
