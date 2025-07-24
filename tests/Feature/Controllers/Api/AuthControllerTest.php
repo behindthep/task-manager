@@ -9,7 +9,7 @@ use Illuminate\Testing\TestResponse;
 
 class AuthControllerTest extends TestCase
 {
-    public function testRegisterSuccess(): TestResponse
+    public function testRegister(): TestResponse
     {
         $response = $this->postJson('/api/register', [
             'name' => 'Test User',
@@ -42,7 +42,7 @@ class AuthControllerTest extends TestCase
         return $response;
     }
 
-    public function testLoginSuccess(): TestResponse
+    public function testLogin(): TestResponse
     {
         $password = 'password123';
         $user = User::factory()->create([

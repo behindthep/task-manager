@@ -6,9 +6,9 @@ use Tests\TestCase;
 
 class ErrorPageControllerTest extends TestCase
 {
-    public function testNotFoundPageIsDisplayed(): void
+    public function testNotFoundPage(): void
     {
-        $response = $this->get(__('Non-existent route'));
+        $response = $this->get('/non-existent-route');
 
         $response->assertSessionHasNoErrors();
         $response->assertStatus(404);

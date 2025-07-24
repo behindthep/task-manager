@@ -54,7 +54,7 @@ class Task extends Model
         });
     }
 
-    public function scopeOfTextInDescription(Builder $query, string $type): Builder
+    public function scopeTextInDescription(Builder $query, string $type): Builder
     {
         return $query->whereLike('description', "%$type%");
     }
