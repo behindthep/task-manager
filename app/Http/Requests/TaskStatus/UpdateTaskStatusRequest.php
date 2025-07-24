@@ -15,7 +15,7 @@ class UpdateTaskStatusRequest extends FormRequest
     {
         $taskStatusId = $this->taskStatus ? $this->taskStatus->id : 'NULL';
         return [
-            'name' => "sometimes|unique:task_statuses,name,$taskStatusId|max:50",
+            'name' => "required|unique:task_statuses,name,$taskStatusId|max:50",
         ];
     }
 

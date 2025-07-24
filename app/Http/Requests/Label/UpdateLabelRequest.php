@@ -15,7 +15,7 @@ class UpdateLabelRequest extends FormRequest
     {
         $labelId = $this->label ? $this->label->id : 'NULL';
         return [
-            'name' => "sometimes|unique:labels,name,$labelId|max:50",
+            'name' => "sometimes|required|unique:labels,name,$labelId|max:50",
             'description' => 'sometimes|nullable|string|max:255'
         ];
     }

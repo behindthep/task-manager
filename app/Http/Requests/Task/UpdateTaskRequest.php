@@ -15,11 +15,11 @@ class UpdateTaskRequest extends FormRequest
     {
         $taskId = $this->task ? $this->task->id : 'NULL';
         return [
-            'name' => "sometimes|string|unique:tasks,name,$taskId|max:100",
+            'name' => "sometimes|required|string|unique:tasks,name,$taskId|max:100",
             'description' => 'sometimes|nullable|string|max:255',
-            'status_id' => 'sometimes|integer|exists:task_statuses,id',
+            'status_id' => 'sometimes|required|exists:task_statuses,id',
             'assigned_to_id' => 'sometimes|nullable|exists:users,id',
-            'labels' => 'sometimes|array',
+            'labels' => 'sometimes|nullable|array',
             'labels.*' => 'integer|exists:labels,id',
         ];
     }

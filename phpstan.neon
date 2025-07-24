@@ -9,7 +9,6 @@ parameters:
         - identifier: return.type
         - identifier: method.notFound
         - identifier: property.notFound
-        - identifier: staticMethod.notFound
         - identifier: argument.type
         - identifier: method.nonObject
         - identifier: assign.propertyType

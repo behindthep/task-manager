@@ -2,7 +2,7 @@
     "$schema": "https://getcomposer.org/schema.json",
     "name": "behindthep/task-manager",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "The Laravel CRUD project",
     "keywords": [
         "laravel",
         "framework"
