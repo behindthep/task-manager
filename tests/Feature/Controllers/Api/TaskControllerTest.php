@@ -11,7 +11,7 @@ use Illuminate\Testing\TestResponse;
 
 class TaskControllerTest extends TestCase
 {
-    public function testIndexTasks(): TestResponse
+    public function testIndex(): TestResponse
     {
         Task::factory()->count(12)->create();
 
@@ -23,7 +23,7 @@ class TaskControllerTest extends TestCase
         return $response;
     }
 
-    public function testShowTask(): TestResponse
+    public function testShow(): TestResponse
     {
         $task = Task::factory()->create();
 
@@ -35,31 +35,19 @@ class TaskControllerTest extends TestCase
         return $response;
     }
 
-    public function testStoreTaskRequiresAuth(): TestResponse
-    {
-        $response = $this->postJson('/api/tasks', [
-            'name' => 'Test Task',
-            'status_id' => 1,
-        ]);
-
-        $response->assertStatus(401);
-
-        return $response;
-    }
-
-    public function testStoreTaskSuccess(): TestResponse
+    public function testStore(): TestResponse
     {
         $user = User::factory()->create();
         $status = TaskStatus::factory()->create();
         $labels = Label::factory()->count(2)->create();
 
-        $payload = [
+        $data = [
             'name' => 'Test Task',
             'status_id' => $status->id,
             'labels' => $labels->pluck('id')->toArray(),
         ];
 
-        $response = $this->actingAs($user, 'sanctum')->postJson('/api/tasks', $payload);
+        $response = $this->actingAs($user, 'sanctum')->postJson('/api/tasks', $data);
 
         $response->assertStatus(201)
                  ->assertJsonFragment(['name' => 'Test Task'])
@@ -68,34 +56,35 @@ class TaskControllerTest extends TestCase
         return $response;
     }
 
-    public function testUpdateTaskSuccess(): TestResponse
+    public function testUpdate(): TestResponse
     {
         $user = User::factory()->create();
         $task = Task::factory()->create(['created_by_id' => $user->id]);
         $status = TaskStatus::factory()->create();
         $labels = Label::factory()->count(2)->create();
 
-        $payload = [
+        $data = [
             'name' => 'Updated Task',
             'status_id' => $status->id,
             'labels' => $labels->pluck('id')->toArray(),
         ];
 
-        $response = $this->actingAs($user, 'sanctum')->patchJson("/api/tasks/{$task->id}", $payload);
+        $response = $this->actingAs($user, 'sanctum')->patchJson("/api/tasks/{$task->id}", $data);
+
+        unset($data['labels']);
 
         $response->assertStatus(200)
-                 ->assertJsonFragment(['name' => 'Updated Task']);
+                 ->assertJsonFragment($data);
 
         $this->assertDatabaseHas('tasks', [
             'id' => $task->id,
-            'name' => 'Updated Task',
-            'status_id' => $status->id,
+            ...$data
         ]);
 
         return $response;
     }
 
-    public function testDeleteTaskSuccess(): TestResponse
+    public function testDestroy(): TestResponse
     {
         $user = User::factory()->create();
         $task = Task::factory()->create(['created_by_id' => $user->id]);

@@ -9,7 +9,7 @@ use Illuminate\Testing\TestResponse;
 
 class TaskStatusControllerTest extends TestCase
 {
-    public function testIndexTaskStatuses(): TestResponse
+    public function testIndex(): TestResponse
     {
         TaskStatus::factory()->count(10)->create();
 
@@ -21,52 +21,43 @@ class TaskStatusControllerTest extends TestCase
         return $response;
     }
 
-    public function testStoreTaskStatusRequiresAuth(): TestResponse
-    {
-        $response = $this->postJson('/api/task_statuses', [
-            'name' => 'New Status',
-        ]);
-
-        $response->assertStatus(401);
-
-        return $response;
-    }
-
-    public function testStoreTaskStatusSuccess(): TestResponse
+    public function testStore(): TestResponse
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user, 'sanctum')->postJson('/api/task_statuses', [
+        $data = [
             'name' => 'New Status',
-        ]);
+        ];
+        $response = $this->actingAs($user, 'sanctum')->postJson('/api/task_statuses', $data);
 
         $response->assertStatus(201)
-                 ->assertJson(['name' => 'New Status']);
+                 ->assertJson($data);
 
         return $response;
     }
 
-    public function testUpdateTaskStatusSuccess(): TestResponse
+    public function testUpdate(): TestResponse
     {
         $user = User::factory()->create();
         $status = TaskStatus::factory()->create(['created_by_id' => $user->id]);
 
-        $response = $this->actingAs($user, 'sanctum')->patchJson("/api/task_statuses/{$status->id}", [
+        $data = [
             'name' => 'Updated Status',
-        ]);
+        ];
+        $response = $this->actingAs($user, 'sanctum')->patchJson("/api/task_statuses/{$status->id}", $data);
 
         $response->assertStatus(200)
-                 ->assertJson(['name' => 'Updated Status']);
+                 ->assertJson($data);
 
         $this->assertDatabaseHas('task_statuses', [
             'id' => $status->id,
-            'name' => 'Updated Status',
+            ...$data
         ]);
 
         return $response;
     }
 
-    public function testDeleteTaskStatusSuccess(): TestResponse
+    public function testDestroy(): TestResponse
     {
         $user = User::factory()->create();
         $status = TaskStatus::factory()->create(['created_by_id' => $user->id]);

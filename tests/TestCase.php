@@ -13,5 +13,5 @@ abstract class TestCase extends BaseTestCase
     /**
      * Indicates whether the default seeder should run before each test.
      */
-    protected bool $seed = true;
+    // protected bool $seed = true;
 }

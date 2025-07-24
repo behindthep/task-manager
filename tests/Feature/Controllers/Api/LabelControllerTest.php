@@ -9,7 +9,7 @@ use Illuminate\Testing\TestResponse;
 
 class LabelControllerTest extends TestCase
 {
-    public function testIndexLabels(): TestResponse
+    public function testIndex(): TestResponse
     {
         Label::factory()->count(5)->create();
 
@@ -22,45 +22,46 @@ class LabelControllerTest extends TestCase
         return $response;
     }
 
-    public function testStoreLabelSuccess(): TestResponse
+    public function testStore(): TestResponse
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user, 'sanctum')->postJson('/api/labels', [
+        $data = [
             'name' => 'New Label',
-            'description' => 'Test description',
-        ]);
+            'description' => 'Test description'
+        ];
+        $response = $this->actingAs($user, 'sanctum')->postJson('/api/labels', $data);
 
         $response->assertStatus(201)
-                 ->assertJson(['name' => 'New Label', 'description' => 'Test description'])
+                 ->assertJson($data)
                  ->assertJsonStructure(['id', 'name', 'description', 'created_by_id']);
 
         return $response;
     }
 
-    public function testUpdateLabelSuccess(): TestResponse
+    public function testUpdate(): TestResponse
     {
         $user = User::factory()->create();
         $label = Label::factory()->create(['created_by_id' => $user->id]);
 
-        $response = $this->actingAs($user, 'sanctum')->patchJson("/api/labels/{$label->id}", [
+        $data = [
             'name' => 'Updated Label',
             'description' => 'Updated description',
-        ]);
+        ];
+        $response = $this->actingAs($user, 'sanctum')->patchJson("/api/labels/{$label->id}", $data);
 
         $response->assertStatus(200)
-                 ->assertJson(['name' => 'Updated Label', 'description' => 'Updated description']);
+                 ->assertJson($data);
 
         $this->assertDatabaseHas('labels', [
             'id' => $label->id,
-            'name' => 'Updated Label',
-            'description' => 'Updated description',
+            ...$data
         ]);
 
         return $response;
     }
 
-    public function testDeleteLabelSuccess(): TestResponse
+    public function testDestroy(): TestResponse
     {
         $user = User::factory()->create();
         $label = Label::factory()->create(['created_by_id' => $user->id]);
