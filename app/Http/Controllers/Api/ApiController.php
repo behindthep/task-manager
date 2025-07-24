@@ -10,9 +10,15 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class ApiController extends Controller
 {
+    private array $filters = [
+        'tasks' => ['status_id', 'created_by_id', 'assigned_to_id'],
+        'labels' => ['name'],
+        'task_statuses' => ['name']
+    ];
+
     protected function getFilteredResponse(Request $request, Builder $query, string $resourceKey): JsonResponse
     {
-        $filteredQuery = $this->getQueryFilteredByName($request, $query);
+        $filteredQuery = $this->getFilteredQuery($request, $query, $resourceKey);
         $paginator = $this->makePaginator($request, $filteredQuery);
 
         return response()->json([
@@ -22,11 +28,19 @@ class ApiController extends Controller
         ]);
     }
 
-    private function getQueryFilteredByName(Request $request, Builder $query): Builder
+    private function getFilteredQuery(Request $request, Builder $query, string $resourceKey): Builder
     {
-        return ($request->has('name'))
-            ? $query->whereLike('name', "%{$request->query('name')}%")
-            : $query;
+        foreach ($this->filters[$resourceKey] as $field) {
+            if ($request->has($field)) {
+                if ($field === 'name') {
+                    $query->whereLike($field, "%{$request->query($field)}%");
+                } else {
+                    $query->where($field, $request->query($field));
+                }
+            }
+        }
+
+        return $query;
     }
 
     private function makePaginator(Request $request, Builder $query): LengthAwarePaginator

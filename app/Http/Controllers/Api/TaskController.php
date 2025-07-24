@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use Illuminate\Http\JsonResponse;
@@ -11,7 +10,7 @@ use App\Http\Requests\Task\UpdateTaskRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
 
-class TaskController extends Controller
+class TaskController extends ApiController
 {
     public function __construct()
     {
@@ -22,27 +21,7 @@ class TaskController extends Controller
     public function index(Request $request): JsonResponse
     {
         $query = Task::with('labels');
-
-        if ($request->has('status_id')) {
-            $query->where('status_id', $request->query('status_id'));
-        }
-        if ($request->has('created_by_id')) {
-            $query->where('created_by_id', $request->query('created_by_id'));
-        }
-        if ($request->has('assigned_to_id')) {
-            $query->where('assigned_to_id', $request->query('assigned_to_id'));
-        }
-
-        $page = max(1, (int) $request->query('page', 1));
-        $perPage = 10;
-
-        $paginator = $query->paginate($perPage, ['*'], 'page', $page);
-
-        return response()->json([
-            'total' => $paginator->total(),
-            'tasks' => $paginator->items(),
-            'page' => $paginator->currentPage(),
-        ]);
+        return $this->getFilteredResponse($request, $query, 'tasks');
     }
 
     public function show(Task $task): JsonResponse
