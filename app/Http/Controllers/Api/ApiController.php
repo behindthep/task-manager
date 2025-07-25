@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class ApiController extends Controller
+abstract class ApiController extends Controller
 {
     private array $filters = [
         'tasks' => ['status_id', 'created_by_id', 'assigned_to_id'],
