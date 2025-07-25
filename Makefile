@@ -9,13 +9,13 @@ setup:
 	cp -n .env.example .env
 	php artisan key:gen --ansi
 	php artisan migrate --force
+	php artisan db:seed --force
 	npm ci
 	npm run build
 	make ide-helper
 
 db-prepare:
 	php artisan migrate:refresh --force
-	php artisan db:seed --force
 
 migrate:
 	php artisan migrate

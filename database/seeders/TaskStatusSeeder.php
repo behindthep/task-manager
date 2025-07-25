@@ -19,10 +19,10 @@ class TaskStatusSeeder extends Seeder
         ];
 
         foreach ($statuses as $status) {
-            TaskStatus::firstOrCreate([
-                'name' => $status['name'],
-                'created_by_id' => User::inRandomOrder()->first()->id,
-            ]);
+            TaskStatus::firstOrCreate(
+                ['name' => $status['name']],
+                ['created_by_id' => User::inRandomOrder()->first()->id],
+            );
         }
     }
 }

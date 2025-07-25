@@ -72,21 +72,21 @@ class TaskSeeder extends Seeder
             [
                 'name' => 'Добавить поиск по фото',
                 'description' => 'Только не по моему',
-            ],
-            [
-                'name' => 'Съесть еще этих прекрасных французских булочек',
-                'description' => '',
-            ],
+            ]
         ];
 
         foreach ($tasks as $task) {
-            Task::firstOrCreate([
-                'name' => $task['name'],
-                'description' => $task['description'],
-                'status_id' => TaskStatus::inRandomOrder()->first()->id,
-                'created_by_id' => User::inRandomOrder()->first()->id,
-                'assigned_to_id' => User::inRandomOrder()->first()->id,
-            ]);
+            Task::firstOrCreate(
+                [
+                    'name' => $task['name'],
+                    'description' => $task['description']
+                ],
+                [
+                    'status_id' => TaskStatus::inRandomOrder()->first()->id,
+                    'created_by_id' => User::inRandomOrder()->first()->id,
+                    'assigned_to_id' => User::inRandomOrder()->first()->id
+                ],
+            );
         }
 
         $labelsCount = Label::count();

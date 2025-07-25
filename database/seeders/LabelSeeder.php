@@ -31,11 +31,13 @@ class LabelSeeder extends Seeder
         ];
 
         foreach ($labels as $label) {
-            Label::firstOrCreate([
-                'name' => $label['name'],
-                'description' => $label['description'],
-                'created_by_id' => User::inRandomOrder()->first()->id,
-            ]);
+            Label::firstOrCreate(
+                [
+                    'name' => $label['name'],
+                    'description' => $label['description']
+                ],
+                ['created_by_id' => User::inRandomOrder()->first()->id],
+            );
         }
     }
 }
