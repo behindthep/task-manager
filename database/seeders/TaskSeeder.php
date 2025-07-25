@@ -93,9 +93,10 @@ class TaskSeeder extends Seeder
         Task::all()->each(function ($task) use ($labelsCount) {
             $labels = Label::inRandomOrder()
                 ->limit(random_int(1, $labelsCount))
-                ->get();
+                ->pluck('id')
+                ->toArray();
 
-            $task->labels()->attach($labels);
+            $task->labels()->sync($labels);
         });
     }
 }
