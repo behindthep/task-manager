@@ -3,5 +3,8 @@
         <x-footer-link :href="route('docs.api')" target="_blank">
             {{ __('Api') }}
         </x-footer-link>
+        <x-footer-link href="https://github.com/behindthep/task-manager" target="_blank">
+            {{ __('Github') }}
+        </x-footer-link>
     </nav>
 </div>
