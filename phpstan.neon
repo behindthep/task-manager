@@ -14,3 +14,4 @@ parameters:
         - identifier: assign.propertyType
         - identifier: arguments.count
         - identifier: encapsedStringPart.nonString
+        - identifier: staticMethod.notFound
