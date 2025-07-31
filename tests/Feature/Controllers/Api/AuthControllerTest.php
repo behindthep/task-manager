@@ -15,10 +15,11 @@ class AuthControllerTest extends TestCase
             'name' => 'Test User',
             'email' => 'testuser@example.com',
             'password' => 'password123',
+            'password_confirmation' => 'password123',
         ]);
 
         $response->assertStatus(201)
-                 ->assertJsonStructure(['token']);
+            ->assertJsonStructure(['token']);
 
         $this->assertDatabaseHas('users', [
             'email' => 'testuser@example.com',
@@ -37,7 +38,7 @@ class AuthControllerTest extends TestCase
         ]);
 
         $response->assertStatus(422)
-                 ->assertJsonValidationErrors(['name', 'email', 'password']);
+            ->assertJsonValidationErrors(['name', 'email', 'password']);
 
         return $response;
     }
@@ -55,7 +56,7 @@ class AuthControllerTest extends TestCase
         ]);
 
         $response->assertStatus(200)
-                 ->assertJsonStructure(['token']);
+            ->assertJsonStructure(['token']);
 
         return $response;
     }
@@ -70,7 +71,7 @@ class AuthControllerTest extends TestCase
         ]);
 
         $response->assertStatus(401)
-                 ->assertJson(['message' => __('auth.failed')]);
+            ->assertJson(['message' => __('auth.failed')]);
 
         return $response;
     }

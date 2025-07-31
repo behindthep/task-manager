@@ -459,6 +459,10 @@ components:
           type: string
           minLength: 1
           default: asdabvgd
+        password_confirmation:
+          type: string
+          minLength: 1
+          default: asdabvgd
 
     AuthToken:
       type: object
