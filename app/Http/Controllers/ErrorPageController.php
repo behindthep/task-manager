@@ -8,6 +8,6 @@ class ErrorPageController extends Controller
 {
     public function notFound(): Response
     {
-        return response()->view('errors.404', [], 404);
+        return response()->view('errors.404', data: [], status: 404);
     }
 }
