@@ -15,7 +15,7 @@ setup:
 	make ide-helper
 
 db-prepare:
-	php artisan migrate:refresh --force
+	php artisan migrate:fresh --force
 
 migrate:
 	php artisan migrate
@@ -48,6 +48,8 @@ clear:
 
 BUILD_ARGS:= --build-arg UID=$(shell id -u) --build-arg GID=$(shell id -u)
 
+
+# один из контейнеров завершится - автоматически остановятся остальные
 compose-up:
 	docker compose up --abort-on-container-exit
 
@@ -97,7 +99,7 @@ make ci:
 	docker compose -f docker-compose.ci.yml up --abort-on-container-exit
 	docker compose -f docker-compose.ci.yml down -v --remove-orphans
 
-ci-lint:
+lint-ci:
 	composer exec --verbose phpcs -- app tests
 
 ide-helper:
