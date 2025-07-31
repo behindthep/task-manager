@@ -2,14 +2,14 @@
 
 set -e
 
-php artisan migrate --force
-
 USER_COUNT=$(php artisan tinker --execute="echo \App\Models\User::count();")
 
 if [ "$USER_COUNT" -eq 0 ]; then
-  echo "Users table is empty, running seeders..."
+  php artisan migrate:fresh --force
+  echo "No data in tables, running seeders."
   php artisan db:seed --force
 else
+  php artisan migrate --force
   echo "Users table has data, skipping seeders."
 fi
 

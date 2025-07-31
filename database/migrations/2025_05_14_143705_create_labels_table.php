@@ -17,16 +17,10 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $table->timestamps();
         });
-
-        Schema::create('label_task', function (Blueprint $table) {
-            $table->foreignId('task_id');
-            $table->foreignId('label_id');
-        });
     }
 
     public function down(): void
     {
         Schema::dropIfExists('labels');
-        Schema::dropIfExists('label_task');
     }
 };

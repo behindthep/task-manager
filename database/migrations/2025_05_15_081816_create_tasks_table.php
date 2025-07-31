@@ -23,7 +23,8 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $table->foreignId('assigned_to_id')
                 ->nullable()
-                ->constrained('users');
+                ->constrained('users')
+                ->nullOnDelete();
             $table->timestamps();
 
             $table->unique(['name', 'assigned_to_id']);

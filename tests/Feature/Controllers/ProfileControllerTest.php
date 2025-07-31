@@ -3,6 +3,7 @@
 namespace Tests\Feature\Controllers;
 
 use App\Models\User;
+use App\Models\Task;
 use Tests\TestCase;
 
 class ProfileControllerTest extends TestCase
@@ -58,6 +59,7 @@ class ProfileControllerTest extends TestCase
         $this->assertNotNull($user->refresh()->email_verified_at);
     }
 
+
     public function testUserCanDeleteTheirAccount(): void
     {
         $user = User::factory()->create();
@@ -74,6 +76,31 @@ class ProfileControllerTest extends TestCase
 
         $this->assertGuest();
         $this->assertNull($user->fresh());
+    }
+
+    public function testTasksCorrectAfterUserDestroy(): void
+    {
+        $userForDel = User::factory()->create();
+        $userForCheck = User::factory()->create();
+
+        $taskForDel = Task::factory()->create([
+            'created_by_id' => $userForDel->id,
+        ]);
+
+        $taskForCheck = Task::factory()->create([
+            'created_by_id' => $userForCheck->id,
+            'assigned_to_id' => $userForDel->id
+        ]);
+
+        $this->actingAs($userForDel)->delete('/profile', [
+            'password' => 'password'
+        ]);
+
+        $this->assertDatabaseMissing('tasks', ['id' => $taskForDel->id]);
+        $this->assertDatabaseHas('tasks', [
+            'id' => $taskForCheck->id,
+            'assigned_to_id' => null,
+        ]);
     }
 
     public function testCorrectPasswordMustBeProvidedToDeleteAccount(): void
